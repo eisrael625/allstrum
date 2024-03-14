@@ -1,0 +1,43 @@
+.slideshow {
+    position: relative;
+    height: 85vh;
+    overflow: hidden;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  }
+  
+  .slide {
+    display: none;
+    height: 66vh;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .slide.active {
+    display: block;
+  }
+  
+  .dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: #717171;
+  }
+  

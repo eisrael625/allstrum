@@ -1,38 +1,144 @@
+/* App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
 .App {
   text-align: center;
+  background-color: #f9f9f9;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sideBySide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* .Inspiration,
+.section {
+  transform: translateX(-100%);
+  transition: transform 2.5s ease;
+} */
+
+
+.Inspiration.fadeIn,
+.section.fadeIn {
+  transform: translateX(0);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Full_Image {
+  text-align: left;
+  height: 93vh;
+  width: calc(100vw - 700px);
+  justify-content: left;
+  display: flex;
+  padding-top: 6.7vh;
+}
+
+.ukePic {
+  text-align: left;
+  height: 93vh;
+  width: calc(100vw - 700px);
+  justify-content: left;
+  display: flex;
+}
+
+.youtubeContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  padding-top: 6.7vh;
+}
+
+.Inspiration_Text {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 2vh 0;
+  font-size: 2.5vh;
+}
+
+.Inspiration {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  padding: 2vh;
+}
+
+.Camp,
+.Soldiers {
+  flex: 1;
+  background-color: white;
+  color: #333;
+  margin: 0 1vw;
+  padding: 2vw;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Camp h2,
+.Soldiers h2 {
+  margin-top: 0;
+  font-size: 2.5vh;
+  color: #666;
+}
+
+.Inspiration_Pics {
+  height: auto;
+  max-width: 100%;
+}
+
+.Inspiration_Paragraph {
+  font-size: 2vh;
+  line-height: 1.6;
+  margin-top: 2vh;
+}
+
+.AwardsAndContact {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  height: 30vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.AwardsAndContact h2 {
+  font-size: 2.5vh;
+  color: #333;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.AwardsAndContact p {
+  font-size: 2vh;
+  color: #666;
+  line-height: 1.6;
+}
+
+.AwardsAndContact a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.AwardsAndContact a:hover {
+  text-decoration: underline;
+}
+
+.section {
+  opacity: 0;
+  transition: opacity 2.5s ease, transform 2.5s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
