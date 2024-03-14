@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cef84a33.css",
+    "main.js": "/static/js/main.c58c7897.js",
+    "static/media/croppedUke.png": "/static/media/croppedUke.07f93dd0f632341267a3.png",
+    "static/media/Camp.jpg": "/static/media/Camp.1a86d57a276df504a8bb.jpg",
+    "static/media/Soldier.jpeg": "/static/media/Soldier.3dbef54e9059d4d9c4e9.jpeg",
+    "static/media/logo.png": "/static/media/logo.2c734f6b1c0091478dfb.png",
+    "static/media/3.png": "/static/media/3.7561d48f4435a9bb75bb.png",
+    "static/media/2.png": "/static/media/2.9875c4d2c40b56f21e3e.png",
+    "static/media/4.png": "/static/media/4.44bcdccff1e13534b217.png",
+    "static/media/1.png": "/static/media/1.7fc6b313e7fa3d14254e.png",
+    "static/media/6.png": "/static/media/6.ef518afbe5852451af2f.png",
+    "static/media/5.png": "/static/media/5.d0d8234deba2d645300f.png",
+    "index.html": "/index.html",
+    "main.cef84a33.css.map": "/static/css/main.cef84a33.css.map",
+    "main.c58c7897.js.map": "/static/js/main.c58c7897.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cef84a33.css",
+    "static/js/main.c58c7897.js"
+  ]
+}
