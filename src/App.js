@@ -106,7 +106,7 @@ function App() {
 
       <h1 className="Inspiration_Text section">Customer's Testimonies</h1>
       <Slideshow className="slideshowaa section" images={images} />
-      <h1 onClick={handlePreOrderClick} className="preorder">Pre-Order Now!</h1>
+      <h1 onClick={handlePreOrderClick} className="preorder section">Pre-Order Now!</h1>
       <div className="AwardsAndContact section">
         <h2>Awards</h2>
         <p>
