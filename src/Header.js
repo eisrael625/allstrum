@@ -10,10 +10,11 @@ function Header() {
   return (
     <div className='Header'>
       <div className='Logo'>
-        <img src={logo} alt='Company logo showing accessible music device'></img>
+        <img className='LogoPic' src={logo} alt='Company logo showing accessible music device'></img>
       </div>
       <div className="Name">
-        <h1>All Strum: Making Stringed Instruments Accessible For All</h1>
+              <h1 className='headerWeb'>All Strum: Making Stringed Instruments Accessible For All</h1>
+              <h1 className='headerMobile'>All Strum: Accessible Music For All</h1>
         <div className='Buttons'>
           <h2 onClick={handlePreOrderClick} className='Button'>Pre-Order Now!</h2>    
         </div>

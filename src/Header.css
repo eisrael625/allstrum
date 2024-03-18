@@ -5,6 +5,7 @@
     color: white;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
@@ -37,4 +38,43 @@
   .Button {
     font-size: 1.2vw;
   }
+  .headerWeb {
+    display: block;
+  }
+  .headerMobile {
+    display: none;
+  }
   
+  /* Media Queries for Mobile */
+  @media only screen and (max-width: 768px) {
+    .Header {
+      height: 7vh; /* Increase height for better visibility */
+      flex-direction: row; /* Align items horizontally */
+      width: 100vw;
+      justify-content: space-between;
+    }
+
+    .LogoPic {
+        height: 4vh; /* Adjust logo height */
+    }
+  
+    .Name {
+      font-size: 2vw; /* Increase font size for name */
+    }
+  
+  
+    .Button {
+      font-size: 2vw; /* Adjust font size for buttons */
+      margin-right: 2vw; /* Adjust margin between buttons */
+      width: 5vh;
+      display: none;
+    }
+
+    .headerWeb {
+        display: none;
+      }
+      .headerMobile {
+        display: block;
+      }
+
+  }

@@ -54,6 +54,9 @@ function App() {
     testimony6
     // Add more image URLs as needed
   ];
+  const handlePreOrderClick = () => {
+    window.location.href = "https://forms.gle/gxEsbb1r3G3446Xg7";
+};
 
   return (
     <div className="App">
@@ -63,7 +66,10 @@ function App() {
           <img className="ukePic" src={uke} alt="Full Diagram of Device" />
         </div>
         <div className="youtubeContainer">
-          <YouTubeVideo />
+          <h1 className="mobile_video_description section">Demonstration</h1>
+          <div className="youtubeVid">
+               < YouTubeVideo />
+          </div>
         </div>
       </div>
 
@@ -100,7 +106,7 @@ function App() {
 
       <h1 className="Inspiration_Text section">Customer's Testimonies</h1>
       <Slideshow className="slideshowaa section" images={images} />
-
+      <h1 onClick={handlePreOrderClick} className="preorder">Pre-Order Now!</h1>
       <div className="AwardsAndContact section">
         <h2>Awards</h2>
         <p>
@@ -116,3 +122,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -1,0 +1,16 @@
+.web {
+    display: block;
+}
+.mobile {
+    display: none;
+}
+
+/* Media Queries for Mobile */
+@media only screen and (max-width: 768px) {
+    .web {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+  }

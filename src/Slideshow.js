@@ -12,7 +12,7 @@ const Slideshow = ({ images }) => {
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
       }
-    }, 3000); // Change slide every 2 seconds
+    }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
   }, [isHovered, images.length]);
