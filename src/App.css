@@ -88,11 +88,13 @@ display: none;
   margin-top: 0;
   font-size: 2.5vh;
   color: #666;
+  text-align: center;
 }
 
 .Inspiration_Pics {
   height: auto;
   max-width: 100%;
+    height: 66vh;
 }
 
 .Inspiration_Paragraph {
