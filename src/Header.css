@@ -1,8 +1,8 @@
 .Header {
-    background-color: black;
+    background-color: rgb(15, 81, 138);
     height: 7vh;
     width: 100vw;
-    color: white;
+    color: rgb(252, 243, 226);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,6 +10,7 @@
     top: 0;
     left: 0;
     z-index: 999;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
   
   .Logo {
@@ -33,10 +34,12 @@
     justify-content: flex-end;
     margin-left: 2vw;
     cursor: pointer; /* Add this line */
+    
   }
   
   .Button {
     font-size: 1.2vw;
+    color: rgb(255, 137, 67)
   }
   .headerWeb {
     display: block;

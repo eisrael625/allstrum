@@ -13,6 +13,14 @@ import YouTubeVideo from './Youtube';
 import Slideshow from './Slideshow';
 import './App.css'; // Import CSS file
 
+const colorPalette = {
+  blue: '#0F518A',
+  cream: '#FCF3E2',
+  orange: '#FF8943',
+  lightblue: '#5EC4EC'
+};
+
+
 function App() {
   const [visibleSections, setVisibleSections] = useState([]);
 
@@ -62,11 +70,12 @@ function App() {
     <div className="App">
       <Header />
       <div className="sideBySide">
-        <div className="Full_Image">
+        {/* <div className="Full_Image">
           <img className="ukePic" src={uke} alt="Full Diagram of Device" />
-        </div>
+        </div> */}
         <div className="youtubeContainer">
-          <h1 className="mobile_video_description section">Demonstration</h1>
+          {/* <h1 className="mobile_video_description section">Demonstration</h1> */}
+        <div className="backgroundImage"></div>
           <div className="youtubeVid">
                < YouTubeVideo />
           </div>

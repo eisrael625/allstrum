@@ -30,7 +30,7 @@ const Slideshow = ({ images }) => {
   };
 
   return (
-    <div className="slideshow">
+    <div className="slideshow section">
       {images.map((image, index) => (
         <img
           key={index}
