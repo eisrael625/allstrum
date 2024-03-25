@@ -115,6 +115,8 @@ display: none;
   font-family: 'Lexend', sans-serif;
   align-items: center;
  justify-content: center;
+ display: flex;
+ flex-direction: column;
 }
 
 .Camp h2,
@@ -129,6 +131,8 @@ display: none;
 .Inspiration_Pics {
   height: 50vh;
   max-width: 100%;
+  align-self: center;
+  justify-self: center;
   
 }
 
