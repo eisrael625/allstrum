@@ -113,6 +113,8 @@ display: none;
   border-radius: 10px;
   box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.2);
   font-family: 'Lexend', sans-serif;
+  align-items: center;
+ justify-content: center;
 }
 
 .Camp h2,
@@ -125,7 +127,7 @@ display: none;
 }
 
 .Inspiration_Pics {
-  height: auto;
+  height: 50vh;
   max-width: 100%;
   
 }
@@ -201,6 +203,11 @@ cursor: pointer;
     justify-content: center;
     width: 100vw;
     height: 93vh;
+  }
+  .Inspiration_Pics {
+    height: auto;
+    max-width: 100%;
+    
   }
   
   .backgroundImage {
