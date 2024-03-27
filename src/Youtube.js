@@ -2,7 +2,7 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import './Youtube.css';
 
-const YouTubeVideo = () => {
+const YouTubeVideo = ({ videoId }) => {
   // Calculate dimensions based on viewport size
   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
   const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
@@ -17,16 +17,13 @@ const YouTubeVideo = () => {
     },
   };
   const optsMobile = {
-    width: `${vw * .9 }`, // 95
+    width: `${vw * .9}`, // 95
     height: `${vw * 0.7}`, // 25vh
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 0,
     },
   };
-
-  // YouTube video ID
-  const videoId = 'Vy46onQp99c';
 
   return (
     <div>

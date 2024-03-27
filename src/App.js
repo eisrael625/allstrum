@@ -77,7 +77,9 @@ function App() {
           {/* <h1 className="mobile_video_description section">Demonstration</h1> */}
         <div className="backgroundImage"></div>
           <div className="youtubeVid">
-               < YouTubeVideo />
+          
+            <YouTubeVideo videoId="jZytVzkcJic" />
+          {/* <YouTubeVideo videoId="Vy46onQp99c" /> */}
           </div>
         </div>
       </div>
@@ -112,9 +114,19 @@ function App() {
           </p>
         </div>
       </div>
-
+      
       <h1 className="Inspiration_Text section">Customer's Testimonies</h1>
       <Slideshow className="slideshowaa section" images={images} />
+      <h1 className="Inspiration_Text section">Walk Through</h1>
+      <div className="youtubeContainer section">
+          {/* <h1 className="mobile_video_description section">Demonstration</h1> */}
+        <div className="backgroundImage2"></div>
+          <div className="youtubeVid">
+          
+            {/* <YouTubeVideo videoId="jZytVzkcJic" /> */}
+          <YouTubeVideo videoId="Vy46onQp99c" />
+          </div>
+        </div>
       <h1 onClick={handlePreOrderClick} className="preorder section">Pre-Order Now!</h1>
       <div className="AwardsAndContact section">
         <h2>Awards</h2>
