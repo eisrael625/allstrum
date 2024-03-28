@@ -129,11 +129,12 @@ function App() {
         </div>
       <h1 onClick={handlePreOrderClick} className="preorder section">Pre-Order Now!</h1>
       <div className="AwardsAndContact section">
-        <h2>Awards</h2>
+        <h2>Awards and Patent</h2>
         <p>
           The Accessible Ukulele has already won the Yale Student Innovation Grant and the Yale Student Milestone Grant
           and is working to get into the world and to the people who can benefit from this product.
         </p>
+        <p>The Accessible Ukulele is Patent Pending, All Rights Reserved</p>
         <p>
           Contact me at <a href="mailto:Eytan.Israel@Yale.edu">Eytan.Israel@Yale.edu</a> for any inquiries.
         </p>
