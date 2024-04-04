@@ -137,7 +137,9 @@ function App() {
         <p>The Accessible Ukulele is Patent Pending, All Rights Reserved</p>
         <p>
           Contact me at <a href="mailto:Eytan.Israel@Yale.edu">Eytan.Israel@Yale.edu</a> for any inquiries.
-          Find me on <a href="https://www.linkedin.com/in/eytan-israel-a2a55078/">LinkedIn</a> to get updates!.
+        </p>
+        <p>
+        Find me on <a href="https://www.linkedin.com/in/eytan-israel-a2a55078/">LinkedIn</a> to get updates!
         </p>
       </div>
     </div>
