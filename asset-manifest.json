@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.f7782676.css",
-    "main.js": "/static/js/main.0d3b43fc.js",
+    "main.js": "/static/js/main.22653b10.js",
     "static/media/croppedUke.png": "/static/media/croppedUke.07f93dd0f632341267a3.png",
     "static/media/Camp.jpg": "/static/media/Camp.1a86d57a276df504a8bb.jpg",
     "static/media/Soldier.jpeg": "/static/media/Soldier.3dbef54e9059d4d9c4e9.jpeg",
@@ -14,10 +14,10 @@
     "static/media/5.png": "/static/media/5.d0d8234deba2d645300f.png",
     "index.html": "/index.html",
     "main.f7782676.css.map": "/static/css/main.f7782676.css.map",
-    "main.0d3b43fc.js.map": "/static/js/main.0d3b43fc.js.map"
+    "main.22653b10.js.map": "/static/js/main.22653b10.js.map"
   },
   "entrypoints": [
     "static/css/main.f7782676.css",
-    "static/js/main.0d3b43fc.js"
+    "static/js/main.22653b10.js"
   ]
 }
