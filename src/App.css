@@ -109,6 +109,35 @@ html, body {
   opacity: 0.6;
 }
 
+/* ____
+______
+YOUTUBE */
+
+/* Generic responsive YouTube wrapper */
+.youtube-responsive {
+  position: relative;
+  width: 100%;
+  /* 16:9 aspect ratio → 9 / 16 = 0.5625 */
+  padding-top: 56.25%;
+  overflow: hidden;
+  border-radius: 2vw;
+}
+
+/* Make iframe fill the wrapper */
+.youtube-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Inside hero card – keep it full width */
+.hero-video-card .youtube-responsive {
+  width: 100%;
+  padding-top: 56.25%;
+}
 
 /* ------------------------------------------------------
    HERO SECTION
