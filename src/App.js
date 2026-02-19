@@ -1,217 +1,46 @@
-// import React, { useEffect, useState } from 'react';
-// import Header from './Header';
-// import uke from './croppedUke.png';
-// import camp from './Camp.jpg';
-// import soldier from './Soldier.jpeg';
-// import testimony1 from './1.png';
-// import testimony2 from './2.png';
-// import testimony3 from './3.png';
-// import testimony4 from './4.png';
-// import testimony5 from './5.png';
-// import testimony6 from './6.png';
-// import YouTubeVideo from './Youtube';
-// import Slideshow from './Slideshow';
-// import './App.css'; // Import CSS file
-
-// const colorPalette = {
-//   blue: '#0F518A',
-//   cream: '#FCF3E2',
-//   orange: '#FF8943',
-//   lightblue: '#5EC4EC'
-// };
-
-
-// function App() {
-//   const [visibleSections, setVisibleSections] = useState([]);
-
-//   useEffect(() => {
-//     window.addEventListener('scroll', handleScroll);
-//     return () => {
-//       window.removeEventListener('scroll', handleScroll);
-//     };
-//   }, []);
-
-//   const handleScroll = () => {
-//     const sections = document.querySelectorAll('.section');
-//     const awardsSection = document.querySelector('.AwardsAndContact');
-//     const awardsSectionTop = awardsSection.getBoundingClientRect().top;
-//     const windowHeight = window.innerHeight;
-
-//     if (awardsSectionTop < windowHeight * 0.75) {
-//       awardsSection.classList.add('visible');
-//     } else {
-//       awardsSection.classList.remove('visible');
-//     }
-
-//     sections.forEach((section) => {
-//       const sectionTop = section.getBoundingClientRect().top;
-//       if (sectionTop < windowHeight * 0.75) {
-//         section.classList.add('visible');
-//       } else {
-//         section.classList.remove('visible');
-//       }
-//     });
-//   };
-
-//   const images = [
-//     testimony1,
-//     testimony2,
-//     testimony3,
-//     testimony4,
-//     testimony5,
-//     testimony6
-//     // Add more image URLs as needed
-//   ];
-//   const handlePreOrderClick = () => {
-//     window.location.href = "https://forms.gle/gxEsbb1r3G3446Xg7";
-// };
-
-//   return (
-//     <div className="App">
-//       <Header />
-//       <div className="sideBySide">
-//         {/* <div className="Full_Image">
-//           <img className="ukePic" src={uke} alt="Full Diagram of Device" />
-//         </div> */}
-//         <div className="youtubeContainer">
-//           {/* <h1 className="mobile_video_description section">Demonstration</h1> */}
-//         <div className="backgroundImage"></div>
-//           <div className="youtubeVid">
-          
-//             <YouTubeVideo videoId="jZytVzkcJic" />
-//           {/* <YouTubeVideo videoId="Vy46onQp99c" /> */}
-//           </div>
-//         </div>
-//       </div>
-
-//       <h1 className="Inspiration_Text section">Inspiration</h1>
-//       <div className="Inspiration section">
-//         <div className="Camp">
-//           <h2>The Accessible Instrument</h2>
-//           <img className="Inspiration_Pics" src={camp} alt="child playing ukulele" />
-//           <p className="Inspiration_Paragraph">
-//             The inspiration for the device came to me a few years ago when I was a counselor at a camp for children
-//             with special needs. Several of my campers loved music and wanted to feel like they were creating their own
-//             music, but didn’t have the fine motor skills or the intellectual capacity to hold down the chords one after
-//             another and make a song. At the time, my solution was to hold the ukulele together with them, as they
-//             strummed. They were so excited to be creating music. Out of this, the Accessible Ukulele idea came to me.
-//             Now, by simply selecting a series of chords or clicking on a pre-loaded song on the companion app, a user
-//             could play a whole song just by strumming, with the chords being held down one after another automatically.
-//           </p>
-//         </div>
-//         <div className="Soldiers">
-//           <h2>Music For All</h2>
-//           <img className="Inspiration_Pics" src={soldier} alt="soldier playing guitar" />
-//           <p className="Inspiration_Paragraph">
-//             In my school’s Veteran’s day assembly, I heard the story of a soldier who had great musical talent, but,
-//             unfortunately, lost his ability to play the guitar after he was injured in battle. I was tasked with writing
-//             him a note, expressing my gratefulness for his sacrifice, but it seemed in-genuine. I thought, “Maybe I
-//             could fix his problem, and not just sympathize with it.” Since then, I have heard the stories of so many
-//             individuals who have lost ability to play an instrument they held so closely to their heart. Whether it was
-//             a girl who developed a tremor in one of her hands, making it impossible to hold down chords, or a man who
-//             got paralyzed in one arm, the stories of individuals not being able to pursue music pained me. I had a deep
-//             desire to help.
-//           </p>
-//         </div>
-//       </div>
-      
-//       <h1 className="Inspiration_Text section">Customer's Testimonies</h1>
-//       <Slideshow className="slideshowaa section" images={images} />
-//       <h1 className="Inspiration_Text section">Walk Through</h1>
-//       <div className="youtubeContainer section">
-//           {/* <h1 className="mobile_video_description section">Demonstration</h1> */}
-//         <div className="backgroundImage2"></div>
-//           <div className="youtubeVid">
-          
-//             {/* <YouTubeVideo videoId="jZytVzkcJic" /> */}
-//           <YouTubeVideo videoId="Vy46onQp99c" />
-//           </div>
-//         </div>
-//       <h1 onClick={handlePreOrderClick} className="preorder section">Pre-Order Now!</h1>
-//       <div className="AwardsAndContact section">
-//         <h2>Awards and Patent</h2>
-//         <p>
-//           The Accessible Ukulele has already won the Yale Student Innovation Grant and the Yale Student Milestone Grant
-//           and is working to get into the world and to the people who can benefit from this product.
-//         </p>
-//         <p>The Accessible Ukulele is Patent Pending, All Rights Reserved</p>
-//         <p>
-//           Contact me at <a href="mailto:Eytan.Israel@Yale.edu">Eytan.Israel@Yale.edu</a> for any inquiries. Find me on <a href="https://www.linkedin.com/in/eytan-israel-a2a55078/">LinkedIn</a> to get updates!
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
 // App.js
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import Header from './Header';
 import camp from './Camp.jpg';
 import soldier from './Soldier.jpeg';
-import testimony1 from './1.png';
-import testimony2 from './2.png';
-import testimony3 from './3.png';
-import testimony4 from './4.png';
-import testimony5 from './5.png';
-import testimony6 from './6.png';
+import campfire from './assets/vitaly-gariev-qRq0eoSCj-Q-unsplash.jpg';
+import kidsMusic from './assets/vitaly-gariev-NVWc_fyctlk-unsplash.jpg';
 import YouTubeVideo from './Youtube';
 import Slideshow from './Slideshow';
+import VideoModal from './VideoModal';
 import './App.css';
-
-const colorPalette = {
-  blue: '#0F518A',
-  cream: '#FCF3E2',
-  orange: '#FF8943',
-  lightblue: '#5EC4EC',
-};
 
 const PRODUCTS = {
   guitar: {
     key: 'guitar',
-    name: 'Accessible Guitar',
-    tagline: 'Strum full songs on a real guitar—no chord fingerings required.',
-    primaryVideoId: 'Tc2Rj1Ny0Yw', // New guitar demo
-    detailsTitle: 'Why the Accessible Guitar?',
-    detailsIntro:
-      'The Accessible Guitar is the next step in adaptive instruments, designed so that anyone can sit with friends and actually play songs on a real guitar.',
-    bullets: [
-      'Plays any chord combination within the first three frets.',
-      'Ideal for people with limited finger mobility, one functional arm, or coordination challenges.',
-      'App-controlled chord progression: pick custom chords or load pre-made songs.',
-      'Built as a culmination of years of prototyping, starting from the Accessible Ukulele.',
-    ],
+    name: 'AllStrum Guitar',
+    tagline: 'Play full songs on guitar from day one. No experience needed.',
+    primaryVideoId: 'Tc2Rj1Ny0Yw',
+    detailsTitle: 'Why AllStrum?',
     featureCards: [
       {
         title: 'Inclusive Design',
-        body: 'Engineered for users with physical and cognitive disabilities, beginners, and anyone who wants to jump straight into playing.',
-      },
-      {
-        title: 'Real Instrument',
-        body: 'Works with a real guitar so the feel, sound, and social experience are authentic.',
+        body: 'Whether you are a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, a hobbyist who never quite found the time to take lessons, or someone with a disability or special need who deserves to feel the joy of making music — AllStrum meets you exactly where you are. ',
       },
       {
         title: 'Smart Control',
-        body: 'A companion app automatically shifts chords while the user focuses purely on strumming.',
+        body: 'The AllStrum companion app connects to the instrument and shifts chords automatically, so you can focus entirely on rhythm and feel. Browse your favorite songs and play along in real time, or slow things down and work through specific strumming patterns to build your skills at your own pace.',
+      },
+      {
+        title: 'Real Instrument',
+        body: 'AllStrum attaches to a real guitar or ukulele without compromising the instrument\'s sound or feel. Bring it to a campfire or a family gathering and what people hear is a real instrument played by you.',
       },
     ],
   },
   ukulele: {
     key: 'ukulele',
-    name: 'Accessible Ukulele',
-    tagline: 'The original prototype that proved anyone can strum real songs.',
-    primaryVideoId: 'jZytVzkcJic', // Original uke demo
-    detailsTitle: 'The Original Accessible Ukulele',
+    name: 'AllStrum Ukulele',
+    tagline: 'Where it all started. Now available to everyone.',
+    primaryVideoId: 'jZytVzkcJic',
+    detailsTitle: 'The Original AllStrum Ukulele',
     detailsIntro:
-      'The Accessible Ukulele was the first prototype built to help campers with special needs feel the joy of creating music on their own.',
-    bullets: [
-      'Inpired by working at a camp for children with special needs.',
-      'Enabled simple chord progressions with limited, pre-set chord combinations.',
-      'Showed how powerful adaptive instruments can be for confidence and joy.',
-      'Laid the groundwork that led directly to the more flexible Accessible Guitar.',
-    ],
+      'The AllStrum Ukulele was the first prototype built to help campers with special needs feel the joy of creating music on their own.',
     featureCards: [
       {
         title: 'Camp Prototype',
@@ -219,7 +48,7 @@ const PRODUCTS = {
       },
       {
         title: 'Simple Chords',
-        body: 'Focused on a small set of Ukulele chords that could cover many songs.',
+        body: 'Focused on a small set of ukulele chords that could cover many songs.',
       },
       {
         title: 'Proof of Concept',
@@ -229,10 +58,34 @@ const PRODUCTS = {
   },
 };
 
+const VIDEO_CARDS = [
+  {
+    videoId: 'Tc2Rj1Ny0Yw',
+    title: 'AllStrum Guitar Demo',
+  },
+  {
+    videoId: 'Vy46onQp99c',
+    title: 'AllStrum Ukulele Technical Walkthrough',
+  },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
 function App() {
   const [activeProduct, setActiveProduct] = useState('guitar');
+  const [modalVideoId, setModalVideoId] = useState(null);
 
-  const images = [testimony1, testimony2, testimony3, testimony4, testimony5, testimony6];
+  const testimonials = [
+    '"Yes. Josh enjoys music and has played with ukuleles before, but does not have the ability (nor interest so far) in creating chords. A device like this would allow him to play a familiar song and get further enjoyment out of playing the instrument."',
+    '"Yes! Sam has Cerebral Palsy and is deaf & hard of hearing. His physical disability prevents him from using his hands without pain and tremors. But this technology would greatly benefit his ability to create and contribute creatively with peers. He sometimes has difficulty communicating and regulating his emotions. He uses music to help comfort and soothe him during these difficult times."',
+    '"Yes! My daughter Sarah is autistic, and a gestalt language processor, which means that she is very attentive to intonation, cadence, rhythm and melody. As such, she is an extremely musical child and benefits from apps like GarageBand and music therapy. Her fine motor skills are not well developed though, so an adaptive musical instrument like this would be a wonderful way for her to experience playing an instrument."',
+    '"He would love to create music in this way! He would be able to work on rhythm, melody, harmony, fine motor skills holding and strumming the ukulele. What a great springboard for the socialization that music brings! I envision confidence following suit. Thank you for this amazing invention!"',
+    '"Yes! Kate loves music. Many of her siblings are taking music lessons and she feels very left out."',
+    '"Yes. My son loves music and would love to play an instrument but can\'t manage the coordination of playing chords while strumming due to his Down Syndrome."',
+  ];
 
   const handlePreOrderClick = () => {
     window.location.href = 'https://forms.gle/gxEsbb1r3G3446Xg7';
@@ -244,14 +97,20 @@ function App() {
     <div className="App">
       <Header />
       <main>
-        {/* Hero + Product Tabs */}
+
+        {/* ── HERO ── */}
         <section id="products" className="section hero">
           <div className="hero-inner">
-            <div className="hero-text">
-              <p className="hero-eyebrow">Accessible Instruments by Eytan Israel</p>
+
+            <motion.div
+              className="hero-text"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+            >
               <h1 className="hero-title">Music for everybody.</h1>
               <p className="hero-subtitle">
-                Adaptive devices that let anyone strum real chords on real instruments—no fine motor skills required.
+                Adaptive devices that let anyone strum the chords to their favorite songs.
               </p>
 
               <div className="product-tabs">
@@ -259,193 +118,315 @@ function App() {
                   className={`product-tab ${activeProduct === 'guitar' ? 'active' : ''}`}
                   onClick={() => setActiveProduct('guitar')}
                 >
-                  Accessible Guitar
+                  AllStrum Guitar
                 </button>
                 <button
                   className={`product-tab ${activeProduct === 'ukulele' ? 'active' : ''}`}
                   onClick={() => setActiveProduct('ukulele')}
                 >
-                  Accessible Ukulele
+                  AllStrum Ukulele
                 </button>
               </div>
 
               <div className="product-highlight">
                 <h2 className="product-name">{currentProduct.name}</h2>
                 <p className="product-tagline">{currentProduct.tagline}</p>
-
                 <div className="hero-ctas">
                   <button className="btn primary" onClick={handlePreOrderClick}>
-                  Pre-order Now
+                    Pre-order Now
                   </button>
-
                   <a href="#videos" className="btn ghost">
-                  Watch Demo
+                    Watch Demo
                   </a>
                 </div>
-              </div> 
               </div>
+            </motion.div>
 
-
-            <div className="hero-media">
+            <motion.div
+              className="hero-media"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2 }}
+            >
               <div className="hero-video-card">
                 <YouTubeVideo videoId={currentProduct.primaryVideoId} />
               </div>
-            </div>
+            </motion.div>
+
           </div>
         </section>
 
-        {/* Product Details */}
+        {/* ── PRODUCT DETAILS ── */}
         <section className="section product-details">
-          <div className="product-details-inner">
-            <div className="product-details-text">
-              <h3>{currentProduct.detailsTitle}</h3>
-              <p className="product-details-intro">{currentProduct.detailsIntro}</p>
-              <ul className="product-details-list">
-                {currentProduct.bullets.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
+          <motion.div
+            className="product-details-inner"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div className="product-details-header">
+              <h3>{PRODUCTS.guitar.detailsTitle}</h3>
             </div>
 
             <div className="product-feature-grid">
-              {currentProduct.featureCards.map((card) => (
+              {PRODUCTS.guitar.featureCards.map((card) => (
                 <div key={card.title} className="feature-card">
                   <h4>{card.title}</h4>
                   <p>{card.body}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* Story Section */}
+        {/* ── STORY ── */}
         <section id="story" className="section story">
-          <div className="section-header">
-            <h2>Why I Built These Instruments</h2>
-            <p>
-              The Accessible Ukulele and Accessible Guitar grew out of real people, real stories, and a desire to turn
-              empathy into action.
-            </p>
-          </div>
+          <motion.div
+            className="section-header"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <h2>Who AllStrum Is For</h2>
+          </motion.div>
 
           <div className="story-grid">
-            <article className="story-card">
+
+            <motion.article
+              className="story-card"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+            >
               <div className="story-image">
                 <img src={camp} alt="Camper playing ukulele" />
               </div>
               <div className="story-content">
-                <h3>Campers Who Wanted to Truly Play</h3>
+                <h3>Campers Who Wanted to Play</h3>
                 <p>
                   A few years ago, as a counselor at a camp for children with special needs, I saw campers who loved
                   music and desperately wanted to feel like they were creating it themselves.
                 </p>
                 <p>
-                  Many didn’t have the fine motor skills or cognitive bandwidth to hold chords one after another. I
-                  found myself holding the ukulele together with them and holding the chords down for them while they strummed. Their excitement at
-                  “playing” was unforgettable.
+                  Many didn't have the fine motor skills to play full songs on their own. I
+                  found myself holding the ukulele together with them and holding the chords down for them while they
+                  strummed. Their excitement at playing was unforgettable.
                 </p>
                 <p>
-                  From that experience, the idea of the Accessible Ukulele was born: an instrument where users can
-                  simply strum, while the device handles the chords.
+                  From that experience, the idea of the AllStrum was born: an instrument where users can
+                  simply strum, while the device handles the chords, so that everyone can play music that they love.
                 </p>
               </div>
-            </article>
+            </motion.article>
 
-            <article className="story-card story-card--reverse">
+            <motion.article
+              className="story-card story-card--reverse"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+            >
+              <div className="story-image">
+                <img src={kidsMusic} alt="Child playing ukulele" />
+              </div>
+              <div className="story-content">
+                <h3>Inspire Kids to Love Music</h3>
+                <p>
+                  Learning an instrument is one of the most rewarding things a child can do, but the early stages
+                  can be frustrating enough to make them quit before they ever fall in love with it. Months of scales
+                  and finger exercises before playing a single real song is a lot to ask of a kid who just wants to
+                  make music.
+                </p>
+                <p>
+                  AllStrum lets children skip the barrier and go straight to the joy. From their very first session,
+                  they can strum along to songs they actually know and love.
+                </p>
+              </div>
+            </motion.article>
+
+            <motion.article
+              className="story-card"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+            >
+              <div className="story-image">
+                <img src={campfire} alt="Friends playing guitar at a campfire" />
+              </div>
+              <div className="story-content">
+                <h3>Casual Playing</h3>
+                <p>
+                  Not everyone who picks up an instrument wants to become a musician. Some people just want to strum
+                  along to their favorite songs at the end of a long day, bring a guitar to a gathering without the
+                  pressure of performing, or finally do something with the instrument that's been sitting in the corner
+                  for years.
+                </p>
+                <p>
+                  AllStrum is for those people too. Music doesn't always have to be a pursuit. Sometimes it is just has to feel good.
+                </p>
+              </div>
+            </motion.article>
+
+            <motion.article
+              className="story-card story-card--reverse"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+            >
               <div className="story-image">
                 <img src={soldier} alt="Veteran playing guitar" />
               </div>
               <div className="story-content">
                 <h3>Musicians Who Lost the Ability to Play</h3>
                 <p>
-                  At a Veterans Day assembly, I heard about a soldier with great musical talent who could no longer play
-                  guitar after being injured in battle. I was supposed to write a note thanking him for his service—but
-                  it felt incomplete.
+                  At a Veterans Day assembly in high school, I heard about a soldier with great musical talent who could no longer
+                  play guitar after being injured in battle. I was supposed to write a note thanking him for his
+                  service, but it felt incomplete.
                 </p>
                 <p>
-                  I thought: maybe I could actually help fix his problem, not just sympathize with it. Since then,
-                  I&apos;ve heard from many others: a girl whose tremor prevents her from holding chords, a man
-                  paralyzed in one arm, and more.
+                  I kept thinking about what it would mean to actually do something, not just express gratitude. That
+                  question stayed with me. Since then, I&apos;ve heard from many others with the same desire to play—
+                  a girl whose tremor prevents her from holding chords, a man paralyzed in one arm, and more.
                 </p>
                 <p>
                   Their stories pushed this project forward: from a prototype ukulele to the more powerful, flexible
-                  Accessible Guitar.
+                  AllStrum Guitar.
                 </p>
               </div>
-            </article>
+            </motion.article>
+
           </div>
         </section>
 
-        {/* Videos Section */}
+        {/* ── VIDEOS ── */}
         <section id="videos" className="section videos">
-          <div className="section-header">
+          <motion.div
+            className="section-header"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <h2>See It In Action</h2>
-            <p>Watch the Accessible Guitar and Accessible Ukulele in use, and dig into the technical walkthrough.</p>
-          </div>
+          </motion.div>
 
           <div className="videos-grid">
-            <div className="video-card">
-              <h3>Accessible Guitar Demo</h3>
-              <div className="video-wrapper">
-                <YouTubeVideo videoId="Tc2Rj1Ny0Yw" />
-              </div>
-              <p className="video-caption">
-                Overview of how the Accessible Guitar works for users and how it enables full songs with simple
-                strumming.
-              </p>
-            </div>
-
-            <div className="video-card">
-              <h3>Accessible Ukulele Technical Walkthrough</h3>
-              <div className="video-wrapper">
-                <YouTubeVideo videoId="Vy46onQp99c" />
-              </div>
-              <p className="video-caption">
-                A look at the original Accessible Ukulele prototype and the technical concepts behind the system.
-              </p>
-            </div>
+            {VIDEO_CARDS.map((vid, i) => (
+              <motion.div
+                key={vid.videoId}
+                className="video-card"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <h3>{vid.title}</h3>
+                <button
+                  className="video-thumbnail-btn"
+                  onClick={() => setModalVideoId(vid.videoId)}
+                  aria-label={`Play ${vid.title}`}
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${vid.videoId}/maxresdefault.jpg`}
+                    alt={vid.title}
+                    className="video-thumbnail-img"
+                    onError={(e) => {
+                      e.target.src = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
+                    }}
+                  />
+                  <div className="video-play-overlay">
+                    <div className="video-play-icon">&#9654;</div>
+                  </div>
+                </button>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* ── TESTIMONIALS ── */}
         <section id="testimonials" className="section testimonials">
-          <div className="section-header">
+          <motion.div
+            className="section-header"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <h2>What People Are Saying</h2>
-            <p>Feedback from families, educators, and users who have seen the Accessible Instruments in action.</p>
-          </div>
-          <div className="testimonials-slideshow">
-            <Slideshow images={images} />
-          </div>
+            <p>Feedback from families, educators, and users who have experienced AllStrum Instruments firsthand.</p>
+          </motion.div>
+          <Slideshow testimonials={testimonials} />
         </section>
 
-        {/* Awards & Contact */}
-        <section id="contact" className="section awards-contact">
-          <div className="section-header">
-            <h2>Awards, Patent & Contact</h2>
-            <p>
-              The Accessible Ukulele and Accessible Guitar have been supported and recognized for their potential
-              impact.
-            </p>
-          </div>
+        {/* ── AWARDS ── */}
+        <section id="awards" className="section awards">
+          <motion.div
+            className="section-header"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <h2>Recognition & Patent</h2>
+            <p>AllStrum Instruments have been supported and recognized for their potential impact.</p>
+          </motion.div>
 
-          <div className="badge-row">
+          <motion.div
+            className="badge-row"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <span className="badge">Yale Student Innovation Grant</span>
             <span className="badge">Yale Student Milestone Grant</span>
             <span className="badge badge-outline">Patent Pending</span>
-          </div>
+          </motion.div>
 
-          <div className="awards-contact-text">
+          <motion.p
+            className="awards-body"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            The AllStrum Ukulele and AllStrum Guitar have been recognized by the Yale Student Innovation Grant and
+            the Yale Student Milestone Grant, and are working to reach the people who can benefit most.
+          </motion.p>
+        </section>
+
+        {/* ── CONTACT ── */}
+        <section id="contact" className="section contact">
+          <motion.div
+            className="section-header"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <h2>Get In Touch</h2>
+          </motion.div>
+
+          <motion.div
+            className="contact-body"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <p>
-              The Accessible Ukulele has already won the Yale Student Innovation Grant and the Yale Student Milestone
-              Grant and is working to get into the world and to the people who can benefit from this product.
-            </p>
-            <p>The Accessible Ukulele and Accessible Guitar are Patent Pending, All Rights Reserved.</p>
-            <p>
-              Contact me at{' '}
+              Contact{' '}
               <a href="mailto:Eytan.Israel@Yale.edu" className="link">
                 Eytan.Israel@Yale.edu
               </a>{' '}
-              for any inquiries. Find me on{' '}
+              for any inquiries, or find me on{' '}
               <a
                 href="https://www.linkedin.com/in/eytan-israel-a2a55078/"
                 target="_blank"
@@ -454,13 +435,24 @@ function App() {
               >
                 LinkedIn
               </a>{' '}
-              to get updates!
+              to get updates.
             </p>
+            <p>The AllStrum Ukulele and AllStrum Guitar are Patent Pending, All Rights Reserved.</p>
             <button className="btn primary mt-24" onClick={handlePreOrderClick}>
-              Pre-order Accessible Devices
+              Pre-order Now
             </button>
-          </div>
+          </motion.div>
         </section>
+
+        {/* ── VIDEO MODAL ── */}
+        {modalVideoId && (
+          <VideoModal
+            videoId={modalVideoId}
+            title="AllStrum Video"
+            onClose={() => setModalVideoId(null)}
+          />
+        )}
+
       </main>
     </div>
   );

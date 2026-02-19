@@ -2,10 +2,11 @@
    GLOBAL VARIABLES & BASE
 ------------------------------------------------------ */
 
-@import url('https://fonts.googleapis.com/css?family=Lexend:300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --blue: #0f518a;
+  --navy: #0a2540;
   --cream: #fcf3e2;
   --orange: #ff8943;
   --lightblue: #5ec4ec;
@@ -26,9 +27,14 @@
 html, body {
   width: 100%;
   min-height: 100%;
-  font-family: 'Lexend', sans-serif;
+  font-size: 17px;
+  font-family: 'Inter', sans-serif;
   background: var(--cream);
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
 }
 
 .App {
@@ -56,7 +62,7 @@ html, body {
   }
 
   .site-header-inner {
-    justify-content: center; /* center logo + text */
+    justify-content: center;
   }
 
   .brand {
@@ -81,7 +87,7 @@ html, body {
 }
 
 .brand-logo {
-  height: 6vh;       /* scales with viewport height */
+  height: 6vh;
   width: auto;
   object-fit: contain;
 }
@@ -109,21 +115,18 @@ html, body {
   opacity: 0.6;
 }
 
-/* ____
-______
-YOUTUBE */
+/* ------------------------------------------------------
+   YOUTUBE (generic wrapper)
+------------------------------------------------------ */
 
-/* Generic responsive YouTube wrapper */
 .youtube-responsive {
   position: relative;
   width: 100%;
-  /* 16:9 aspect ratio → 9 / 16 = 0.5625 */
   padding-top: 56.25%;
   overflow: hidden;
   border-radius: 2vw;
 }
 
-/* Make iframe fill the wrapper */
 .youtube-responsive iframe {
   position: absolute;
   top: 0;
@@ -133,22 +136,23 @@ YOUTUBE */
   border: 0;
 }
 
-/* Inside hero card – keep it full width */
 .hero-video-card .youtube-responsive {
   width: 100%;
-  padding-bottom: 25.25%;
+  padding-top: 56.25%;
 }
 
 /* ------------------------------------------------------
-   HERO SECTION
+   HERO SECTION  —  dark navy, full viewport
 ------------------------------------------------------ */
 
 .hero {
   width: 100%;
-  padding: 8vh 4vw;
-  background: radial-gradient(circle at top left, #ffffff 0%, #fff5e4 35%, #e0f4ff 100%);
+  min-height: 100vh;
+  padding: 10vh 4vw;
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .hero-inner {
@@ -159,7 +163,6 @@ YOUTUBE */
   align-items: center;
 }
 
-/* Collapse to 1 column automatically when width too small */
 @media (max-aspect-ratio: 4/3) {
   .hero-inner {
     grid-template-columns: 100%;
@@ -175,9 +178,9 @@ YOUTUBE */
 }
 
 .hero-title {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(3rem, 8vw, 7rem);
   margin-bottom: 2vh;
-  color: var(--blue);
+  color: #ffffff;
 }
 
 .hero-eyebrow {
@@ -191,7 +194,7 @@ YOUTUBE */
 .hero-subtitle {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
   line-height: 1.4;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.72);
   margin-bottom: 3vh;
 }
 
@@ -199,7 +202,7 @@ YOUTUBE */
 
 .product-tabs {
   display: flex;
-  background: rgba(0,0,0,0.05);
+  background: rgba(255, 255, 255, 0.12);
   padding: 1vh 1vw;
   border-radius: 5vw;
   gap: 2vw;
@@ -212,7 +215,7 @@ YOUTUBE */
   font-size: clamp(0.8rem, 1.6vw, 1rem);
   border-radius: 5vw;
   background: transparent;
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.75);
   cursor: pointer;
   transition: 0.2s;
 }
@@ -223,11 +226,22 @@ YOUTUBE */
   color: var(--blue);
 }
 
+/* PRODUCT NAME + TAGLINE on dark */
+.product-name {
+  color: #ffffff;
+}
+
+.product-tagline {
+  margin-bottom: 2vh;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* CALL TO ACTION BUTTONS */
 
 .btn {
   padding: 1.4vh 3vw;
   font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  font-weight: 600;
   border-radius: 5vw;
   border: 0.2vw solid transparent;
   text-decoration: none;
@@ -236,37 +250,32 @@ YOUTUBE */
 }
 
 .btn.primary {
-  background: var(--blue);
+  background: var(--orange);
   color: white;
 }
 
 .btn.primary:hover {
-  background: #0c3f6a;
+  background: #e8773a;
 }
 
 .btn.ghost {
   background: transparent;
-  border-color: rgba(0,0,0,0.2);
-  color: var(--blue);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
 }
 
 .btn.ghost:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
   gap: 2vw;
-  margin-top: 3vh;      /* add breathing room above buttons */
+  margin-top: 3vh;
 }
 
-.product-tagline {
-  margin-bottom: 2vh;   /* extra gap under tagline */
-}
-
-
-/* VIDEO PLAYER */
+/* HERO VIDEO */
 
 .hero-media {
   width: 100%;
@@ -276,23 +285,9 @@ YOUTUBE */
 
 .hero-video-card {
   width: 90%;
-  padding: 2vw;
-  background: white;
-  box-shadow: var(--shadow);
-  border-radius: var(--radius);
-}
-
-.hero-video-card iframe {
-  width: 100%;
-  height: 30vw;
-  border-radius: var(--radius);
-}
-
-/* Phone scaling */
-@media (max-width: 600px) {
-  .hero-video-card iframe {
-    height: 50vw;
-  }
+  border-radius: 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* ------------------------------------------------------
@@ -301,72 +296,86 @@ YOUTUBE */
 
 .product-details {
   width: 100%;
-  padding: 6vh 4vw;
+  padding: 10vh 4vw;
   display: flex;
   justify-content: center;
 }
 
 .product-details-inner {
   width: 92vw;
-  display: grid;
-  grid-template-columns: 55% 40%;
-  column-gap: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
 }
 
-@media (max-aspect-ratio: 4/3) {
-  .product-details-inner {
-    grid-template-columns: 100%;
-    row-gap: 4vh;
-  }
+.product-details-header {
+  text-align: center;
+  max-width: 640px;
 }
 
-.product-details-text h3 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  margin-bottom: 2vh;
+.product-details-header h3 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  margin-bottom: 1.2vh;
   color: var(--blue);
 }
 
 .product-details-intro {
-  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
-  line-height: 1.5;
-  margin-bottom: 2vh;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
   color: var(--text-muted);
-}
-
-.product-details-list {
-  list-style: disc;
-  margin-left: 4vw;
-}
-
-.product-details-list li {
-  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-  margin-bottom: 1vh;
 }
 
 /* FEATURE CARDS */
 
 .product-feature-grid {
   display: grid;
-  grid-template-columns: 100%;
-  row-gap: 2vh;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .product-feature-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .feature-card {
-  padding: 3vh 3vw;
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  padding: 2.5vh 0 2vh;
+  border-top: 2px solid var(--lightblue);
 }
 
 .feature-card h4 {
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
-  margin-bottom: 1vh;
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  margin-bottom: 0.8vh;
   color: var(--blue);
 }
 
 .feature-card p {
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* SECTION HEADERS (shared across sections) */
+.section-header {
+  width: 92vw;
+  margin: 0 auto 4vh;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--blue);
+  font-weight: 700;
+  margin-bottom: 1.2vh;
+}
+
+.section-header p {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* ------------------------------------------------------
@@ -375,7 +384,24 @@ YOUTUBE */
 
 .story {
   width: 100%;
-  padding: 6vh 4vw;
+  padding: 10vh 4vw;
+}
+
+/* PULL QUOTE */
+.story-pull-quote {
+  display: block;
+  width: 72vw;
+  max-width: 860px;
+  margin: 0 auto 6vh;
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--blue);
+  text-align: center;
+  border: none;
+  padding: 0;
+  letter-spacing: -0.01em;
 }
 
 .story-grid {
@@ -391,14 +417,20 @@ YOUTUBE */
   grid-template-columns: 45% 50%;
   column-gap: 5%;
   align-items: center;
-  background: white;
-  padding: 4vh 3vw;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  padding: 4vh 0;
+  border-top: 1px solid rgba(20, 50, 74, 0.1);
 }
 
 .story-card--reverse {
-  grid-template-columns: 50% 45%;
+  grid-template-columns: 45% 50%;
+}
+
+.story-card--reverse .story-image {
+  order: 2;
+}
+
+.story-card--reverse .story-content {
+  order: 1;
 }
 
 @media (max-aspect-ratio: 4/3) {
@@ -411,16 +443,21 @@ YOUTUBE */
 
 .story-image {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  overflow: hidden;
+  border-radius: 2vw;
 }
 
 .story-image img {
   width: 100%;
-  max-width: 40vw;
-  height: auto;            /* keep natural aspect ratio */
-  object-fit: cover;       /* prevents distortion but fills container */
-  border-radius: 2vw;
+  height: 30vw;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .story-image img {
+    height: 56vw;
+  }
 }
 
 .story-content h3 {
@@ -440,7 +477,7 @@ YOUTUBE */
 
 .videos {
   width: 100%;
-  padding: 6vh 4vw;
+  padding: 10vh 4vw;
 }
 
 .videos-grid {
@@ -459,33 +496,78 @@ YOUTUBE */
 }
 
 .video-card {
-  background: white;
-  padding: 3vh 3vw;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
 }
 
 .video-card h3 {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  margin-bottom: 2vh;
+  color: var(--text-main);
 }
 
-.video-wrapper iframe {
+/* THUMBNAIL CARDS */
+
+.video-thumbnail-btn {
+  position: relative;
+  display: block;
   width: 100%;
-  height: 30vw;
-  border-radius: var(--radius);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: none;
 }
 
-@media (max-width: 600px) {
-  .video-wrapper iframe {
-    height: 55vw;
-  }
+.video-thumbnail-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.video-thumbnail-btn:hover .video-thumbnail-img {
+  transform: scale(1.03);
+  filter: brightness(0.82);
+}
+
+.video-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.18);
+  transition: background 0.2s;
+}
+
+.video-thumbnail-btn:hover .video-play-overlay {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.video-play-icon {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--blue);
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.video-thumbnail-btn:hover .video-play-icon {
+  transform: scale(1.1);
 }
 
 .video-caption {
   font-size: clamp(0.9rem, 1.4vw, 1.1rem);
   color: var(--text-muted);
-  margin-top: 2vh;
 }
 
 /* ------------------------------------------------------
@@ -494,22 +576,18 @@ YOUTUBE */
 
 .testimonials {
   width: 100%;
-  padding: 8vh 4vw;
-}
-
-.testimonials-slideshow {
-  width: 80vw;
-  margin: auto;
+  padding: 10vh 4vw;
 }
 
 /* ------------------------------------------------------
-   AWARDS & CONTACT
+   AWARDS
 ------------------------------------------------------ */
 
-.awards-contact {
+.awards {
   width: 100%;
-  padding: 6vh 4vw;
+  padding: 10vh 4vw;
   text-align: center;
+  background: var(--cream);
 }
 
 .badge-row {
@@ -535,11 +613,37 @@ YOUTUBE */
   background: transparent;
 }
 
-.awards-contact-text {
-  width: 80vw;
-  margin: auto;
-  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
-  line-height: 1.5;
+.awards-body {
+  width: 72vw;
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------
+   CONTACT
+------------------------------------------------------ */
+
+.contact {
+  width: 100%;
+  padding: 10vh 4vw;
+  text-align: center;
+  background: #f0f7ff;
+}
+
+.contact-body {
+  width: 72vw;
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
 
 .link {
