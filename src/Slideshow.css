@@ -1,73 +1,57 @@
-.slideshow {
-    position: relative;
-    height: 85vh;
-    overflow: hidden;
-    display: flex;
+.testimonial-carousel {
+  width: 92vw;
+  margin: 0 auto;
+}
+
+/* Stack all pairs in the same grid cell so they overlap and can fade */
+.testimonial-slides {
+  display: grid;
+  width: 100%;
+}
+
+.testimonial-pair {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+  pointer-events: none;
+}
+
+.testimonial-pair.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 700px) {
+  .testimonial-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.testimonial-card {
+  background: #fdf8f0;
+  border-radius: 1.2rem;
+  padding: 2.4rem 2rem 2rem;
+  box-shadow: 0 4px 24px rgba(20, 50, 74, 0.06);
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(252, 243, 226);
+  gap: 0.8rem;
+}
 
-  }
-  
-  .slide {
-    display: none;
-    height: 66vh;
-    transition: opacity 0.5s ease-in-out;
-    overflow: hidden;
-  }
-  
-  .slide.active {
-    display: block;
-  }
-  
-  .dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-  }
-  
-  .dot {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .dot.active {
-    background-color: #717171;
-  }
+.testimonial-mark {
+  font-size: 4.5rem;
+  line-height: 0.8;
+  color: var(--lightblue);
+  font-family: Georgia, serif;
+  display: block;
+  user-select: none;
+}
 
-  @media only screen and (max-width: 768px) {
-    .slideshow {
-        position: relative;
-        height: 85vh;
-        overflow: hidden;
-        display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    
-      }
-      
-      .slide {
-        display: none;
-        transition: opacity 0.5s ease-in-out;
-        overflow: hidden;
-        width: 85vw;
-      }
-      
-      .slide.active {
-        display: block;
-        width: 85vw;
-      }
-
-  }
-
-
-  
-  
+.testimonial-text {
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--text-main);
+}
