@@ -387,6 +387,7 @@ function App() {
           >
             <span className="badge">Yale Student Innovation Grant</span>
             <span className="badge">Yale Student Milestone Grant</span>
+            <span className='badge'>Startup Yale Rothberg Prize Finalist</span>
             <span className="badge badge-outline">Patent Pending</span>
           </motion.div>
 
@@ -398,7 +399,7 @@ function App() {
             viewport={{ once: true, amount: 0.3 }}
           >
             The AllStrum Ukulele and AllStrum Guitar have been recognized by the Yale Student Innovation Grant and
-            the Yale Student Milestone Grant, and are working to reach the people who can benefit most.
+            the Yale Student Milestone Grant, are one of four finalists for the '26 Startup Yale Rothberg Catalyzer Prize, and are working to reach the people who can benefit most.
           </motion.p>
         </section>
 
@@ -423,12 +424,12 @@ function App() {
           >
             <p>
               Contact{' '}
-              <a href="mailto:Eytan.Israel@Yale.edu" className="link">
-                Eytan.Israel@Yale.edu
+              <a href="mailto:info@allstrum.com" className="link">
+                info@allstrum.com
               </a>{' '}
-              for any inquiries, or find me on{' '}
+              for any inquiries, or find us on{' '}
               <a
-                href="https://www.linkedin.com/in/eytan-israel-a2a55078/"
+                href="https://www.linkedin.com/company/all-strum/"
                 target="_blank"
                 rel="noreferrer"
                 className="link"
