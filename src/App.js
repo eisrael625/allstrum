@@ -64,8 +64,8 @@ const VIDEO_CARDS = [
     title: 'AllStrum Guitar Demo',
   },
   {
-    videoId: 'Vy46onQp99c',
-    title: 'AllStrum Ukulele Technical Walkthrough',
+    videoId: 'jZytVzkcJic',
+    title: 'AllStrum Ukulele Demo',
   },
 ];
 
