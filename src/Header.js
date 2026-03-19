@@ -26,7 +26,7 @@
 // export default Header;
 // Header.jsimport React from 'react';
 import './Header.css';
-import logo from './logo.png';
+import logo from './assets/allstrum_vector.png';
 
 function Header() {
   return (
@@ -41,7 +41,6 @@ function Header() {
         {/* NAV */}
         <nav className="site-nav">
           <a href="#products">Products</a>
-          <a href="#story">Story</a>
           <a href="#videos">Videos</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>

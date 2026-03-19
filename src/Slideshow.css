@@ -43,10 +43,14 @@
 .testimonial-mark {
   font-size: 4.5rem;
   line-height: 0.8;
-  color: var(--lightblue);
+  color: var(--logo-yellow);
   font-family: Georgia, serif;
   display: block;
   user-select: none;
+}
+
+.testimonial-mark--close {
+  text-align: right;
 }
 
 .testimonial-text {

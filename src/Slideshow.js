@@ -36,6 +36,7 @@ const Slideshow = ({ testimonials }) => {
               <div key={i} className="testimonial-card">
                 <span className="testimonial-mark">&ldquo;</span>
                 <p className="testimonial-text">{text.replace(/^[\u201C\u201D""]|[\u201C\u201D""]$/g, '')}</p>
+                <span className="testimonial-mark testimonial-mark--close">&rdquo;</span>
               </div>
             ))}
           </div>

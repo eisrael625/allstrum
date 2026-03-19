@@ -16,10 +16,10 @@
 
 /* ===== INNER LAYOUT ===== */
 .site-header-inner {
-  max-width: 1400px;
+  width: 92vw;
   height: 100%;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0;
 
   display: flex;
   align-items: center;
@@ -37,8 +37,8 @@
 /* 🔥 MAIN FIX: WIDTH-DRIVEN LOGO */
 .brand-logo {
   height: auto;
-  width: 220px;        /* ← controls visual size */
-  max-height: 64px;    /* prevents it from getting too tall */
+  width: 227px;
+  max-height: none;
   object-fit: contain;
   display: block;
 }
