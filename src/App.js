@@ -16,7 +16,7 @@ const PRODUCTS = {
     key: 'guitar',
     name: 'AllStrum Guitar',
     tagline: 'Play full songs on guitar from day one. No experience needed.',
-    primaryVideoId: 'Tc2Rj1Ny0Yw',
+    primaryVideoId: '1W-GXqHRtwM',
     detailsTitle: 'Why AllStrum?',
     featureCards: [
       {
@@ -110,7 +110,7 @@ function App() {
             >
               <h1 className="hero-title">Music for everybody.</h1>
               <p className="hero-subtitle">
-                Adaptive devices that let anyone strum the chords to their favorite songs.
+                Devices that let anyone strum the chords to their favorite songs.
               </p>
 
               <div className="product-tabs">
@@ -135,9 +135,6 @@ function App() {
                   <button className="btn primary" onClick={handlePreOrderClick}>
                     Pre-order Now
                   </button>
-                  <a href="#videos" className="btn ghost">
-                    Watch Demo
-                  </a>
                 </div>
               </div>
             </motion.div>
@@ -267,7 +264,7 @@ function App() {
                   for years.
                 </p>
                 <p>
-                  AllStrum is for those people too. Music doesn't always have to be a pursuit. Sometimes it is just has to feel good.
+                  AllStrum is for those people too. Music doesn't always have to be a pursuit. Sometimes it just has to feel good.
                 </p>
               </div>
             </motion.article>
@@ -374,7 +371,7 @@ function App() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <h2>Recognition & Patent</h2>
+            <h2>Recognition</h2>
             <p>AllStrum Instruments have been supported and recognized for their potential impact.</p>
           </motion.div>
 
@@ -388,7 +385,6 @@ function App() {
             <span className="badge">Yale Student Innovation Grant</span>
             <span className="badge">Yale Student Milestone Grant</span>
             <span className='badge'>Startup Yale Rothberg Prize Finalist</span>
-            <span className="badge badge-outline">Patent Pending</span>
           </motion.div>
 
           <motion.p
@@ -423,22 +419,11 @@ function App() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <p>
-              Contact{' '}
-              <a href="mailto:info@allstrum.com" className="link">
-                info@allstrum.com
-              </a>{' '}
-              for any inquiries, or find us on{' '}
-              <a
-                href="https://www.linkedin.com/company/all-strum/"
-                target="_blank"
-                rel="noreferrer"
-                className="link"
-              >
-                LinkedIn
-              </a>{' '}
-              to get updates.
+              <a href="mailto:info@allstrum.com" className="link">info@allstrum.com</a>
+              {' · '}
+              <a href="https://www.linkedin.com/company/all-strum/" target="_blank" rel="noreferrer" className="link">LinkedIn</a>
             </p>
-            <p>The AllStrum Ukulele and AllStrum Guitar are Patent Pending, All Rights Reserved.</p>
+            <p>Patent Pending. All Rights Reserved.</p>
             <button className="btn primary mt-24" onClick={handlePreOrderClick}>
               Pre-order Now
             </button>

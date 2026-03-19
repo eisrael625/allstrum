@@ -26,23 +26,21 @@
 // export default Header;
 // Header.jsimport React from 'react';
 import './Header.css';
-import logo from './logo.png'; // ← your logo file
+import logo from './assets/allstrum_vector.png';
 
 function Header() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
 
-        {/* BRAND + LOGO */}
+        {/* LOGO */}
         <a href="#products" className="brand">
-          <img src={logo} alt="AllStrum Logo" className="brand-logo" />
-          <span className="brand-text">AllStrum</span>
+          <img src={logo} alt="AllStrum" className="brand-logo" />
         </a>
 
-        {/* NAVIGATION */}
+        {/* NAV */}
         <nav className="site-nav">
           <a href="#products">Products</a>
-          <a href="#story">Story</a>
           <a href="#videos">Videos</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
@@ -54,3 +52,4 @@ function Header() {
 }
 
 export default Header;
+

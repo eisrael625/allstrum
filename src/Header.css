@@ -1,83 +1,107 @@
-.Header {
-    background-color: rgb(15, 81, 138);
-    height: 7vh;
-    width: 100vw;
-    color: rgb(252, 243, 226);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+/* ===== HEADER CONTAINER ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84px;
+  z-index: 999;
+
+  background: rgba(15, 81, 138, 0.96);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* ===== INNER LAYOUT ===== */
+.site-header-inner {
+  width: 92vw;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== BRAND ===== */
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* 🔥 MAIN FIX: WIDTH-DRIVEN LOGO */
+.brand-logo {
+  height: auto;
+  width: 227px;
+  max-height: none;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== NAVIGATION ===== */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.site-nav a {
+  color: rgb(252, 243, 226);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.site-nav a:hover {
+  opacity: 0.75;
+  transform: translateY(-1px);
+}
+
+/* ===== TABLET ===== */
+@media only screen and (max-width: 900px) {
+  .site-header {
+    height: 74px;
   }
-  
-  .Logo {
-    margin-left: 2vw;
+
+  .site-header-inner {
+    padding: 0 20px;
   }
-  
-  img {
-    height: 6vh;
+
+  .brand-logo {
+    width: 180px;
+    max-height: 56px;
   }
-  
-  .Name {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.7vh;
+
+  .site-nav {
+    gap: 20px;
   }
-  
-  .Buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 2vw;
-    cursor: pointer; /* Add this line */
-    
+
+  .site-nav a {
+    font-size: 14px;
   }
-  
-  .Button {
-    font-size: 1.2vw;
-    color: rgb(255, 137, 67)
+}
+
+/* ===== MOBILE ===== */
+@media only screen and (max-width: 768px) {
+  .site-header {
+    height: 68px;
   }
-  .headerWeb {
-    display: block;
+
+  .brand-logo {
+    width: 140px;
+    max-height: 44px;
   }
-  .headerMobile {
+
+  /* Hide nav for now (can replace with hamburger later) */
+  .site-nav {
     display: none;
   }
-  
-  /* Media Queries for Mobile */
-  @media only screen and (max-width: 768px) {
-    .Header {
-      height: 7vh; /* Increase height for better visibility */
-      flex-direction: row; /* Align items horizontally */
-      width: 100vw;
-      justify-content: space-between;
-    }
-
-    .LogoPic {
-        height: 4vh; /* Adjust logo height */
-    }
-  
-    .Name {
-      font-size: 2vw; /* Increase font size for name */
-    }
-  
-  
-    .Button {
-      font-size: 2vw; /* Adjust font size for buttons */
-      margin-right: 2vw; /* Adjust margin between buttons */
-      width: 5vh;
-      display: none;
-    }
-
-    .headerWeb {
-        display: none;
-      }
-      .headerMobile {
-        display: block;
-      }
-
-  }
+}
