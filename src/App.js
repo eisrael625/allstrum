@@ -37,7 +37,7 @@ const PRODUCTS = {
     key: 'ukulele',
     name: 'AllStrum Ukulele',
     tagline: 'Where it all started. Now available to everyone.',
-    primaryVideoId: 'jZytVzkcJic',
+    primaryVideoId: '1W-GXqHRtwM',
     detailsTitle: 'The Original AllStrum Ukulele',
     detailsIntro:
       'The AllStrum Ukulele was the first prototype built to help campers with special needs feel the joy of creating music on their own.',
