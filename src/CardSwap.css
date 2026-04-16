@@ -1,0 +1,36 @@
+.card-swap-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  perspective: 900px;
+  overflow: visible;
+}
+
+/* Scoped to avoid conflict with BounceCards' global .card class */
+.card-swap-container .card {
+  position: absolute;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: #0a2540;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .card-swap-container {
+    top: 55%;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-swap-container {
+    top: 55%;
+    transform: translate(-50%, -50%) scale(0.52);
+  }
+}

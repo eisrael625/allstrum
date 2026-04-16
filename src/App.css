@@ -393,6 +393,114 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10vh 4vw;
 }
 
+/* Full-width centered layout */
+.story-full {
+  width: 92vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.story-full__header {
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.story-full__header h2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2vh;
+}
+
+.story-full__header p {
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Stage for the card swap — must be position:relative */
+.story-split__stage {
+  position: relative;
+  width: 100%;
+  height: 900px;
+}
+
+/* Gradient overlay inside each story card */
+.story-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 2rem 1.8rem;
+  background: linear-gradient(
+    to top,
+    rgba(8, 24, 48, 0.88) 0%,
+    rgba(8, 24, 48, 0.35) 55%,
+    transparent 100%
+  );
+  border-radius: inherit;
+  color: #fff;
+}
+
+.story-card-overlay h3 {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.7vh;
+}
+
+.story-card-overlay p {
+  font-size: clamp(0.82rem, 1.25vw, 0.98rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Prev / Next navigation */
+.story-nav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3vh;
+  justify-content: center;
+}
+
+.story-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(15, 81, 138, 0.22);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.18s;
+}
+
+.story-nav-btn:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.story-nav-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .story-split__stage {
+    height: 600px;
+  }
+}
+
 /* PULL QUOTE */
 .story-pull-quote {
   display: block;
@@ -478,38 +586,70 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ------------------------------------------------------
-   VIDEOS SECTION
+   DEMO SECTION  —  dark navy, segmented toggle + single video
 ------------------------------------------------------ */
 
-.videos {
+.demo-section {
   width: 100%;
   padding: 10vh 4vw;
-}
-
-.videos-grid {
-  width: 92vw;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 48% 48%;
-  column-gap: 4%;
-}
-
-@media (max-aspect-ratio: 4/3) {
-  .videos-grid {
-    grid-template-columns: 100%;
-    row-gap: 4vh;
-  }
-}
-
-.video-card {
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  align-items: center;
 }
 
-.video-card h3 {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: var(--text-main);
+.demo-header {
+  text-align: center;
+  margin-bottom: 3.5vh;
+}
+
+.demo-heading {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+/* Centre the pill toggle */
+.demo-toggle-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4.5vh;
+}
+
+/* Video container — constrained width, stable size, smooth fade */
+.demo-video-area {
+  width: min(68vw, 860px);
+  border-radius: 1.4rem;
+  overflow: hidden;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 4px  16px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.demo-video-area--fading {
+  opacity: 0;
+  transform: scale(0.975);
+}
+
+/* Round the thumbnail inside the area */
+.demo-video-area .video-thumbnail-btn {
+  border-radius: 0;
+}
+
+.demo-video-area .video-thumbnail-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .demo-video-area {
+    width: 90vw;
+  }
 }
 
 /* THUMBNAIL CARDS */
