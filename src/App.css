@@ -152,6 +152,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   min-height: 100vh;
   padding: 10vh 4vw;
+  padding-top: calc(10vh + 64px);
   background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
   display: flex;
   justify-content: center;
@@ -199,6 +200,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.72);
+  margin-top: 10vh;
   margin-bottom: 3vh;
 }
 
@@ -771,33 +773,172 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ------------------------------------------------------
-   CONTACT
+   CONTACT STRIP
 ------------------------------------------------------ */
 
-.contact {
+.ct-strip {
   width: 100%;
-  padding: 10vh 4vw;
-  text-align: center;
-  background: #f0f7ff;
+  background: #05080f;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 4vh 5vw 3vh;
 }
 
-.contact-body {
-  width: 72vw;
-  max-width: 680px;
+.ct-inner {
+  max-width: 1140px;
   margin: 0 auto;
-  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
-  line-height: 1.7;
-  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.ct-left {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  align-items: center;
+  gap: 0.45rem;
 }
 
-.link {
-  color: var(--blue);
+.ct-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #5ec4ec;
+}
+
+.ct-links {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+}
+
+.ct-link {
+  color: rgba(255, 255, 255, 0.68);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ct-link:hover {
+  color: #ffffff;
+}
+
+.ct-sep {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.ct-btn {
+  padding: 0.62rem 1.75rem;
+  border-radius: 100px;
+  background: #ffffff;
+  color: #0a1628;
+  font-size: 0.86rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.ct-btn:hover {
+  background: #e8f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.ct-legal {
+  max-width: 1140px;
+  margin: 2.2vh auto 0;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 600px) {
+  .ct-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.8rem;
+  }
 }
 
 .mt-24 {
   margin-top: 5vh;
+}
+
+/* ------------------------------------------------------
+   DECORATIVE DRAWN SVG MUSIC NOTES
+------------------------------------------------------ */
+
+.deco-svg {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Top-right — eighth note */
+.deco-svg--1 {
+  top: 22%;
+  right: 5%;
+  width: 52px;
+  height: 100px;
+  transform: rotate(8deg);
+}
+.deco-svg--1 .deco-path { stroke: #5ec4ec; }
+
+
+/* Bottom-right — double note */
+.deco-svg--3 {
+  bottom: 4%;
+  right: 7%;
+  width: 72px;
+  height: 100px;
+  transform: rotate(4deg);
+}
+.deco-svg--3 .deco-path { stroke: #a78bfa; }
+
+/* Shared path style */
+.deco-path {
+  fill: none;
+  stroke-width: 2.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0.55;
+  animation: drawPath 0.5s ease forwards;
+}
+
+@keyframes drawPath {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0;   }
+}
+
+/* ── Hero Z-stroke underline ── */
+.hl-word {
+  position: relative;
+  display: inline-block;
+}
+
+.hl-z-stroke {
+  position: absolute;
+  left: -4px;
+  bottom: -32px;
+  width: calc(100% + 8px);
+  height: 36px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.hl-z-path {
+  fill: none;
+  stroke: #b8121f;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawPath 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1s;
 }

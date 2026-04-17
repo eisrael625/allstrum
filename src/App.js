@@ -1,19 +1,19 @@
 // App.js
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './Header';
 import YouTubeVideo from './Youtube';
-import Slideshow from './Slideshow';
-import VideoModal from './VideoModal';
+import TestimonialSection from './TestimonialSection';
 import WhyAllStrum from './WhyAllStrum';
 import WhoItsFor from './WhoItsFor';
-import { PointerHighlight } from './components/ui/pointer-highlight';
+import UserGroups from './UserGroups';
+import OriginStory from './OriginStory';
+import AppFeatures from './AppFeatures';
+import DemoSection from './DemoSection';
+import Awards from './Awards';
+// import { PointerHighlight } from './components/ui/pointer-highlight';
+// import { Highlighter } from './components/ui/highlighter';
 import './App.css';
-
-const VIDEO_DEMOS = {
-  guitar:  { videoId: 'Tc2Rj1Ny0Yw', title: 'AllStrum Guitar Demo' },
-  ukulele: { videoId: 'jZytVzkcJic', title: 'AllStrum Ukulele Demo' },
-};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -21,33 +21,9 @@ const fadeUp = {
 };
 
 function App() {
-  const [activeDemo, setActiveDemo]   = useState('guitar');
-  const [fadingDemo, setFadingDemo]   = useState(false);
-  const [modalVideoId, setModalVideoId] = useState(null);
-
-  const testimonials = [
-    '"Yes. Josh enjoys music and has played with ukuleles before, but does not have the ability (nor interest so far) in creating chords. A device like this would allow him to play a familiar song and get further enjoyment out of playing the instrument."',
-    '"Yes! Sam has Cerebral Palsy and is deaf & hard of hearing. His physical disability prevents him from using his hands without pain and tremors. But this technology would greatly benefit his ability to create and contribute creatively with peers. He sometimes has difficulty communicating and regulating his emotions. He uses music to help comfort and soothe him during these difficult times."',
-    '"Yes! My daughter Sarah is autistic, and a gestalt language processor, which means that she is very attentive to intonation, cadence, rhythm and melody. As such, she is an extremely musical child and benefits from apps like GarageBand and music therapy. Her fine motor skills are not well developed though, so an adaptive musical instrument like this would be a wonderful way for her to experience playing an instrument."',
-    '"He would love to create music in this way! He would be able to work on rhythm, melody, harmony, fine motor skills holding and strumming the ukulele. What a great springboard for the socialization that music brings! I envision confidence following suit. Thank you for this amazing invention!"',
-    '"Yes! Kate loves music. Many of her siblings are taking music lessons and she feels very left out."',
-    '"Yes. My son loves music and would love to play an instrument but can\'t manage the coordination of playing chords while strumming due to his Down Syndrome."',
-  ];
-
   const handlePreOrderClick = () => {
     window.location.href = 'https://forms.gle/gxEsbb1r3G3446Xg7';
   };
-
-  const handleDemoSwitch = (key) => {
-    if (key === activeDemo || fadingDemo) return;
-    setFadingDemo(true);
-    setTimeout(() => {
-      setActiveDemo(key);
-      setFadingDemo(false);
-    }, 280);
-  };
-
-  const currentDemo = VIDEO_DEMOS[activeDemo];
 
   return (
     <div className="App">
@@ -56,6 +32,23 @@ function App() {
 
         {/* ── HERO ── */}
         <section id="products" className="section hero">
+
+          {/* ── Drawn music notes (scroll away with hero) ── */}
+          <svg aria-hidden="true" className="deco-svg deco-svg--1" viewBox="0 0 50 110" overflow="visible">
+            <path className="deco-path" pathLength="100" d="M 8,90 C 6,80 16,72 26,76 C 36,80 36,90 28,95 C 20,100 10,100 8,90 Z" style={{ animationDelay: '2.4s' }} />
+            <path className="deco-path" pathLength="100" d="M 27,76 L 27,20" style={{ animationDelay: '2.8s' }} />
+            <path className="deco-path" pathLength="100" d="M 27,20 C 44,25 48,42 32,54" style={{ animationDelay: '3.1s' }} />
+          </svg>
+
+          <svg aria-hidden="true" className="deco-svg deco-svg--3" viewBox="0 0 72 110" overflow="visible">
+            <path className="deco-path" pathLength="100" d="M 5,88 C 3,78 13,70 23,74 C 33,78 33,88 25,93 C 17,98 7,98 5,88 Z" style={{ animationDelay: '3.6s' }} />
+            <path className="deco-path" pathLength="100" d="M 23,74 L 23,14" style={{ animationDelay: '4.0s' }} />
+            <path className="deco-path" pathLength="100" d="M 40,93 C 38,83 48,75 58,79 C 68,83 68,93 60,98 C 52,103 42,103 40,93 Z" style={{ animationDelay: '4.4s' }} />
+            <path className="deco-path" pathLength="100" d="M 58,79 L 58,18" style={{ animationDelay: '4.8s' }} />
+            <path className="deco-path" pathLength="100" d="M 23,14 L 58,18" style={{ animationDelay: '5.1s' }} />
+            <path className="deco-path" pathLength="100" d="M 23,22 L 58,26" style={{ animationDelay: '5.2s' }} />
+          </svg>
+
           <div className="hero-inner">
 
             <motion.div
@@ -66,12 +59,28 @@ function App() {
             >
               <h1 className="hero-title">
                 Music for{' '}
-                <PointerHighlight
+                {/* <PointerHighlight
                   rectangleClassName="bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600"
                   pointerClassName="text-yellow-500"
                 >
                   <span style={{ position: 'relative', zIndex: 10 }}>everybody.</span>
-                </PointerHighlight>
+                </PointerHighlight> */}
+                <span className="hl-word">
+                  everybody.
+                  <svg
+                    aria-hidden="true"
+                    className="hl-z-stroke"
+                    viewBox="0 0 200 50"
+                    preserveAspectRatio="none"
+                    overflow="visible"
+                  >
+                    <path
+                      className="hl-z-path"
+                      pathLength="100"
+                      d="M 5,14 C 58,5 128,4 194,13 C 132,22 66,33 10,40 C 65,36 148,33 196,42"
+                    />
+                  </svg>
+                </span>
               </h1>
               <p className="hero-subtitle">
                 Devices that let anyone strum the chords to their favorite songs.
@@ -91,7 +100,7 @@ function App() {
               transition={{ delay: 0.2 }}
             >
               <div className="hero-video-card">
-                <YouTubeVideo videoId="1W-GXqHRtwM" />
+                <YouTubeVideo videoId="sSYVzyxQE1w" />
               </div>
             </motion.div>
 
@@ -101,166 +110,51 @@ function App() {
         {/* ── WHY ALLSTRUM ── */}
         <WhyAllStrum />
 
-        {/* ── WHO IT'S FOR ── */}
+        {/* ── WHO IT'S FOR (typewriter heading → bridges into user groups) ── */}
         <WhoItsFor />
 
-        {/* ── DEMO VIDEOS ── */}
-        <section id="videos" className="section demo-section">
+        {/* ── USER GROUPS ── */}
+        <UserGroups />
 
-          <motion.div
-            className="demo-header"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <h2 className="demo-heading">See It In Action</h2>
-          </motion.div>
+        {/* ── ORIGIN STORY ── */}
+        <OriginStory />
 
-          <motion.div
-            className="demo-toggle-row"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.1 }}
-          >
-            <div className="product-tabs">
-              <button
-                className={`product-tab ${activeDemo === 'guitar' ? 'active' : ''}`}
-                onClick={() => handleDemoSwitch('guitar')}
-              >
-                AllStrum Guitar
-              </button>
-              <button
-                className={`product-tab ${activeDemo === 'ukulele' ? 'active' : ''}`}
-                onClick={() => handleDemoSwitch('ukulele')}
-              >
-                AllStrum Ukulele
-              </button>
-            </div>
-          </motion.div>
+        {/* ── APP FEATURES ── */}
+        <AppFeatures />
 
-          <motion.div
-            className={`demo-video-area${fadingDemo ? ' demo-video-area--fading' : ''}`}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <button
-              className="video-thumbnail-btn"
-              onClick={() => setModalVideoId(currentDemo.videoId)}
-              aria-label={`Play ${currentDemo.title}`}
-            >
-              <img
-                src={`https://img.youtube.com/vi/${currentDemo.videoId}/maxresdefault.jpg`}
-                alt={currentDemo.title}
-                className="video-thumbnail-img"
-                onError={(e) => {
-                  e.target.src = `https://img.youtube.com/vi/${currentDemo.videoId}/hqdefault.jpg`;
-                }}
-              />
-              <div className="video-play-overlay">
-                <div className="video-play-icon">&#9654;</div>
-              </div>
-            </button>
-          </motion.div>
-
-        </section>
+        {/* ── PRODUCT SHOWCASES ── */}
+        <DemoSection />
 
         {/* ── TESTIMONIALS ── */}
-        <section id="testimonials" className="section testimonials">
-          <motion.div
-            className="section-header"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <h2>What People Are Saying</h2>
-            <p>Feedback from families, educators, and users who have experienced AllStrum Instruments firsthand.</p>
-          </motion.div>
-          <Slideshow testimonials={testimonials} />
-        </section>
+        <TestimonialSection />
 
         {/* ── AWARDS ── */}
-        <section id="awards" className="section awards">
-          <motion.div
-            className="section-header"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <h2>Recognition</h2>
-            <p>AllStrum Instruments have been supported and recognized for their potential impact.</p>
-          </motion.div>
-
-          <motion.div
-            className="badge-row"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <span className="badge">Yale Student Innovation Grant</span>
-            <span className="badge">Yale Student Milestone Grant</span>
-            <span className="badge">Startup Yale Rothberg Prize Finalist</span>
-          </motion.div>
-
-          <motion.p
-            className="awards-body"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            The AllStrum Ukulele and AllStrum Guitar have been recognized by the Yale Student Innovation Grant and
-            the Yale Student Milestone Grant, are one of four finalists for the '26 Startup Yale Rothberg Catalyzer Prize, and are working to reach the people who can benefit most.
-          </motion.p>
-        </section>
+        <Awards />
 
         {/* ── CONTACT ── */}
-        <section id="contact" className="section contact">
+        <footer id="contact" className="ct-strip">
           <motion.div
-            className="section-header"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            className="ct-inner"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2>Get In Touch</h2>
-          </motion.div>
-
-          <motion.div
-            className="contact-body"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <p>
-              <a href="mailto:info@allstrum.com" className="link">info@allstrum.com</a>
-              {' · '}
-              <a href="https://www.linkedin.com/company/all-strum/" target="_blank" rel="noreferrer" className="link">LinkedIn</a>
-            </p>
-            <p>Patent Pending. All Rights Reserved.</p>
-            <button className="btn primary mt-24" onClick={handlePreOrderClick}>
+            <div className="ct-left">
+              <span className="ct-label">Get in touch</span>
+              <div className="ct-links">
+                <a href="mailto:info@allstrum.com" className="ct-link">info@allstrum.com</a>
+                <span className="ct-sep">·</span>
+                <a href="https://www.linkedin.com/company/all-strum/" target="_blank" rel="noreferrer" className="ct-link">LinkedIn</a>
+              </div>
+            </div>
+            <button className="ct-btn" onClick={handlePreOrderClick}>
               Pre-order Now
             </button>
           </motion.div>
-        </section>
+          <p className="ct-legal">Patent Pending. All Rights Reserved.</p>
+        </footer>
 
-        {/* ── VIDEO MODAL ── */}
-        {modalVideoId && (
-          <VideoModal
-            videoId={modalVideoId}
-            title="AllStrum Video"
-            onClose={() => setModalVideoId(null)}
-          />
-        )}
 
       </main>
     </div>

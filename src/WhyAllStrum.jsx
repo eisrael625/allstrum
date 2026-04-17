@@ -8,51 +8,71 @@ import as4 from './assets/AS4.png';
 import as5 from './assets/AS5.jpeg';
 import './WhyAllStrum.css';
 
-/* ── Inline SVG icons ── */
+/* ── Inline SVG icons — product-specific, no emoji style ── */
+
+/* Hand sweeping across strings = the act of strumming, accessible to anyone */
 const InclusiveIcon = () => (
   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
-    <circle cx="15" cy="7.5" r="3.5" fill="#0f518a" />
-    <path d="M7 25c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="#0f518a" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="5.5" cy="11" r="2.5" fill="rgba(94,196,236,0.7)" />
-    <circle cx="24.5" cy="11" r="2.5" fill="rgba(94,196,236,0.7)" />
-    <path d="M2.5 22.5c0-3.038 2.462-5.5 5.5-5.5" stroke="rgba(94,196,236,0.7)" strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M27.5 22.5c0-3.038-2.462-5.5-5.5-5.5" stroke="rgba(94,196,236,0.7)" strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M15 17l-2.5 3.5 2.5 1.2 2.5-1.2L15 17z" fill="#5ec4ec" />
+    {/* Strings */}
+    <line x1="7"  y1="5" x2="7"  y2="22" stroke="#5ec4ec" strokeWidth="1.4" strokeLinecap="round" opacity="0.55"/>
+    <line x1="12" y1="4" x2="12" y2="22" stroke="#5ec4ec" strokeWidth="1.4" strokeLinecap="round" opacity="0.55"/>
+    <line x1="17" y1="4" x2="17" y2="22" stroke="#5ec4ec" strokeWidth="1.4" strokeLinecap="round" opacity="0.55"/>
+    <line x1="22" y1="5" x2="22" y2="22" stroke="#5ec4ec" strokeWidth="1.4" strokeLinecap="round" opacity="0.55"/>
+    {/* Strum arc — the hand sweeping across */}
+    <path d="M4 13 Q14.5 9.5 26 14" stroke="#0f518a" strokeWidth="2.2" strokeLinecap="round"/>
+    {/* Pick at the end of the stroke */}
+    <circle cx="26" cy="14" r="2.8" fill="#F5C87A"/>
   </svg>
 );
 
+/* Phone showing a chord diagram = the companion app controlling chords */
 const SmartControlIcon = () => (
   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
-    <rect x="3" y="9" width="24" height="16" rx="3.5" stroke="#0f518a" strokeWidth="2" />
-    <path d="M9 18 L12.5 13 L16 17 L19.5 11" stroke="#5ec4ec" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="9" cy="18" r="1.8" fill="#0f518a" />
-    <circle cx="19.5" cy="11" r="1.8" fill="#5ec4ec" />
-    <path d="M11 6h8" stroke="#0f518a" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="11" cy="6" r="1.3" fill="#F5C87A" />
-    <circle cx="19" cy="6" r="1.3" fill="#F5C87A" />
+    {/* Phone outline */}
+    <rect x="7.5" y="1.5" width="15" height="27" rx="3" stroke="#0f518a" strokeWidth="1.9"/>
+    {/* Screen area */}
+    <rect x="9.5" y="5" width="11" height="18" rx="1.5" fill="rgba(15,81,138,0.07)"/>
+    {/* Fret lines on screen */}
+    <line x1="9.5" y1="10" x2="20.5" y2="10" stroke="#0f518a" strokeWidth="1.1" opacity="0.3"/>
+    <line x1="9.5" y1="14" x2="20.5" y2="14" stroke="#0f518a" strokeWidth="1.1" opacity="0.3"/>
+    <line x1="9.5" y1="18" x2="20.5" y2="18" stroke="#0f518a" strokeWidth="1.1" opacity="0.3"/>
+    {/* String lines on screen */}
+    <line x1="12" y1="5" x2="12" y2="23" stroke="#0f518a" strokeWidth="1.1" opacity="0.3"/>
+    <line x1="15" y1="5" x2="15" y2="23" stroke="#0f518a" strokeWidth="1.1" opacity="0.3"/>
+    <line x1="18" y1="5" x2="18" y2="23" stroke="#0f518a" strokeWidth="1.1" opacity="0.3"/>
+    {/* Chord dots — fingering pattern */}
+    <circle cx="12" cy="10" r="2"   fill="#5ec4ec"/>
+    <circle cx="18" cy="14" r="2"   fill="#5ec4ec"/>
+    <circle cx="15" cy="18" r="2"   fill="#0f518a"/>
+    {/* Home indicator */}
+    <line x1="13.5" y1="26" x2="16.5" y2="26" stroke="#0f518a" strokeWidth="1.8" strokeLinecap="round"/>
   </svg>
 );
 
+/* Clean acoustic guitar body + neck = real physical instrument */
 const GuitarIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-    {/* Headstock */}
-    <rect x="10.5" y="0.5" width="7" height="3.5" rx="1.5" fill="#0f518a" />
-    {/* Tuning pegs */}
-    <circle cx="9.5" cy="2.2" r="1.2" fill="#5ec4ec" opacity="0.75" />
-    <circle cx="18.5" cy="2.2" r="1.2" fill="#5ec4ec" opacity="0.75" />
-    {/* Nut */}
-    <rect x="12" y="4" width="4" height="1" rx="0.5" fill="#5ec4ec" opacity="0.8" />
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
     {/* Neck */}
-    <rect x="12.5" y="5" width="3" height="8.5" fill="#0f518a" opacity="0.8" />
-    {/* Guitar body */}
+    <rect x="13" y="1.5" width="4" height="11" rx="2" stroke="#0f518a" strokeWidth="1.9" fill="none"/>
+    {/* Nut */}
+    <line x1="12.5" y1="4.5" x2="17.5" y2="4.5" stroke="#5ec4ec" strokeWidth="1.6" strokeLinecap="round"/>
+    {/* Body — classic figure-8 acoustic shape */}
     <path
-      d="M12.5 13.5 C8 14 5.5 17 6.5 20 C7 21.5 9.5 21.5 9.5 23 C9.5 26 11.5 27.5 14 27.5 C16.5 27.5 18.5 26 18.5 23 C18.5 21.5 21 21.5 21.5 20 C22.5 17 20 14 15.5 13.5 Z"
-      stroke="#0f518a" strokeWidth="1.8" fill="rgba(15,81,138,0.1)" strokeLinejoin="round"
+      d="M15 12.5
+         C10.5 12.5 7 15.5 7 19
+         C7 21.5 8.5 23 10 23.5
+         C8.5 24 7.5 25 7.5 26
+         C7.5 27.8 10.8 29 15 29
+         C19.2 29 22.5 27.8 22.5 26
+         C22.5 25 21.5 24 20 23.5
+         C21.5 23 23 21.5 23 19
+         C23 15.5 19.5 12.5 15 12.5Z"
+      stroke="#0f518a" strokeWidth="1.9" fill="rgba(15,81,138,0.08)"
     />
     {/* Sound hole */}
-    <circle cx="14" cy="21.5" r="2.6" stroke="#5ec4ec" strokeWidth="1.4" fill="none" />
-    {/* Center string */}
-    <line x1="14" y1="0.5" x2="14" y2="27.5" stroke="rgba(94,196,236,0.38)" strokeWidth="0.9" />
+    <circle cx="15" cy="20.5" r="3" stroke="#5ec4ec" strokeWidth="1.6" fill="none"/>
+    {/* Single center string */}
+    <line x1="15" y1="1.5" x2="15" y2="29" stroke="rgba(94,196,236,0.32)" strokeWidth="0.9"/>
   </svg>
 );
 
@@ -89,13 +109,13 @@ const CARDS = [
 
 /* ── Floating background notes ── */
 const BG_NOTES = [
-  { symbol: '♪', x: '7%',  delay: 0,  dur: 20, color: 'rgba(255,182,193,0.55)' },  // pastel pink
-  { symbol: '♫', x: '21%', delay: 4,  dur: 26, color: 'rgba(180,160,230,0.5)'  },  // pastel lavender
-  { symbol: '♩', x: '38%', delay: 9,  dur: 18, color: 'rgba(150,220,200,0.55)' },  // pastel mint
-  { symbol: '♪', x: '57%', delay: 2,  dur: 23, color: 'rgba(255,210,150,0.55)' },  // pastel peach
-  { symbol: '♫', x: '74%', delay: 6,  dur: 22, color: 'rgba(150,200,240,0.55)' },  // pastel sky
-  { symbol: '♩', x: '89%', delay: 12, dur: 17, color: 'rgba(210,180,230,0.5)'  },  // pastel lilac
-  { symbol: '♪', x: '93%', delay: 1,  dur: 28, color: 'rgba(180,225,185,0.5)'  },  // pastel sage
+  { symbol: '♪', x: '7%',  delay: 0,  dur: 20, color: 'rgba(255,182,193,0.55)' },
+  { symbol: '♫', x: '21%', delay: 4,  dur: 26, color: 'rgba(180,160,230,0.5)'  },
+  { symbol: '♩', x: '38%', delay: 9,  dur: 18, color: 'rgba(150,220,200,0.55)' },
+  { symbol: '♪', x: '57%', delay: 2,  dur: 23, color: 'rgba(255,210,150,0.55)' },
+  { symbol: '♫', x: '74%', delay: 6,  dur: 22, color: 'rgba(150,200,240,0.55)' },
+  { symbol: '♩', x: '89%', delay: 12, dur: 17, color: 'rgba(210,180,230,0.5)'  },
+  { symbol: '♪', x: '93%', delay: 1,  dur: 28, color: 'rgba(180,225,185,0.5)'  },
 ];
 
 /* ── Framer-motion variants ── */
@@ -121,7 +141,7 @@ export default function WhyAllStrum() {
   return (
     <section className="why-section">
 
-      {/* Floating background music notes */}
+      {/* Floating notes + ambient glow blobs */}
       <div className="why-bg" aria-hidden="true">
         {BG_NOTES.map((n, i) => (
           <span
@@ -137,7 +157,6 @@ export default function WhyAllStrum() {
             {n.symbol}
           </span>
         ))}
-        {/* Slow ambient glow blobs */}
         <div className="why-blob why-blob--blue"  />
         <div className="why-blob why-blob--purple" />
         <div className="why-blob why-blob--yellow" />
