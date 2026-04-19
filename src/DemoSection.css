@@ -1,0 +1,184 @@
+/* ============================================================
+   DEMO SECTION — main video + cinematic product showcases
+   ============================================================ */
+
+.ds-section {
+  width: 100%;
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
+}
+
+/* ── Section header ── */
+.ds-header {
+  text-align: center;
+  padding: 10vh 4vw 4vh;
+}
+
+.ds-heading {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2vh;
+}
+
+.ds-subheading {
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Main video ── */
+.ds-video-wrap {
+  width: min(860px, 80vw);
+  margin: 0 auto;
+  border-radius: 1.4rem;
+  overflow: hidden;
+  box-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.55),
+    0 4px  16px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Showcase base ── */
+.ds-showcase {
+  position: relative;
+  min-height: 74vh;
+  overflow: hidden;
+  background: #070a12;
+  display: flex;
+  align-items: center;
+}
+
+.ds-showcase__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.9s ease;
+}
+
+.ds-showcase:hover .ds-showcase__img {
+  transform: scale(1.03);
+}
+
+/* ── Gradient fade — darkens the text side ── */
+.ds-showcase__fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Guitar: image left, text right → darken right */
+.ds-showcase__fade--right {
+  background: linear-gradient(
+    to right,
+    rgba(7, 10, 18, 0.08)  0%,
+    rgba(7, 10, 18, 0.08) 28%,
+    rgba(7, 10, 18, 0.72) 55%,
+    rgba(7, 10, 18, 0.97) 84%,
+    rgba(7, 10, 18, 1.00) 100%
+  );
+}
+
+/* Ukulele: image right, text left → darken left */
+.ds-showcase__fade--left {
+  background: linear-gradient(
+    to left,
+    rgba(7, 10, 18, 0.08)  0%,
+    rgba(7, 10, 18, 0.08) 28%,
+    rgba(7, 10, 18, 0.72) 55%,
+    rgba(7, 10, 18, 0.97) 84%,
+    rgba(7, 10, 18, 1.00) 100%
+  );
+}
+
+/* ── Text content block ── */
+.ds-showcase__content {
+  position: relative;
+  z-index: 2;
+  max-width: 430px;
+  padding: 0 6vw;
+}
+
+/* Push guitar text to right */
+.ds-showcase__content--right {
+  margin-left: auto;
+}
+
+/* Push ukulele text to left */
+.ds-showcase__content--left {
+  margin-right: auto;
+}
+
+.ds-showcase__eyebrow {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lightblue, #5ec4ec);
+  margin-bottom: 1.4vh;
+}
+
+.ds-showcase__title {
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 2.2vh;
+}
+
+.ds-showcase__desc {
+  font-size: clamp(0.9rem, 1.35vw, 1.02rem);
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.78;
+  margin-bottom: 2.8vh;
+}
+
+/* Thin decorative rule under description */
+.ds-showcase__rule {
+  width: 40px;
+  height: 2px;
+  background: var(--lightblue, #5ec4ec);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* ── Bottom spacing after last showcase ── */
+.ds-showcase:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .ds-video-wrap {
+    width: 90vw;
+  }
+
+  .ds-showcase {
+    min-height: 55vh;
+  }
+
+  .ds-showcase__fade--right,
+  .ds-showcase__fade--left {
+    /* On mobile, darken the bottom half so text is always readable */
+    background: linear-gradient(
+      to bottom,
+      transparent 30%,
+      rgba(7, 10, 18, 0.96) 72%,
+      rgba(7, 10, 18, 1.00) 100%
+    );
+  }
+
+  .ds-showcase__content--right,
+  .ds-showcase__content--left {
+    margin: auto;
+    position: absolute;
+    bottom: 6vh;
+    left: 0;
+    right: 0;
+    padding: 0 6vw;
+    max-width: 100%;
+  }
+}

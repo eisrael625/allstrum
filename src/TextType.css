@@ -1,0 +1,17 @@
+.text-type {
+  /* inherits block/inline from the rendered element (h2, p, div, etc.) */
+}
+
+.text-type__content {
+  display: inline;
+}
+
+.text-type__cursor {
+  display: inline;
+  margin-left: 2px;
+  font-weight: 300;
+}
+
+.text-type__cursor--hidden {
+  visibility: hidden;
+}
