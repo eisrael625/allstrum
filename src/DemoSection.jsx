@@ -10,7 +10,6 @@ const fadeUp = {
 };
 
 function ProductShowcase({ side, img, eyebrow, title, desc }) {
-  const isRight = side === 'right';
   return (
     <div className={`ds-showcase ds-showcase--${side}`}>
       {/* Full-bleed product image */}
