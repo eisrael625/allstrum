@@ -50,5 +50,8 @@
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
+  },
+  "overrides": {
+    "underscore": "1.13.7"
   }
 }
