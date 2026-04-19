@@ -1,0 +1,266 @@
+/* App.css */
+
+@import url('https://fonts.googleapis.com/css?family=Lexend');
+body {
+  font-family: 'Lexend', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(252, 243, 226);
+}
+
+.App {
+  text-align: center;
+  background-color: rgb(252, 243, 226);
+}
+
+.sideBySide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7vh;
+}
+.mobile_video_description {
+display: none;
+}
+
+/* .Inspiration,
+.section {
+  transform: translateX(-100%);
+  transition: transform 2.5s ease;
+} */
+
+.Inspiration.fadeIn,
+.section.fadeIn {
+  transform: translateX(0);
+}
+
+.Full_Image {
+  text-align: left;
+  height: 93vh;
+  width: calc(100vw - 700px);
+  justify-content: left;
+  display: flex;
+  padding-top: 6.7vh;
+}
+
+.ukePic {
+  text-align: left;
+  height: 93vh;
+  /* width: calc(100vw - 700px); */
+  justify-content: left;
+  /* display: flex; */
+  display: none;
+}
+/* styles.css */
+
+.youtubeContainer {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 93vh;
+  /* background-color: aquamarine; */
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./croppedUke.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity value as needed (0.0 to 1.0) */
+}
+
+.backgroundImage2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./logo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.4; /* Adjust opacity value as needed (0.0 to 1.0) */
+}
+
+.mobile_video_description {
+  z-index: 2; /* Ensure the description appears above the background */
+}
+
+.youtubeVid {
+  z-index: 1; /* Ensure the video appears above the background */
+}
+
+
+
+.Inspiration_Text {
+  background-color: rgb(15, 81, 138);
+  color: white;
+  margin: 0;
+  padding: 2vh 0;
+  font-size: 2.5vh;
+}
+
+.Inspiration {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  padding: 2vh;
+  background-color: rgb(255, 243, 226);
+}
+
+.Camp,
+.Soldiers {
+  flex: 1;
+  background-color: rgb(252, 243, 226);
+  color: rgb(15, 81, 138);
+  margin: 0 1vw;
+  padding: 2vw;
+  border-radius: 10px;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Lexend', sans-serif;
+  align-items: center;
+ justify-content: center;
+ display: flex;
+ flex-direction: column;
+}
+
+.Camp h2,
+.Soldiers h2 {
+  margin-top: 0;
+  font-size: 2.5vh;
+  color: rgb(15, 81, 138);
+  text-align: center;
+
+}
+
+.Inspiration_Pics {
+  height: 50vh;
+  max-width: 100%;
+  align-self: center;
+  justify-self: center;
+  
+}
+
+.Inspiration_Paragraph {
+  font-size: 2vh;
+  line-height: 1.6;
+  margin-top: 2vh;
+  text-align: center;
+}
+
+.AwardsAndContact {
+  padding: 20px;
+  background-color: rgb(252, 243, 226);
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  height: 30vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.AwardsAndContact h2 {
+  font-size: 2.5vh;
+  color:  rgb(15, 81, 138);
+}
+
+.AwardsAndContact p {
+  font-size: 2vh;
+  color: rgb(15, 81, 138);
+  line-height: 1.6;
+}
+
+.AwardsAndContact a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.AwardsAndContact a:hover {
+  text-decoration: underline;
+}
+
+.section {
+  opacity: 0;
+  transition: opacity 2.5s ease, transform 2.5s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.preorder {
+  display: block;
+    font-size: 2vh;
+    background-color: rgb(15, 81, 138);
+  color: rgb(255, 137, 67);
+  margin: 0;
+  padding: 2vh 0;
+  font-size: 2.5vh;
+  width: 100vw;
+cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .youtubeContainer {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 93vh;
+  }
+  .Inspiration_Pics {
+    height: auto;
+    max-width: 100%;
+    
+  }
+  
+  .backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./croppedUke.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Adjust opacity value as needed (0.0 to 1.0) */
+  }
+  
+  .mobile_video_description {
+    z-index: 2; /* Ensure the description appears above the background */
+  }
+  
+  .youtubeVid {
+    z-index: 1; /* Ensure the video appears above the background */
+  }
+
+  /* Additional adjustments for smaller screens */
+  .Inspiration {
+    flex-direction: column;
+  }
+
+  .Camp,
+  .Soldiers {
+    margin: 2vh 0vh;
+    text-align: center;
+  }
+
+  .Inspiration_Pics {
+    margin-bottom: 2vh;
+  }
+}
