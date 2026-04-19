@@ -9,21 +9,21 @@ import './Awards.css';
 const AWARDS = [
   {
     img:   tsaiImg,
-    alt:   'Tsai CITY',
-    title: 'Yale Student Innovation Grant',
-    sub:   'Tsai Center for Innovative Thinking at Yale',
+    alt:   'TSAI City',
+    title: 'Yale Student Innovation and Milestone Grants',
+    sub:   'Recognized for measurable progress toward impact',
   },
   {
     img:   startupYaleImg,
-    alt:   'Startup Yale',
-    title: 'Yale Student Milestone Grant',
-    sub:   'Recognized for measurable progress toward impact',
+    alt:   'Start Up Yale',
+    title: 'Rothberg Catalyzer Prize',
+    sub:   "Audience Choice Award — Startup Yale '26",
   },
   {
     img:   yaleLogoImg,
     alt:   'Yale University',
-    title: 'Rothberg Catalyzer Prize Finalist',
-    sub:   "Top 4 finalist — Startup Yale '26",
+    title: 'Yale News',
+    sub:   "Featured on Yale Instagram, News, and other socials",
   },
 ];
 
