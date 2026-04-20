@@ -27,16 +27,13 @@ const AWARDS = [
   },
 ];
 
-/* Per-card resting rotation (managed by Framer Motion so hover can reset to 0) */
-const ROTATIONS = [0, 0.9, -0.7];
-
 const cardVariants = {
-  hidden:  (i) => ({ opacity: 0, x: 50, y: 8,  rotate: ROTATIONS[i] }),
+  hidden:  () => ({ opacity: 0, x: 50, y: 8, rotate: 0 }),
   visible: (i) => ({
     opacity: 1,
     x: 0,
     y: 0,
-    rotate: ROTATIONS[i],
+    rotate: 0,
     transition: { duration: 0.64, delay: i * 0.13, ease: [0.22, 1, 0.36, 1] },
   }),
 };
@@ -84,9 +81,7 @@ export default function Awards() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
                 whileHover={{
-                  y: -11,
-                  rotate: 0,
-                  zIndex: 10,
+                  y: -6,
                   transition: { duration: 0.26, ease: 'easeOut' },
                 }}
               >
