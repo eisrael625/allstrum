@@ -83,7 +83,7 @@ function App() {
                 </span>
               </h1>
               <p className="hero-subtitle">
-                Devices that let anyone strum the chords to their favorite songs.
+                Adaptive music devices that help anyone play real songs on guitar or ukulele, just by strumming.
               </p>
               <div className="hero-ctas">
                 <button className="btn primary" onClick={handlePreOrderClick}>
