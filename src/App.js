@@ -31,7 +31,7 @@ function App() {
       <main>
 
         {/* ── HERO ── */}
-        <section id="products" className="section hero">
+        <section id="home" className="section hero">
 
           {/* ── Drawn music notes (scroll away with hero) ── */}
           <svg aria-hidden="true" className="deco-svg deco-svg--1" viewBox="0 0 50 110" overflow="visible">

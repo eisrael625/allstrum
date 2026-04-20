@@ -34,6 +34,10 @@ html, body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
@@ -42,6 +46,14 @@ h1, h2, h3, h4, h5, h6 {
 .App {
   width: 100%;
   overflow-x: hidden;
+}
+
+#home,
+#who-its-for,
+#products,
+#testimonials,
+#contact {
+  scroll-margin-top: 96px;
 }
 
 /* ------------------------------------------------------

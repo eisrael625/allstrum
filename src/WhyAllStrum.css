@@ -293,3 +293,29 @@
   align-items: center;
   padding-bottom: 4vh;
 }
+
+@media (max-width: 768px) {
+  .why-section {
+    padding: 4rem 1.25rem 2.5rem;
+  }
+
+  .why-grid {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .why-card {
+    border-radius: 20px;
+    padding: 1.15rem 1rem;
+  }
+
+  .why-card:hover {
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.09);
+  }
+
+  .why-gallery-bridge,
+  .why-gallery {
+    display: none;
+  }
+}

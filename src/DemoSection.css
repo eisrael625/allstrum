@@ -157,7 +157,7 @@
   }
 
   .ds-showcase {
-    min-height: 55vh;
+    min-height: 32rem;
   }
 
   .ds-showcase__fade--right,
@@ -171,14 +171,33 @@
     );
   }
 
+  .ds-showcase__img {
+    object-position: center top;
+  }
+
   .ds-showcase__content--right,
   .ds-showcase__content--left {
     margin: auto;
     position: absolute;
-    bottom: 6vh;
+    bottom: 1.5rem;
     left: 0;
     right: 0;
-    padding: 0 6vw;
+    padding: 0 1.25rem;
     max-width: 100%;
+  }
+
+  .ds-showcase__content {
+    max-width: none;
+  }
+
+  .ds-showcase__title {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .ds-showcase__desc {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
   }
 }

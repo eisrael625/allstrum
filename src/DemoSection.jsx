@@ -41,7 +41,7 @@ function ProductShowcase({ side, img, eyebrow, title, desc }) {
 
 export default function DemoSection() {
   return (
-    <section id="videos" className="ds-section">
+    <section id="products" className="ds-section">
 
       {/* ── Product showcases ── */}
       <ProductShowcase

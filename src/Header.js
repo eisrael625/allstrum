@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import logo from './assets/allstrum_vector.png';
+import logo from './white Logo.png';
 import './Header.css';
 
 const NAV_ITEMS = [
-  { name: 'Products',      link: '#products'     },
-  { name: "Who It's For",  link: '#who-its-for'  },
-  { name: 'Testimonials',  link: '#testimonials'  },
-  { name: 'Recognition',   link: '#awards'        },
-  { name: 'Contact',       link: '#contact'       },
+  { name: 'Home',          link: '#home' },
+  { name: "Who's It For",  link: '#who-its-for' },
+  { name: 'Products',      link: '#products' },
+  { name: 'Testimonials',  link: '#testimonials' },
+  { name: 'Contact',       link: '#contact' },
 ];
 
 function Header() {
@@ -45,7 +45,7 @@ function Header() {
         <div className="hd-inner">
 
           {/* Logo */}
-          <a href="#products" className="hd-logo">
+          <a href="#home" className="hd-logo">
             <img src={logo} alt="AllStrum" className="hd-logo-img" />
           </a>
 

@@ -5,7 +5,7 @@ import './WhoItsFor.css';
 
 export default function WhoItsFor() {
   return (
-    <section id="story" className="wif-section">
+    <section id="who-its-for" className="wif-section">
       <motion.div
         className="wif-header"
         initial={{ opacity: 0, y: 20 }}

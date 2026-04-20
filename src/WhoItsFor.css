@@ -31,3 +31,24 @@
   color: rgba(255, 255, 255, 0.48);
   letter-spacing: 0.01em;
 }
+
+@media (max-width: 768px) {
+  .wif-section {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .wif-header {
+    padding: 0 1.25rem;
+  }
+
+  .wif-title {
+    white-space: normal;
+    line-height: 1.08;
+  }
+
+  .wif-lead {
+    max-width: 20rem;
+    margin: 0.75rem auto 0;
+    line-height: 1.5;
+  }
+}
