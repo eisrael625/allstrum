@@ -21,7 +21,7 @@ function Header() {
   });
 
   const handlePreOrder = () => {
-    window.location.href = 'https://forms.gle/gxEsbb1r3G3446Xg7';
+    window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
   };
 
   return (
