@@ -21,9 +21,14 @@ export default function OriginStory() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="origin-image-frame">
-            <img src={campImg} alt="Campers at summer camp" className="origin-image" />
-          </div>
+          <figure className="origin-figure">
+            <div className="origin-image-frame">
+              <img src={campImg} alt="Campers at summer camp" className="origin-image" />
+            </div>
+            <figcaption className="origin-caption">
+              In memory of Yona Brief, pictured center, whose kindness and love of guitar continue to inspire us.
+            </figcaption>
+          </figure>
         </motion.div>
 
         {/* Text column */}
