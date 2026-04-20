@@ -23,6 +23,14 @@
     grid-template-columns: 1fr;
     row-gap: 5vh;
   }
+
+  .origin-text-col {
+    order: 1;
+  }
+
+  .origin-image-col {
+    order: 2;
+  }
 }
 
 /* ── Image ── */
