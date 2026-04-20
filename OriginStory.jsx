@@ -26,7 +26,7 @@ export default function OriginStory() {
               <img src={campImg} alt="Campers at summer camp" className="origin-image" />
             </div>
             <figcaption className="origin-caption">
-              In memory of Yona Brief, pictured center, whose kindness and love of guitar continue to inspire us.
+              In loving memory of Yona Brief (center): an avid guitar player and a deeply kind soul, taken far too young.
             </figcaption>
           </figure>
         </motion.div>
