@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import BounceCards from './BounceCards';
-import as1 from './assets/AS1.jpeg';
-import as4 from './assets/AS4.png';
-import as5 from './assets/AS5.jpeg';
+import as1 from './assets/AS1-gallery.webp';
+import as4 from './assets/AS4-gallery.webp';
+import as5 from './assets/AS5-gallery.webp';
 import './WhyAllStrum.css';
 
 /* ── Inline SVG icons — product-specific, no emoji style ── */
