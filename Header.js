@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import logo from './assets/allstrum_vector.png';
 import './Header.css';
@@ -14,11 +14,18 @@ const NAV_ITEMS = [
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 860);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (y) => {
     setScrolled(y > 60);
   });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 860);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handlePreOrder = () => {
     window.location.href = 'https://forms.gle/gxEsbb1r3G3446Xg7';
@@ -29,7 +36,7 @@ function Header() {
       <motion.header
         className={`hd-bar${scrolled ? ' hd-bar--scrolled' : ''}`}
         animate={{
-          width: scrolled ? '72%' : '100%',
+          width: scrolled ? (isMobile ? '92%' : '72%') : '100%',
           top: scrolled ? '16px' : '0px',
           borderRadius: scrolled ? '100px' : '0px',
           backgroundColor: scrolled
@@ -77,11 +84,12 @@ function Header() {
         </div>
       </motion.header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — top position accounts for scrolled pill shift */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             className="hd-mobile-menu"
+            style={{ top: scrolled ? '88px' : '72px' }}
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

@@ -22,3 +22,12 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* Mobile: scale cards proportionally to match reduced container */
+@media (max-width: 767px) {
+  .bounceCardsContainer .card {
+    width: 110px;
+    border-radius: 12px;
+    border-width: 2px;
+  }
+}

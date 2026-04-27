@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from './Header';
 import YouTubeVideo from './Youtube';
@@ -11,6 +12,8 @@ import OriginStory from './OriginStory';
 import AppFeatures from './AppFeatures';
 import DemoSection from './DemoSection';
 import Awards from './Awards';
+import PhoneIntro from './pages/HomePage';
+import FeaturesPage from './pages/FeaturesPage';
 // import { PointerHighlight } from './components/ui/pointer-highlight';
 // import { Highlighter } from './components/ui/highlighter';
 import './App.css';
@@ -20,7 +23,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-function App() {
+function MainSite() {
   const handlePreOrderClick = () => {
     window.location.href = 'https://forms.gle/gxEsbb1r3G3446Xg7';
   };
@@ -131,6 +134,9 @@ function App() {
         {/* ── AWARDS ── */}
         <Awards />
 
+        {/* ── PHONE INTRO ── */}
+        <PhoneIntro />
+
         {/* ── CONTACT ── */}
         <footer id="contact" className="ct-strip">
           <motion.div
@@ -158,6 +164,15 @@ function App() {
 
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainSite />} />
+      <Route path="/features" element={<FeaturesPage />} />
+    </Routes>
   );
 }
 

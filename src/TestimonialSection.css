@@ -318,3 +318,40 @@
     animation: none;
   }
 }
+
+/* ── Mobile touch-target & layout fixes ── */
+@media (max-width: 767px) {
+  /* Nav arrows: minimum 44px touch target */
+  .ts-arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Dot indicators: easier to tap */
+  .ts-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .ts-dot--active {
+    width: 24px;
+    border-radius: 6px;
+  }
+
+  /* Foreground: tighter vertical padding so content breathes without over-spacing */
+  .ts-foreground {
+    padding: 5vh 4vw;
+  }
+
+  /* Featured card: comfortable reading width */
+  .ts-featured-wrap {
+    width: 92vw;
+  }
+
+  /* Heading: ensure it doesn't wrap awkwardly */
+  .ts-heading {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    letter-spacing: -0.025em;
+  }
+}

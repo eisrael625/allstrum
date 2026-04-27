@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BounceCards from './BounceCards';
 import as1 from './assets/AS1.jpeg';
@@ -136,8 +136,19 @@ const cardVariants = {
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
+/* ── Mobile breakpoint (matches BounceCards CSS override) ── */
+const MOBILE_BP = 767;
+
 /* ── Component ── */
 export default function WhyAllStrum() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= MOBILE_BP);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= MOBILE_BP);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section className="why-section">
 
@@ -222,24 +233,31 @@ export default function WhyAllStrum() {
         <div className="why-gallery-line" />
       </motion.div>
 
-      {/* Bounce Cards gallery */}
+      {/* Bounce Cards gallery — props scale down proportionally on mobile */}
       <div className="why-gallery">
         <BounceCards
+          key={isMobile ? 'mobile' : 'desktop'}
           className="custom-bounceCards"
           images={[as1, as2, as3, as4, as5]}
-          containerWidth={1100}
-          containerHeight={520}
+          containerWidth={isMobile ? 350 : 1100}
+          containerHeight={isMobile ? 200 : 520}
           animationDelay={0.3}
           animationStagger={0.1}
           easeType="elastic.out(1, 0.5)"
-          transformStyles={[
+          transformStyles={isMobile ? [
+            "rotate(5deg) translate(-100px)",
+            "rotate(0deg) translate(-50px)",
+            "rotate(-3deg)",
+            "rotate(4deg) translate(50px)",
+            "rotate(-5deg) translate(100px)",
+          ] : [
             "rotate(5deg) translate(-320px)",
             "rotate(0deg) translate(-160px)",
             "rotate(-3deg)",
             "rotate(4deg) translate(160px)",
             "rotate(-5deg) translate(320px)",
           ]}
-          enableHover={true}
+          enableHover={!isMobile}
         />
       </div>
 

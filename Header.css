@@ -162,4 +162,49 @@
   .hd-nav  { display: none; }
   .hd-cta:not(.hd-cta--mobile) { display: none; }
   .hd-hamburger { display: flex; }
+
+  /* Enforce 44×44 minimum touch target on hamburger */
+  .hd-hamburger {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 6px;
+  }
+
+  /* Slightly thicker, more visible burger lines */
+  .hd-burger-line {
+    width: 24px;
+    height: 2.5px;
+  }
+
+  /* Tighter inner bar height on mobile so logo doesn't push content */
+  .hd-inner {
+    height: 56px;
+  }
+
+  /* Logo slightly smaller on mobile (not scrolled) */
+  .hd-logo-img {
+    height: 70px;
+  }
+
+  .hd-bar--scrolled .hd-logo-img {
+    height: 36px;
+  }
+
+  /* Mobile menu links: larger touch targets */
+  .hd-mobile-link {
+    padding: 0.85rem 0.75rem;
+    font-size: 1rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Mobile CTA: full-width, comfortable height */
+  .hd-cta--mobile {
+    padding: 0.85rem 1.3rem;
+    font-size: 0.95rem;
+  }
 }
