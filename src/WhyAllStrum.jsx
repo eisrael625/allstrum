@@ -2,8 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import BounceCards from './BounceCards';
 import as1 from './assets/AS1.jpeg';
-import as2 from './assets/AS2.png';
-import as3 from './assets/AS3.png';
 import as4 from './assets/AS4.png';
 import as5 from './assets/AS5.jpeg';
 import './WhyAllStrum.css';
@@ -226,20 +224,9 @@ export default function WhyAllStrum() {
       <div className="why-gallery">
         <BounceCards
           className="custom-bounceCards"
-          images={[as1, as2, as3, as4, as5]}
+          images={[as1, as4, as5]}
           containerWidth={1100}
           containerHeight={520}
-          animationDelay={0.3}
-          animationStagger={0.1}
-          easeType="elastic.out(1, 0.5)"
-          transformStyles={[
-            "rotate(5deg) translate(-320px)",
-            "rotate(0deg) translate(-160px)",
-            "rotate(-3deg)",
-            "rotate(4deg) translate(160px)",
-            "rotate(-5deg) translate(320px)",
-          ]}
-          enableHover={true}
         />
       </div>
 
