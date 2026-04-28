@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import logo from './white Logo.png';
+import logo from '../white Logo.png';
 import './Header.css';
 
 const NAV_ITEMS = [

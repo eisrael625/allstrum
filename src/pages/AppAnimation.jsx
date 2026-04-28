@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import VideoCanvas from '../VideoCanvas';
+import VideoCanvas from '../components/VideoCanvas';
 import appIntroVideo from '../assets/project-ac913ca8-4fa9-4430-b019-523f60e61988.webm';
 
 export default function AppAnimation() {

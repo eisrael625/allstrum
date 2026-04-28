@@ -2,15 +2,15 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Header from './Header';
-import YouTubeVideo from './Youtube';
-import TestimonialSection from './TestimonialSection';
-import WhyAllStrum from './WhyAllStrum';
-import WhoItsFor from './WhoItsFor';
-import UserGroups from './UserGroups';
-import OriginStory from './OriginStory';
-import DemoSection from './DemoSection';
-import Awards from './Awards';
+import Header from './components/Header';
+import YouTubeVideo from './components/Youtube';
+import TestimonialSection from './sections/TestimonialSection';
+import WhyAllStrum from './sections/WhyAllStrum';
+import WhoItsFor from './sections/WhoItsFor';
+import UserGroups from './sections/UserGroups';
+import OriginStory from './sections/OriginStory';
+import DemoSection from './sections/DemoSection';
+import Awards from './sections/Awards';
 import AppAnimation from './pages/AppAnimation';
 import FeaturesPage from './pages/FeaturesPage';
 import as1 from './assets/AS1-gallery.webp';
@@ -46,7 +46,7 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
   return null;
