@@ -79,7 +79,7 @@ const CARDS = [
     glowColor: 'rgba(94,196,236,0.22)',
     title: 'Inclusive Design',
     body:
-      'Whether you are a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, a hobbyist who never quite found the time to take lessons, or someone with a disability or special need who deserves to feel the joy of making music — AllStrum meets you exactly where you are.',
+      "Whether you're a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, or someone with a disability, AllStrum meets you where you are.",
   },
   {
     id: 'smart',
@@ -88,7 +88,7 @@ const CARDS = [
     glowColor: 'rgba(15,81,138,0.18)',
     title: 'Smart Control',
     body:
-      'The AllStrum companion app connects to the instrument and shifts chords automatically, so you can focus entirely on rhythm and feel. Browse your favorite songs and play along in real time, or slow things down and work through specific strumming patterns to build your skills at your own pace.',
+      'The AllStrum app pairs wirelessly with your instrument and shifts chords automatically, so you can focus entirely on rhythm and feel. Browse your favorite songs, compose your own music, or slow things down and work through specific strumming patterns to build your skills at your own pace.',
   },
   {
     id: 'real',
@@ -97,7 +97,7 @@ const CARDS = [
     glowColor: 'rgba(245,200,122,0.28)',
     title: 'Real Instrument',
     body:
-      "AllStrum attaches to a real guitar or ukulele without compromising the instrument's sound or feel. Bring it to a campfire or a family gathering and what people hear is a real instrument played by you.",
+      "The instrument you love shouldn't change. AllStrum attaches to your real guitar or ukulele without compromising the sound or feel. Bring it to a campfire or family gathering and what people hear is a real instrument, played by you.",
   },
 ];
 

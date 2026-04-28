@@ -93,7 +93,7 @@
 }
 
 .ug-card__desc {
-  font-size: clamp(0.8rem, 1.05vw, 0.9rem);
-  color: rgba(255, 255, 255, 0.5);
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.68;
 }

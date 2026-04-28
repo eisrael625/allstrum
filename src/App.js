@@ -101,7 +101,7 @@ function Hero() {
             </span>
           </h1>
           <p className="hero-subtitle">
-            Adaptive music devices that help anyone play real songs on guitar or ukulele, just by strumming.
+            The AllStrum attaches to a guitar or ukulele and automatically holds down chords in real time, so anyone can play just by strumming.
           </p>
           <div className="hero-ctas">
             <button className="btn primary" onClick={handlePreOrderClick}>
