@@ -96,7 +96,7 @@ const VideoCanvas = forwardRef(function VideoCanvas(
         preload={preload}
         style={{ display: 'none' }}
       />
-      <canvas ref={canvasRef} style={style} />
+      <canvas ref={canvasRef} style={{ background: 'transparent', ...style }} />
     </>
   );
 });

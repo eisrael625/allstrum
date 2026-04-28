@@ -73,12 +73,12 @@ function Header() {
   const floatingHeader = scrolled || transparentOnApp || isLightPage;
 
   const bgColor = visuallyScrolled
-    ? 'rgba(8, 16, 32, 0.88)'
-    : (transparentOnApp || isLightPage ? 'rgba(8, 16, 32, 0.48)' : 'rgba(8, 16, 32, 0.0)');
+    ? 'rgba(190, 205, 225, 0.18)'
+    : (transparentOnApp || isLightPage ? 'rgba(190, 205, 225, 0.10)' : 'rgba(8, 16, 32, 0.0)');
 
   const shadow = visuallyScrolled
-    ? '0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06)'
-    : (transparentOnApp || isLightPage ? '0 8px 32px rgba(0,0,0,0.16), 0 0 0 1px rgba(255,255,255,0.08)' : 'none');
+    ? '0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.1)'
+    : (transparentOnApp || isLightPage ? '0 8px 32px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.14)' : 'none');
 
   return (
     <div className="hd-root">
