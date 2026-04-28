@@ -1,9 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import BounceCards from './BounceCards';
-import as1 from './assets/AS1-gallery.webp';
-import as4 from './assets/AS4-gallery.webp';
-import as5 from './assets/AS5-gallery.webp';
 import './WhyAllStrum.css';
 
 /* ── Inline SVG icons — product-specific, no emoji style ── */
@@ -206,29 +202,6 @@ export default function WhyAllStrum() {
           </motion.div>
         ))}
       </motion.div>
-
-      {/* Gallery bridge */}
-      <motion.div
-        className="why-gallery-bridge"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-      >
-        <div className="why-gallery-line" />
-        <p className="why-gallery-label">See the device up close</p>
-        <div className="why-gallery-line" />
-      </motion.div>
-
-      {/* Bounce Cards gallery */}
-      <div className="why-gallery">
-        <BounceCards
-          className="custom-bounceCards"
-          images={[as1, as4, as5]}
-          containerWidth={1100}
-          containerHeight={520}
-        />
-      </div>
 
     </section>
   );
