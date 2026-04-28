@@ -70,6 +70,7 @@
   border-radius: 100px;
   transition: color 0.18s ease, background 0.18s ease;
   white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.55), 0 0 10px rgba(0,0,0,0.35);
 }
 
 .hd-link:hover {
@@ -210,8 +211,8 @@
     transform: none;
     border-radius: 22px !important;
     padding: 0 1rem;
-    background-color: rgba(8, 16, 32, 0.92) !important;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06) !important;
+    background-color: rgba(190, 205, 225, 0.18) !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.22), inset 0 1px 0 rgba(255,255,255,0.14) !important;
     backdrop-filter: blur(14px) !important;
   }
 
