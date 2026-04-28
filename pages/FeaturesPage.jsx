@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import videoChords from '../assets/project-33842367-bc19-4967-b1f4-72be01e43a70.webm';
 import videoSongs from '../assets/project-9bc73e8c-82b5-4e34-a9dc-56453af258ef (1).webm';
-import videoCompose from '../assets/project-c674e169-2061-4759-82f0-2627b5a4d0d4.webm';
-import videoTempo from '../assets/project-c7cb1b81-243a-4989-8f16-c1bde6634fed.webm';
+import videoCompose from '../assets/project-21de6005-d70f-44c1-9103-5bcdb4596279.webm';
+import videoTempo from '../assets/project-bdee8ffe-129d-4da5-b5f8-4d779b5c1e74.webm';
 
 const playlist = [videoChords, videoSongs, videoCompose, videoTempo];
 

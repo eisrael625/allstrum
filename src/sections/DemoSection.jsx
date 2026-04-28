@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import guitarImg  from './assets/AS1.jpeg';
+import guitarImg  from '../assets/AS1.jpeg';
 import ukuleleImg from 'src/ukulelePic.jpg';
 import './DemoSection.css';
 
@@ -17,7 +17,9 @@ function ProductShowcase({ side, img, eyebrow, title }) {
         alt={title}
         className="ds-showcase__img"
       />
+
       <div className={`ds-showcase__fade ds-showcase__fade--${side}`} />
+
       <motion.div
         className={`ds-showcase__content ds-showcase__content--${side}`}
         variants={fadeUp}
@@ -40,16 +42,16 @@ export default function DemoSection() {
       {/* ── Product showcases ── */}
       <ProductShowcase
         side="right"
-        img={guitarImg}
-        eyebrow="The Guitar"
-        title="AllStrum Guitar"
+        img={ukuleleImg}
+        eyebrow="Where It All Started"
+        title="AllStrum Ukulele"
       />
 
       <ProductShowcase
         side="left"
-        img={ukuleleImg}
-        eyebrow="Where It All Started"
-        title="AllStrum Ukulele"
+        img={guitarImg}
+        eyebrow="The Upgrade"
+        title="AllStrum Guitar"
       />
 
     </section>

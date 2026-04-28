@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import BounceCards from './BounceCards';
-import as1 from './assets/AS1-gallery.webp';
-import as4 from './assets/AS4-gallery.webp';
-import as5 from './assets/AS5-gallery.webp';
 import './WhyAllStrum.css';
 
 /* ── Inline SVG icons — product-specific, no emoji style ── */
@@ -83,7 +79,7 @@ const CARDS = [
     glowColor: 'rgba(94,196,236,0.22)',
     title: 'Inclusive Design',
     body:
-      'Whether you\'re a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, or someone with a disability, AllStrum meets you where you are.',
+      "Whether you're a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, or someone with a disability, AllStrum meets you where you are.",
   },
   {
     id: 'smart',
@@ -217,43 +213,6 @@ export default function WhyAllStrum() {
           </motion.div>
         ))}
       </motion.div>
-
-      {/* Gallery bridge */}
-      <motion.div
-        className="why-gallery-bridge"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-      >
-        <div className="why-gallery-line" />
-        <p className="why-gallery-label">See the device up close</p>
-        <div className="why-gallery-line" />
-      </motion.div>
-
-      {/* Bounce Cards gallery — props scale down proportionally on mobile */}
-      <div className="why-gallery">
-        <BounceCards
-          key={isMobile ? 'mobile' : 'desktop'}
-          className="custom-bounceCards"
-          images={[as1, as4, as5]}
-          containerWidth={isMobile ? 350 : 1100}
-          containerHeight={isMobile ? 200 : 520}
-          animationDelay={0.3}
-          animationStagger={0.1}
-          easeType="elastic.out(1, 0.5)"
-          transformStyles={isMobile ? [
-            "rotate(5deg) translate(-80px)",
-            "rotate(-2deg)",
-            "rotate(-5deg) translate(80px)",
-          ] : [
-            "rotate(5deg) translate(-260px)",
-            "rotate(-2deg)",
-            "rotate(-5deg) translate(260px)",
-          ]}
-          enableHover={!isMobile}
-        />
-      </div>
 
     </section>
   );

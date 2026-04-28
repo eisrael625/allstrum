@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import campImg from './Camp.jpg';
+import campImg from '../Camp.jpg';
 import './OriginStory.css';
 
 const fadeUp = {
@@ -26,7 +26,7 @@ export default function OriginStory() {
               <img src={campImg} alt="Campers at summer camp" className="origin-image" />
             </div>
             <figcaption className="origin-caption">
-              In loving memory of Yona Brief (center): an avid guitar player and a deeply kind soul, taken far too young.
+              In loving memory of Yona Brief (center): an avid guitar player and a deeply kind soul.
             </figcaption>
           </figure>
         </motion.div>

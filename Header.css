@@ -46,6 +46,10 @@
   filter: brightness(0) invert(1);
 }
 
+.hd-bar--light-transparent .hd-logo-img {
+  filter: none;
+}
+
 /* ── Desktop nav links ── */
 .hd-nav {
   display: flex;
@@ -70,6 +74,11 @@
 .hd-link:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
+}
+
+.hd-link--active {
+  color: #ffffff;
+  background: rgba(94, 196, 236, 0.16);
 }
 
 @media (max-width: 1320px) {
@@ -176,6 +185,10 @@
 }
 
 .hd-mobile-link:hover {
+  color: #ffffff;
+}
+
+.hd-mobile-link--active {
   color: #ffffff;
 }
 

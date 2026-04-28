@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import TextType from './TextType';
+import TextType from '../components/TextType';
 import './WhoItsFor.css';
 
 export default function WhoItsFor() {
