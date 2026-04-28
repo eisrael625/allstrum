@@ -1567,12 +1567,6 @@ body {
   50%       { transform: translateY(5px); opacity: 1; }
 }
 
-/* ── Phone section ── */
-
-.phone-section {
-  height: 200vh;
-  background: #fff;
-}
 
 .layout {
   position: sticky;
