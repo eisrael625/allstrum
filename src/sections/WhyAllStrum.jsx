@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import './WhyAllStrum.css';
 
@@ -130,19 +130,8 @@ const cardVariants = {
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
-/* ── Mobile breakpoint (matches BounceCards CSS override) ── */
-const MOBILE_BP = 767;
-
 /* ── Component ── */
 export default function WhyAllStrum() {
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= MOBILE_BP);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= MOBILE_BP);
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
   return (
     <section className="why-section">
 
