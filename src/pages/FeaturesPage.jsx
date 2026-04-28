@@ -26,8 +26,6 @@ const slides = [
   },
 ];
 
-const played = new Set();
-
 export default function FeaturesPage() {
   const navigate = useNavigate();
   const videoRefs = useRef([]);
@@ -36,28 +34,46 @@ export default function FeaturesPage() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
-    return () => {
-      played.clear();
-    };
   }, []);
+
+  const replayVideo = (index) => {
+    const video = videoRefs.current[index];
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+    video.play()?.catch(() => {});
+    setActive((prev) => new Set([...prev, index]));
+  };
 
   useEffect(() => {
     const observers = sectionRefs.current.map((section, i) => {
       if (!section) return null;
 
       const observer = new IntersectionObserver(([entry]) => {
-        if (!entry.isIntersecting || played.has(i)) return;
-
-        played.add(i);
-        setActive((prev) => new Set([...prev, i]));
-
         const video = videoRefs.current[i];
         if (!video) return;
+
+        const rect = entry.boundingClientRect;
+        const viewportMid = window.innerHeight / 2;
+        const sectionContainsViewportMid = rect.top <= viewportMid && rect.bottom >= viewportMid;
+
+        if (!entry.isIntersecting || !sectionContainsViewportMid) {
+          video.pause();
+          video.currentTime = 0;
+          setActive((prev) => {
+            const next = new Set(prev);
+            next.delete(i);
+            return next;
+          });
+          return;
+        }
+
+        setActive((prev) => new Set([...prev, i]));
 
         const play = () => video.play()?.catch(() => {});
         if (video.readyState >= 3) play();
         else video.addEventListener('canplay', play, { once: true });
-      }, { threshold: 0.4 });
+      }, { threshold: [0, 0.35, 0.5, 0.65, 1] });
 
       observer.observe(section);
       return observer;
@@ -95,6 +111,9 @@ export default function FeaturesPage() {
                   playsInline
                   preload="metadata"
                 />
+                <button className="replay-btn replay-btn--feature" onClick={() => replayVideo(i)} type="button">
+                  Replay
+                </button>
               </div>
             </div>
           </div>

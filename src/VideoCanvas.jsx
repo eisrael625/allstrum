@@ -29,6 +29,14 @@ const VideoCanvas = forwardRef(function VideoCanvas(
     get readyState() {
       return videoRef.current?.readyState ?? 0;
     },
+    get currentTime() {
+      return videoRef.current?.currentTime ?? 0;
+    },
+    set currentTime(value) {
+      if (videoRef.current) {
+        videoRef.current.currentTime = value;
+      }
+    },
     play: () => videoRef.current?.play(),
     pause: () => {
       cancelAnimationFrame(rafRef.current);

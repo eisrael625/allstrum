@@ -8,6 +8,14 @@ export default function AppAnimation() {
   const sectionRef = useRef(null);
   const navigate = useNavigate();
 
+  const replayVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+    video.play()?.catch(() => {});
+  };
+
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return undefined;
@@ -16,14 +24,19 @@ export default function AppAnimation() {
       const video = videoRef.current;
       if (!video) return;
 
-      if (entry.isIntersecting) {
+      const rect = entry.boundingClientRect;
+      const viewportMid = window.innerHeight / 2;
+      const sectionContainsViewportMid = rect.top <= viewportMid && rect.bottom >= viewportMid;
+
+      if (entry.isIntersecting && sectionContainsViewportMid) {
         const play = () => video.play()?.catch(() => {});
         if (video.readyState >= 3) play();
         else video.addEventListener('canplay', play, { once: true });
       } else {
         video.pause();
+        video.currentTime = 0;
       }
-    }, { threshold: 0.3 });
+    }, { threshold: [0, 0.35, 0.5, 0.65, 1] });
 
     observer.observe(section);
     return () => observer.disconnect();
@@ -49,6 +62,9 @@ export default function AppAnimation() {
         <div className="phone-video-wrap">
           <div className="phone-video-slot">
             <VideoCanvas ref={videoRef} src={appIntroVideo} preload="metadata" loop={false} />
+            <button className="replay-btn" onClick={replayVideo} type="button">
+              Replay
+            </button>
           </div>
         </div>
       </div>

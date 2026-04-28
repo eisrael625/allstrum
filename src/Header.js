@@ -67,27 +67,32 @@ function Header() {
     window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
   };
 
+  const isLightPage = location.pathname === '/features';
   const transparentOnApp = overAppSection && !isCompact;
-  const visuallyScrolled = scrolled && !transparentOnApp;
-  const floatingHeader = scrolled || transparentOnApp;
+  const visuallyScrolled = scrolled && !transparentOnApp && !isLightPage;
+  const floatingHeader = scrolled || transparentOnApp || isLightPage;
+
+  const bgColor = visuallyScrolled
+    ? 'rgba(8, 16, 32, 0.88)'
+    : (transparentOnApp || isLightPage ? 'rgba(8, 16, 32, 0.48)' : 'rgba(8, 16, 32, 0.0)');
+
+  const shadow = visuallyScrolled
+    ? '0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06)'
+    : (transparentOnApp || isLightPage ? '0 8px 32px rgba(0,0,0,0.16), 0 0 0 1px rgba(255,255,255,0.08)' : 'none');
 
   return (
     <div className="hd-root">
       <motion.header
-        className={`hd-bar${floatingHeader ? ' hd-bar--scrolled' : ''}${transparentOnApp ? ' hd-bar--light-transparent' : ''}`}
+        className={`hd-bar${floatingHeader ? ' hd-bar--scrolled' : ''}${transparentOnApp ? ' hd-bar--light-transparent' : ''}${isLightPage ? ' hd-bar--light-page' : ''}`}
         animate={{
           width: isCompact
             ? 'calc(100vw - 1rem)'
             : (floatingHeader ? 'min(1120px, calc(100vw - 3rem))' : 'min(1440px, 100vw)'),
           top: isCompact ? '8px' : (floatingHeader ? '16px' : '0px'),
           borderRadius: isCompact ? '22px' : (floatingHeader ? '100px' : '0px'),
-          backgroundColor: visuallyScrolled
-            ? 'rgba(8, 16, 32, 0.88)'
-            : (transparentOnApp ? 'rgba(8, 16, 32, 0.48)' : 'rgba(8, 16, 32, 0.0)'),
-          boxShadow: visuallyScrolled
-            ? '0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06)'
-            : (transparentOnApp ? '0 8px 32px rgba(0,0,0,0.16), 0 0 0 1px rgba(255,255,255,0.08)' : 'none'),
-          backdropFilter: visuallyScrolled || isCompact || transparentOnApp ? 'blur(14px)' : 'none',
+          backgroundColor: bgColor,
+          boxShadow: shadow,
+          backdropFilter: visuallyScrolled || isCompact || transparentOnApp || isLightPage ? 'blur(16px)' : 'none',
         }}
         transition={{ type: 'spring', stiffness: 180, damping: 30 }}
       >
