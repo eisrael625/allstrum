@@ -14,6 +14,8 @@
   transform: translateX(-50%);
   z-index: 100;
   padding: 0 2.4rem;
+  max-width: calc(100vw - 1rem);
+  overflow: hidden;
 }
 
 .hd-inner {
@@ -22,6 +24,7 @@
   justify-content: space-between;
   height: 64px;
   gap: 1.5rem;
+  min-width: 0;
 }
 
 /* ── Logo ── */
@@ -50,6 +53,7 @@
   gap: 0.2rem;
   flex: 1;
   justify-content: center;
+  min-width: 0;
 }
 
 .hd-link {
@@ -66,6 +70,30 @@
 .hd-link:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1320px) {
+  .hd-bar {
+    padding: 0 1.5rem;
+  }
+
+  .hd-inner {
+    gap: 0.85rem;
+  }
+
+  .hd-logo-img {
+    height: 72px;
+  }
+
+  .hd-link {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .hd-cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }
 
 /* ── CTA button ── */
@@ -158,11 +186,33 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 860px) {
+@media (max-width: 1180px) {
+  .hd-bar {
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto !important;
+    top: 0.5rem !important;
+    transform: none;
+    border-radius: 22px !important;
+    padding: 0 1rem;
+    background-color: rgba(8, 16, 32, 0.92) !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06) !important;
+    backdrop-filter: blur(14px) !important;
+  }
+
+  .hd-inner {
+    height: 58px;
+  }
+
+  .hd-logo-img {
+    height: 42px;
+  }
+
   .hd-nav  { display: none; }
   .hd-cta:not(.hd-cta--mobile) { display: none; }
   .hd-hamburger { display: flex; }
 
+<<<<<<< HEAD
   /* Enforce 44×44 minimum touch target on hamburger */
   .hd-hamburger {
     min-width: 44px;
@@ -206,5 +256,30 @@
   .hd-cta--mobile {
     padding: 0.85rem 1.3rem;
     font-size: 0.95rem;
+=======
+  .hd-mobile-menu {
+    top: 4.8rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto;
+    max-width: none;
+    transform: none;
+    padding: 1.15rem 1rem 1rem;
+    overflow: hidden;
+  }
+
+  .hd-mobile-link {
+    padding: 0.9rem 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .hd-cta--mobile {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin-top: 0.9rem;
+    padding: 0.85rem 1rem;
+    font-size: 0.88rem;
+>>>>>>> d87fb9563dfdd669ea0cd37771806888e11191ed
   }
 }

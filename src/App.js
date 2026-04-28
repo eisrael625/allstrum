@@ -25,7 +25,7 @@ const fadeUp = {
 
 function MainSite() {
   const handlePreOrderClick = () => {
-    window.location.href = 'https://forms.gle/gxEsbb1r3G3446Xg7';
+    window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -34,7 +34,7 @@ function MainSite() {
       <main>
 
         {/* ── HERO ── */}
-        <section id="products" className="section hero">
+        <section id="home" className="section hero">
 
           {/* ── Drawn music notes (scroll away with hero) ── */}
           <svg aria-hidden="true" className="deco-svg deco-svg--1" viewBox="0 0 50 110" overflow="visible">
@@ -86,7 +86,7 @@ function MainSite() {
                 </span>
               </h1>
               <p className="hero-subtitle">
-                Devices that let anyone strum the chords to their favorite songs.
+                The AllStrum attaches to a guitar or ukulele and automatically holds down chords in real time, so anyone can play just by strumming.
               </p>
               <div className="hero-ctas">
                 <button className="btn primary" onClick={handlePreOrderClick}>

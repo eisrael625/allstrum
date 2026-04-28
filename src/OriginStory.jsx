@@ -21,23 +21,18 @@ export default function OriginStory() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="origin-image-frame">
-            <img src={campImg} alt="Campers at summer camp" className="origin-image" />
-          </div>
+          <figure className="origin-figure">
+            <div className="origin-image-frame">
+              <img src={campImg} alt="Campers at summer camp" className="origin-image" />
+            </div>
+            <figcaption className="origin-caption">
+              In loving memory of Yona Brief (center): an avid guitar player and a deeply kind soul, taken far too young.
+            </figcaption>
+          </figure>
         </motion.div>
 
         {/* Text column */}
         <div className="origin-text-col">
-
-          <motion.span
-            className="origin-eyebrow"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            How It Started
-          </motion.span>
 
           <motion.h2
             className="origin-heading"
@@ -72,19 +67,18 @@ export default function OriginStory() {
           >
             <p>
               A few years ago, Eytan was a counselor at a summer camp for children with special
-              needs. He watched campers who loved music — who felt it deeply, who desperately wanted
-              to be part of it — but had no way to actually play. The barrier was never interest.
+              needs. He watched campers who loved music, who felt it deeply and desperately wanted
+              to be part of it, but had no way to actually play. The barrier was never interest.
               It was the instrument.
             </p>
             <p>
-              So he built one that removed the barrier. The first AllStrum was a modified ukulele,
-              connected to an app that shifted chords automatically while a camper strummed. No
-              theory. No finger positions. Just music — and the look on a kid's face the first time
-              they played a real song.
+              So he built one that removed it. A modified ukulele connected to an app that shifted
+              chords automatically while a camper strummed. No theory, no finger positions, just
+              the look on a kid's face the first time they played a real song.
             </p>
             <p>
-              That prototype became AllStrum. And the campers who inspired it are still why
-              everything we build starts with accessibility first.
+              That moment became AllStrum, and those campers are still the reason everything we
+              build starts with accessibility first.
             </p>
           </motion.div>
 

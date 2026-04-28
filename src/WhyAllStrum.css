@@ -293,33 +293,3 @@
   align-items: center;
   padding-bottom: 4vh;
 }
-
-/* ── Mobile gallery & section fixes ── */
-@media (max-width: 767px) {
-  /* Tighter section padding on mobile */
-  .why-section {
-    padding: 5vh 4vw 3vh;
-  }
-
-  /* Gallery: ensure it clips cleanly and centers the smaller container */
-  .why-gallery {
-    padding-bottom: 3vh;
-    min-height: 220px;
-  }
-
-  /* Bridge label: tighter vertical spacing */
-  .why-gallery-bridge {
-    margin: 2.5vh auto 0.5vh;
-  }
-
-  /* Section header: tighten bottom margin */
-  .why-header {
-    margin-bottom: 2.5vh;
-  }
-
-  /* Card grid: single column already handled by max-aspect-ratio,
-     but ensure comfortable padding on narrow phones */
-  .why-grid {
-    width: 92vw;
-  }
-}

@@ -1,6 +1,6 @@
 {
   "short_name": "AllStrum",
-  "name": "Accessible Musical Instruments",
+  "name": "AllStrum Adaptive Music Devices",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#0a2540",
   "background_color": "#ffffff"
 }

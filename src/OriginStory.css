@@ -23,9 +23,21 @@
     grid-template-columns: 1fr;
     row-gap: 5vh;
   }
+
+  .origin-text-col {
+    order: 1;
+  }
+
+  .origin-image-col {
+    order: 2;
+  }
 }
 
 /* ── Image ── */
+.origin-figure {
+  margin: 0;
+}
+
 .origin-image-frame {
   border-radius: 20px;
   overflow: hidden;
@@ -54,6 +66,14 @@
   height: auto;
   display: block;
   object-fit: cover;
+}
+
+.origin-caption {
+  margin-top: 0.95rem;
+  text-align: center;
+  font-size: clamp(0.84rem, 1.15vw, 0.96rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ── Text column ── */

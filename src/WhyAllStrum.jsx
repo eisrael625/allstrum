@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BounceCards from './BounceCards';
-import as1 from './assets/AS1.jpeg';
-import as2 from './assets/AS2.png';
-import as3 from './assets/AS3.png';
-import as4 from './assets/AS4.png';
-import as5 from './assets/AS5.jpeg';
+import as1 from './assets/AS1-gallery.webp';
+import as4 from './assets/AS4-gallery.webp';
+import as5 from './assets/AS5-gallery.webp';
 import './WhyAllStrum.css';
 
 /* ── Inline SVG icons — product-specific, no emoji style ── */
@@ -85,7 +83,7 @@ const CARDS = [
     glowColor: 'rgba(94,196,236,0.22)',
     title: 'Inclusive Design',
     body:
-      'Whether you are a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, a hobbyist who never quite found the time to take lessons, or someone with a disability or special need who deserves to feel the joy of making music — AllStrum meets you exactly where you are.',
+      'Whether you\'re a singer who has always wanted to accompany yourself, a parent searching for the perfect first instrument for your child, or someone with a disability, AllStrum meets you where you are.',
   },
   {
     id: 'smart',
@@ -94,7 +92,7 @@ const CARDS = [
     glowColor: 'rgba(15,81,138,0.18)',
     title: 'Smart Control',
     body:
-      'The AllStrum companion app connects to the instrument and shifts chords automatically, so you can focus entirely on rhythm and feel. Browse your favorite songs and play along in real time, or slow things down and work through specific strumming patterns to build your skills at your own pace.',
+      'The AllStrum app pairs wirelessly with your instrument and shifts chords automatically, so you can focus entirely on rhythm and feel. Browse your favorite songs, compose your own music, or slow things down and work through specific strumming patterns to build your skills at your own pace.',
   },
   {
     id: 'real',
@@ -103,7 +101,7 @@ const CARDS = [
     glowColor: 'rgba(245,200,122,0.28)',
     title: 'Real Instrument',
     body:
-      "AllStrum attaches to a real guitar or ukulele without compromising the instrument's sound or feel. Bring it to a campfire or a family gathering and what people hear is a real instrument played by you.",
+      "The instrument you love shouldn't change. AllStrum attaches to your real guitar or ukulele without compromising the sound or feel. Bring it to a campfire or family gathering and what people hear is a real instrument, played by you.",
   },
 ];
 
@@ -238,24 +236,20 @@ export default function WhyAllStrum() {
         <BounceCards
           key={isMobile ? 'mobile' : 'desktop'}
           className="custom-bounceCards"
-          images={[as1, as2, as3, as4, as5]}
+          images={[as1, as4, as5]}
           containerWidth={isMobile ? 350 : 1100}
           containerHeight={isMobile ? 200 : 520}
           animationDelay={0.3}
           animationStagger={0.1}
           easeType="elastic.out(1, 0.5)"
           transformStyles={isMobile ? [
-            "rotate(5deg) translate(-100px)",
-            "rotate(0deg) translate(-50px)",
-            "rotate(-3deg)",
-            "rotate(4deg) translate(50px)",
-            "rotate(-5deg) translate(100px)",
+            "rotate(5deg) translate(-80px)",
+            "rotate(-2deg)",
+            "rotate(-5deg) translate(80px)",
           ] : [
-            "rotate(5deg) translate(-320px)",
-            "rotate(0deg) translate(-160px)",
-            "rotate(-3deg)",
-            "rotate(4deg) translate(160px)",
-            "rotate(-5deg) translate(320px)",
+            "rotate(5deg) translate(-260px)",
+            "rotate(-2deg)",
+            "rotate(-5deg) translate(260px)",
           ]}
           enableHover={!isMobile}
         />
