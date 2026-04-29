@@ -7,7 +7,7 @@
   width: 100%;
   min-height: 92vh;
   overflow: hidden;
-  background: #07090f;
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,12 +115,12 @@
 .ts-overlay--edges {
   background: linear-gradient(
     to right,
-    #07090f       0%,
-    #07090f       4%,
+    #0a2540       0%,
+    #0a2540       4%,
     transparent  22%,
     transparent  78%,
-    #07090f      96%,
-    #07090f     100%
+    #0a2540      96%,
+    #0a2540     100%
   );
 }
 
