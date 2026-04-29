@@ -41,14 +41,14 @@ export default function DemoSection() {
 
       {/* ── Product showcases ── */}
       <ProductShowcase
-        side="right"
+        side="left"
         img={ukuleleImg}
         eyebrow="Where It All Started"
         title="AllStrum Ukulele"
       />
 
       <ProductShowcase
-        side="left"
+        side="right"
         img={guitarImg}
         eyebrow="The Upgrade"
         title="AllStrum Guitar"

@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   min-height: 100vh;
   padding: calc(4.75rem + 48px) 4vw 2.5vh;
-  background: linear-gradient(160deg, #070b14 0%, #0a1628 58%, #070b14 100%);
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -272,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 .phone-section {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(160deg, #070b14 0%, #0a1628 60%, #070b14 100%);
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
 }
 
 .phone-layout {
@@ -421,7 +421,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .fp-scroll {
   width: 100%;
-  background: linear-gradient(160deg, #070b14 0%, #0a1628 60%, #070b14 100%);
+  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
 }
 
 .back-btn {
