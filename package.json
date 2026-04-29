@@ -58,6 +58,7 @@
   "overrides": {
     "underscore": "1.13.7",
     "terser-webpack-plugin": "5.4.0",
-    "webpack": "5.106.2"
+    "webpack": "5.106.2",
+    "fork-ts-checker-webpack-plugin": "^9"
   }
 }

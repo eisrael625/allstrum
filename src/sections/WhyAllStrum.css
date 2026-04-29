@@ -1,0 +1,131 @@
+/* ============================================================
+   WHY ALLSTRUM — full-bleed image with overlaid text (DemoSection style)
+   ============================================================ */
+
+.why-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #070a12;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Full-bleed image — positioner anchors to left, clips overflow ── */
+.why-img-positioner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.why-img {
+  position: absolute;
+  top: 50%;
+  left: 56%;
+  /* After -90deg rotation: visual width = CSS height, visual height = CSS width.
+     Container ≈ 100vw wide × 100vh tall → need CSS height ≥ 100vw, CSS width ≥ 100vh */
+  width: 100vh;
+  height: 100vw;
+  max-width: none;
+  object-fit: cover;
+  filter: brightness(1.25);
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transition: transform 0.9s ease;
+}
+
+.why-section:hover .why-img {
+  transform: translate(-50%, -50%) rotate(-90deg) scale(1.05);
+}
+
+/* ── Gradient: image right, darken left for text ── */
+.why-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(7, 10, 18, 0.08)  0%,
+    rgba(7, 10, 18, 0.08) 28%,
+    rgba(7, 10, 18, 0.75) 55%,
+    rgba(7, 10, 18, 0.97) 84%,
+    rgba(7, 10, 18, 1.00) 100%
+  );
+}
+
+/* ── Text content — sits on the left ── */
+.why-content {
+  position: relative;
+  z-index: 2;
+  margin-right: auto;
+  max-width: 420px;
+  padding: 6vh 6vw;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 2.8vh, 2.2rem);
+}
+
+/* ── Eyebrow ── */
+.why-eyebrow {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #5ec4ec;
+}
+
+/* ── Individual feature ── */
+.why-feature__title {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+
+.why-feature__body {
+  font-size: clamp(0.84rem, 1.15vw, 0.97rem);
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Decorative rule ── */
+.why-rule {
+  width: 36px;
+  height: 2px;
+  background: #5ec4ec;
+  border-radius: 2px;
+  opacity: 0.65;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .why-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    align-items: flex-end;
+  }
+
+  .why-fade {
+    background: linear-gradient(
+      to bottom,
+      transparent 30%,
+      rgba(7, 10, 18, 0.96) 68%,
+      rgba(7, 10, 18, 1.00) 100%
+    );
+  }
+
+  .why-img {
+    width: 100vh;
+    height: 100vw;
+  }
+
+  .why-content {
+    margin: 0;
+    max-width: 100%;
+    padding: 0 1.4rem 2rem;
+    gap: 1.1rem;
+  }
+}

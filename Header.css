@@ -46,6 +46,10 @@
   filter: brightness(0) invert(1);
 }
 
+.hd-bar--light-transparent .hd-logo-img {
+  filter: none;
+}
+
 /* ── Desktop nav links ── */
 .hd-nav {
   display: flex;
@@ -70,6 +74,11 @@
 .hd-link:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
+}
+
+.hd-link--active {
+  color: #ffffff;
+  background: rgba(94, 196, 236, 0.16);
 }
 
 @media (max-width: 1320px) {
@@ -179,6 +188,10 @@
   color: #ffffff;
 }
 
+.hd-mobile-link--active {
+  color: #ffffff;
+}
+
 .hd-cta--mobile {
   width: 100%;
   margin-top: 0.8rem;
@@ -212,6 +225,51 @@
   .hd-cta:not(.hd-cta--mobile) { display: none; }
   .hd-hamburger { display: flex; }
 
+<<<<<<< HEAD
+  /* Enforce 44×44 minimum touch target on hamburger */
+  .hd-hamburger {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 6px;
+  }
+
+  /* Slightly thicker, more visible burger lines */
+  .hd-burger-line {
+    width: 24px;
+    height: 2.5px;
+  }
+
+  /* Tighter inner bar height on mobile so logo doesn't push content */
+  .hd-inner {
+    height: 56px;
+  }
+
+  /* Logo slightly smaller on mobile (not scrolled) */
+  .hd-logo-img {
+    height: 70px;
+  }
+
+  .hd-bar--scrolled .hd-logo-img {
+    height: 36px;
+  }
+
+  /* Mobile menu links: larger touch targets */
+  .hd-mobile-link {
+    padding: 0.85rem 0.75rem;
+    font-size: 1rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Mobile CTA: full-width, comfortable height */
+  .hd-cta--mobile {
+    padding: 0.85rem 1.3rem;
+    font-size: 0.95rem;
+=======
   .hd-mobile-menu {
     top: 4.8rem;
     left: 0.5rem;
@@ -235,5 +293,6 @@
     margin-top: 0.9rem;
     padding: 0.85rem 1rem;
     font-size: 0.88rem;
+>>>>>>> d87fb9563dfdd669ea0cd37771806888e11191ed
   }
 }
