@@ -13,11 +13,26 @@ import DemoSection from './sections/DemoSection';
 import Awards from './sections/Awards';
 import AppAnimation from './pages/AppAnimation';
 import FeaturesPage from './pages/FeaturesPage';
+import gallery3710 from './assets/IMG_3710.JPG';
+import gallery4269 from './assets/Copy of IMG_4269.png';
+import gallery4276 from './assets/Copy of IMG_4276.png';
+import gallery4263 from './assets/Copy of IMG_4263 (1).png';
+import gallery4237 from './assets/Copy of IMG_4237 (1).png';
+import gallery4134 from './assets/Copy of IMG_4134.png';
+import gallery3238 from './assets/Copy of IMG_3238.png';
+import gallery3230 from './assets/IMG_3230.png';
+import gallery4038 from './assets/IMG_4038.JPG';
+import gallery4042 from './assets/IMG_4042.JPG';
+import gallery3971 from './assets/IMG_3971.jpeg';
+import gallery3701 from './assets/IMG_3701.JPG';
+import gallery4050 from './assets/IMG_4050.JPG';
+import gallery4051 from './assets/IMG_4051.JPG';
+import gallery4052 from './assets/IMG_4052.JPG';
+import gallery4055 from './assets/IMG_4055.JPG';
 import as1 from './assets/AS1-gallery.webp';
 import as2 from './assets/AS2-gallery.webp';
 import as3 from './assets/AS3-gallery.webp';
 import as4 from './assets/AS4-gallery.webp';
-import as5 from './assets/AS5-gallery.webp';
 import './App.css';
 
 const fadeUp = {
@@ -26,11 +41,26 @@ const fadeUp = {
 };
 
 const galleryImages = [
-  { src: as1, alt: 'AllStrum guitar device in use', title: 'Guitar Setup' },
-  { src: as2, alt: 'AllStrum device on an instrument', title: 'Mounted Device' },
-  { src: as3, alt: 'AllStrum close-up with guitar', title: 'Playing Close-Up' },
-  { src: as4, alt: 'AllStrum device close-up', title: 'Device Detail' },
-  { src: as5, alt: 'AllStrum guitar demonstration', title: 'Live Demo' },
+  { src: gallery4038, alt: 'AllStrum being played on outdoor campus steps', orientation: 'wide' },
+  { src: as1, alt: 'AllStrum guitar setup product photo', orientation: 'landscape' },
+  { src: gallery3710, alt: 'AllStrum founders holding a guitar and device outside a campus building', orientation: 'portrait' },
+  { src: gallery4050, alt: 'AllStrum being played by a seated player outdoors', orientation: 'wide' },
+  { src: as3, alt: 'AllStrum close-up product photo', orientation: 'portrait' },
+  { src: gallery3238, alt: 'AllStrum indoor demonstration with a player smiling', orientation: 'landscape' },
+  { src: gallery4042, alt: 'AllStrum demonstration with a player seated outdoors', orientation: 'wide' },
+  { src: as2, alt: 'AllStrum mounted device product photo', orientation: 'square' },
+  { src: gallery3971, alt: 'AllStrum prototype displayed vertically', orientation: 'portrait' },
+  { src: gallery4052, alt: 'AllStrum guitar demonstration outdoors', orientation: 'wide' },
+  { src: gallery3701, alt: 'AllStrum guitar and device product photo', orientation: 'landscape' },
+  { src: gallery4269, alt: 'AllStrum prototype photo', orientation: 'portrait' },
+  { src: gallery3230, alt: 'AllStrum indoor demonstration by a window', orientation: 'portrait' },
+  { src: gallery4055, alt: 'AllStrum device and guitar resting on an outdoor chair', orientation: 'wide' },
+  { src: as4, alt: 'AllStrum device detail product photo', orientation: 'portrait' },
+  { src: gallery4276, alt: 'AllStrum device with guitar', orientation: 'portrait' },
+  { src: gallery4051, alt: 'AllStrum guitar demonstration near a swing', orientation: 'wide' },
+  { src: gallery4263, alt: 'AllStrum guitar demonstration', orientation: 'portrait' },
+  { src: gallery4237, alt: 'AllStrum demonstration moment', orientation: 'portrait' },
+  { src: gallery4134, alt: 'AllStrum player experience photo', orientation: 'portrait' },
 ];
 
 const contactAudiences = [
@@ -128,45 +158,73 @@ function Hero() {
 
 function HomePage() {
   return (
-    <>
+    <div className="home-page">
       <Hero />
       <WhyAllStrum />
-      <WhoItsFor />
-      <UserGroups />
+      <section id="who-its-for" className="audience-section">
+        <WhoItsFor />
+        <UserGroups />
+      </section>
       <DemoSection />
       <AppAnimation />
-    </>
+    </div>
   );
 }
 
 function OriginPage() {
   return (
-    <div className="route-page">
+    <div className="route-page origin-page">
       <OriginStory />
     </div>
   );
 }
 
 function GalleryPage() {
+  const [featuredImage, secondImage, thirdImage, ...supportingImages] = galleryImages;
+
   return (
     <div className="route-page">
       <section className="gallery-page">
-        <div className="gallery-page__header">
-          <span className="page-eyebrow">Gallery</span>
-          <h1>AllStrum Up Close</h1>
+        <div className="gallery-page__intro">
+          <h1 className="page-eyebrow">See it for yourself</h1>
         </div>
+
+        <div className="gallery-feature">
+          <motion.figure
+            className="gallery-feature__main"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img src={featuredImage.src} alt={featuredImage.alt} decoding="async" />
+          </motion.figure>
+
+          <div className="gallery-feature__side">
+            {[secondImage, thirdImage].map((image, i) => (
+              <motion.figure
+                key={image.src}
+                className={`gallery-tile gallery-tile--compact gallery-tile--${image.orientation}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.12 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <img src={image.src} alt={image.alt} decoding="async" />
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+
         <div className="gallery-page__grid">
-          {galleryImages.map((image, i) => (
+          {supportingImages.map((image, i) => (
             <motion.figure
               key={image.src}
-              className="gallery-tile"
+              className={`gallery-tile gallery-tile--${image.orientation}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              <img src={image.src} alt={image.alt} width="560" height="420" decoding="async" />
-              <figcaption>{image.title}</figcaption>
+              <img src={image.src} alt={image.alt} decoding="async" />
             </motion.figure>
           ))}
         </div>

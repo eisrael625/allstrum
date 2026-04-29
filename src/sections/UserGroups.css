@@ -4,8 +4,6 @@
 
 .ug-section {
   width: 100%;
-  padding: 0 4vw 10vh;
-  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
 }
 
 .ug-grid {
@@ -21,6 +19,10 @@
 }
 
 @media (max-width: 560px) {
+  .ug-section {
+    padding: 0;
+  }
+
   .ug-grid { grid-template-columns: 1fr; }
 }
 

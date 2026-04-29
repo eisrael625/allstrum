@@ -4,6 +4,7 @@
 
 .origin-section {
   width: 100%;
+  min-height: 100vh;
   padding: 12vh 4vw;
   background: linear-gradient(180deg, #0a2540 0%, #0f3460 50%, #0a2540 100%);
 }

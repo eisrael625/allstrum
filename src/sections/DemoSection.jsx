@@ -9,29 +9,29 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.78, ease: [0.22, 1, 0.36, 1] } },
 };
 
-function ProductShowcase({ side, img, eyebrow, title }) {
+function ProductShowcase({ img, eyebrow, title }) {
   return (
-    <div className={`ds-showcase ds-showcase--${side}`}>
+    <motion.article
+      className="ds-product"
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.35 }}
+    >
       <img
         src={img}
         alt={title}
-        className="ds-showcase__img"
+        className="ds-product__img"
       />
 
-      <div className={`ds-showcase__fade ds-showcase__fade--${side}`} />
+      <div className="ds-product__fade" />
 
-      <motion.div
-        className={`ds-showcase__content ds-showcase__content--${side}`}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.35 }}
-      >
-        <span className="ds-showcase__eyebrow">{eyebrow}</span>
-        <h2 className="ds-showcase__title">{title}</h2>
-        <div className="ds-showcase__rule" />
-      </motion.div>
-    </div>
+      <div className="ds-product__content">
+        <span className="ds-product__eyebrow">{eyebrow}</span>
+        <h2 className="ds-product__title">{title}</h2>
+        <div className="ds-product__rule" />
+      </div>
+    </motion.article>
   );
 }
 
@@ -39,20 +39,19 @@ export default function DemoSection() {
   return (
     <section id="products" className="ds-section">
 
-      {/* ── Product showcases ── */}
-      <ProductShowcase
-        side="left"
-        img={ukuleleImg}
-        eyebrow="Where It All Started"
-        title="AllStrum Ukulele"
-      />
+      <div className="ds-products">
+        <ProductShowcase
+          img={ukuleleImg}
+          eyebrow="Where It All Started"
+          title="AllStrum Ukulele"
+        />
 
-      <ProductShowcase
-        side="right"
-        img={guitarImg}
-        eyebrow="The Upgrade"
-        title="AllStrum Guitar"
-      />
+        <ProductShowcase
+          img={guitarImg}
+          eyebrow="The Upgrade"
+          title="AllStrum Guitar"
+        />
+      </div>
 
     </section>
   );

@@ -5,7 +5,7 @@ import './WhoItsFor.css';
 
 export default function WhoItsFor() {
   return (
-    <section id="who-its-for" className="wif-section">
+    <div className="wif-section">
       <motion.div
         className="wif-header"
         initial={{ opacity: 0, y: 20 }}
@@ -26,6 +26,6 @@ export default function WhoItsFor() {
         />
         <p className="wif-lead">Four different starting points. One instrument.</p>
       </motion.div>
-    </section>
+    </div>
   );
 }

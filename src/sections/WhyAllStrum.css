@@ -5,7 +5,8 @@
 .why-section {
   position: relative;
   width: 100%;
-  min-height: 74vh;
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
   background: #070a12;
   display: flex;
@@ -24,7 +25,7 @@
   top: 50%;
   left: 56%;
   /* After -90deg rotation: visual width = CSS height, visual height = CSS width.
-     Container ≈ 100vw wide × 74vh tall → need CSS height ≥ 100vw, CSS width ≥ 74vh */
+     Container ≈ 100vw wide × 100vh tall → need CSS height ≥ 100vw, CSS width ≥ 100vh */
   width: 100vh;
   height: 100vw;
   max-width: none;
@@ -102,7 +103,8 @@
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .why-section {
-    min-height: 32rem;
+    min-height: 100vh;
+    min-height: 100svh;
     align-items: flex-end;
   }
 

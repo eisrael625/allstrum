@@ -45,7 +45,7 @@ const cardVariants = {
 
 export default function UserGroups() {
   return (
-    <section className="ug-section">
+    <div className="ug-section">
       <motion.div
         className="ug-grid"
         variants={gridVariants}
@@ -71,6 +71,6 @@ export default function UserGroups() {
           </motion.article>
         ))}
       </motion.div>
-    </section>
+    </div>
   );
 }

@@ -4,8 +4,6 @@
 
 .wif-section {
   width: 100%;
-  padding: 2vh 0 3vh;
-  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
 }
 
 .wif-header {
@@ -30,7 +28,7 @@
 
 @media (max-width: 768px) {
   .wif-section {
-    padding: 2.5rem 0 2rem;
+    padding: 0;
   }
 
   .wif-header {
