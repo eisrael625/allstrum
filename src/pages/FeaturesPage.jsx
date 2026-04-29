@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import VideoCanvas from '../components/VideoCanvas';
 import videoChords from '../assets/project-33842367-bc19-4967-b1f4-72be01e43a70.webm';
 import videoSongs from '../assets/project-9bc73e8c-82b5-4e34-a9dc-56453af258ef (1).webm';
 import videoCompose from '../assets/project-c674e169-2061-4759-82f0-2627b5a4d0d4.webm';
@@ -104,11 +105,9 @@ export default function FeaturesPage() {
 
             <div className="fp-video">
               <div className={`video-reveal${active.has(i) ? ' active' : ''}`}>
-                <video
+                <VideoCanvas
                   ref={(el) => { videoRefs.current[i] = el; }}
                   src={playlist[i]}
-                  muted
-                  playsInline
                   preload="metadata"
                 />
                 <button className="replay-btn replay-btn--feature" onClick={() => replayVideo(i)} type="button">

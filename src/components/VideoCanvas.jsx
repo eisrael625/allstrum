@@ -1,4 +1,53 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
+
+function removeEdgeBlackPixels(ctx, width, height) {
+  if (!width || !height) return;
+
+  const frame = ctx.getImageData(0, 0, width, height);
+  const { data } = frame;
+  const visited = new Uint8Array(width * height);
+  const stack = [];
+  const threshold = 12;
+
+  const isBlack = (index) => (
+    data[index] <= threshold &&
+    data[index + 1] <= threshold &&
+    data[index + 2] <= threshold &&
+    data[index + 3] > 0
+  );
+
+  const pushIfBlack = (pixel) => {
+    if (visited[pixel]) return;
+    const index = pixel * 4;
+    if (!isBlack(index)) return;
+    visited[pixel] = 1;
+    stack.push(pixel);
+  };
+
+  for (let x = 0; x < width; x += 1) {
+    pushIfBlack(x);
+    pushIfBlack((height - 1) * width + x);
+  }
+
+  for (let y = 1; y < height - 1; y += 1) {
+    pushIfBlack(y * width);
+    pushIfBlack(y * width + width - 1);
+  }
+
+  while (stack.length) {
+    const pixel = stack.pop();
+    const x = pixel % width;
+    const y = Math.floor(pixel / width);
+    data[pixel * 4 + 3] = 0;
+
+    if (x > 0) pushIfBlack(pixel - 1);
+    if (x < width - 1) pushIfBlack(pixel + 1);
+    if (y > 0) pushIfBlack(pixel - width);
+    if (y < height - 1) pushIfBlack(pixel + width);
+  }
+
+  ctx.putImageData(frame, 0, 0);
+}
 
 const VideoCanvas = forwardRef(function VideoCanvas(
   { src, loop, preload = 'metadata', style },
@@ -10,7 +59,7 @@ const VideoCanvas = forwardRef(function VideoCanvas(
   const rafRef = useRef(null);
   const sizeRef = useRef({ w: 0, h: 0 });
 
-  function drawFrame() {
+  const drawFrame = useCallback(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     const ctx = ctxRef.current;
@@ -23,7 +72,8 @@ const VideoCanvas = forwardRef(function VideoCanvas(
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(video, 0, 0);
-  }
+    removeEdgeBlackPixels(ctx, canvas.width, canvas.height);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     get readyState() {
@@ -83,7 +133,7 @@ const VideoCanvas = forwardRef(function VideoCanvas(
       video.removeEventListener('loadeddata', drawIfPaused);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [src]);
+  }, [drawFrame, src]);
 
   return (
     <>

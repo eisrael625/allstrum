@@ -494,7 +494,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .phone-video-slot canvas,
-.fp-video video {
+.fp-video canvas {
   height: 84vh;
   width: auto;
   max-height: 84vh;
@@ -637,7 +637,7 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Shrink the phone video so it doesn't eat the whole screen */
   .phone-video-slot canvas,
-  .fp-video video {
+  .fp-video canvas {
     height: 52vh;
     max-height: 52vh;
     max-width: 90vw;
@@ -659,7 +659,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .phone-video-slot canvas,
-  .fp-video video {
+  .fp-video canvas {
     height: 46vh;
     max-height: 46vh;
     max-width: 92vw;
