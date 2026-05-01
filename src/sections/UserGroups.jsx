@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import camp             from '../assets/accessible-1.webp';
+import camp             from '../assets/gallery-4276.webp';
 import guitarcasual     from '../assets/guitar-casual.webp';
-import kidsMusic        from '../kids-music.webp';
+import kidsMusic        from '../assets/kids-music.webp';
 import returningplayers from '../assets/returninplayers.jpg';
 import './UserGroups.css';
 
 const GROUPS = [
   {
     img: camp,
-    imgPos: 'center 20%',
+    imgPos: 'center 40%',
     title: 'Adaptive Players',
     desc: 'Built from day one for people with physical or cognitive differences. Playing music shouldn\'t be out of anyone\'s reach.',
   },
