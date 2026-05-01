@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import campImg from '../Camp.jpg';
+import campImg from '../camp.webp';
 import './OriginStory.css';
 
 const fadeUp = {

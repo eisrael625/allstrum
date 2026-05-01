@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import camp             from '../assets/accesible1.jpg';
-import guitarcasual     from '../assets/guitarcasual.jpeg';
-import kidsMusic        from '../vitaly-gariev-NVWc_fyctlk-unsplash.jpg';
+import camp             from '../assets/accessible-1.webp';
+import guitarcasual     from '../assets/guitar-casual.webp';
+import kidsMusic        from '../kids-music.webp';
 import returningplayers from '../assets/returninplayers.jpg';
 import './UserGroups.css';
 

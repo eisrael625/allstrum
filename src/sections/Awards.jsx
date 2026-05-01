@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import tsaiImg        from '../assets/tsai.png';
-import startupYaleImg from '../assets/startupyale.png';
-import yaleLogoImg    from '../assets/yalelogo.jpg';
+import tsaiImg        from '../assets/tsai.webp';
+import startupYaleImg from '../assets/startup-yale.webp';
+import yaleLogoImg    from '../assets/yale-logo.webp';
 import { EncryptedText } from '../components/ui/encrypted-text';
 import './Awards.css';
 

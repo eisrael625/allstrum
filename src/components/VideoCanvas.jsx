@@ -88,6 +88,8 @@ const VideoCanvas = forwardRef(function VideoCanvas(
       }
     },
     play: () => videoRef.current?.play(),
+    load: () => videoRef.current?.load(),
+    drawFrame,
     pause: () => {
       cancelAnimationFrame(rafRef.current);
       videoRef.current?.pause();
@@ -120,17 +122,22 @@ const VideoCanvas = forwardRef(function VideoCanvas(
     video.addEventListener('pause', stop);
     video.addEventListener('ended', stop);
     video.addEventListener('seeked', drawIfPaused);
+    video.addEventListener('loadedmetadata', drawIfPaused);
     video.addEventListener('loadeddata', drawIfPaused);
+    video.addEventListener('canplay', drawIfPaused);
 
     if (!video.paused) start();
     else if (video.readyState >= 2) drawFrame();
+    else video.load();
 
     return () => {
       video.removeEventListener('play', start);
       video.removeEventListener('pause', stop);
       video.removeEventListener('ended', stop);
       video.removeEventListener('seeked', drawIfPaused);
+      video.removeEventListener('loadedmetadata', drawIfPaused);
       video.removeEventListener('loadeddata', drawIfPaused);
+      video.removeEventListener('canplay', drawIfPaused);
       cancelAnimationFrame(rafRef.current);
     };
   }, [drawFrame, src]);

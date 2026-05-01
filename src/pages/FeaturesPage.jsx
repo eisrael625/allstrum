@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VideoCanvas from '../components/VideoCanvas';
 import videoChords from '../assets/project-33842367-bc19-4967-b1f4-72be01e43a70.webm';
@@ -31,6 +31,7 @@ export default function FeaturesPage() {
   const navigate = useNavigate();
   const videoRefs = useRef([]);
   const sectionRefs = useRef([]);
+  const activeIndexRef = useRef(-1);
   const [active, setActive] = useState(new Set());
 
   useEffect(() => {
@@ -42,50 +43,83 @@ export default function FeaturesPage() {
     if (!video) return;
     video.pause();
     video.currentTime = 0;
+    video.load?.();
+    video.drawFrame?.();
     video.play()?.catch(() => {});
     setActive((prev) => new Set([...prev, index]));
   };
+
+  const syncVisibleVideo = useCallback(() => {
+    let visibleIndex = -1;
+
+    sectionRefs.current.forEach((section, i) => {
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const viewportMid = window.innerHeight / 2;
+      if (rect.top <= viewportMid && rect.bottom >= viewportMid) {
+        visibleIndex = i;
+      }
+    });
+
+    if (visibleIndex === activeIndexRef.current) return;
+
+    const previousIndex = activeIndexRef.current;
+    activeIndexRef.current = visibleIndex;
+
+    if (previousIndex !== -1 && previousIndex !== visibleIndex) {
+      const previousVideo = videoRefs.current[previousIndex];
+      previousVideo?.pause();
+      if (previousVideo) previousVideo.currentTime = 0;
+    }
+
+    if (visibleIndex !== -1) {
+      const video = videoRefs.current[visibleIndex];
+      if (!video) return;
+
+      video.load?.();
+      video.drawFrame?.();
+      const play = () => {
+        video.drawFrame?.();
+        video.play()?.catch(() => {
+          video.drawFrame?.();
+        });
+      };
+
+      if (video.readyState >= 2) play();
+      else video.addEventListener('canplay', play, { once: true });
+    }
+
+    setActive(visibleIndex === -1 ? new Set() : new Set([visibleIndex]));
+  }, []);
 
   useEffect(() => {
     const observers = sectionRefs.current.map((section, i) => {
       if (!section) return null;
 
       const observer = new IntersectionObserver(([entry]) => {
-        const video = videoRefs.current[i];
-        if (!video) return;
-
-        const rect = entry.boundingClientRect;
-        const viewportMid = window.innerHeight / 2;
-        const sectionContainsViewportMid = rect.top <= viewportMid && rect.bottom >= viewportMid;
-
-        if (!entry.isIntersecting || !sectionContainsViewportMid) {
-          video.pause();
-          video.currentTime = 0;
-          setActive((prev) => {
-            const next = new Set(prev);
-            next.delete(i);
-            return next;
-          });
-          return;
-        }
-
-        setActive((prev) => new Set([...prev, i]));
-
-        const play = () => video.play()?.catch(() => {});
-        if (video.readyState >= 3) play();
-        else video.addEventListener('canplay', play, { once: true });
+        if (entry.isIntersecting) syncVisibleVideo();
       }, { threshold: [0, 0.35, 0.5, 0.65, 1] });
 
       observer.observe(section);
       return observer;
     });
 
-    return () => observers.forEach((observer) => observer?.disconnect());
-  }, []);
+    window.addEventListener('resize', syncVisibleVideo);
+    window.addEventListener('pageshow', syncVisibleVideo);
+    document.addEventListener('visibilitychange', syncVisibleVideo);
+    window.setTimeout(syncVisibleVideo, 120);
+
+    return () => {
+      observers.forEach((observer) => observer?.disconnect());
+      window.removeEventListener('resize', syncVisibleVideo);
+      window.removeEventListener('pageshow', syncVisibleVideo);
+      document.removeEventListener('visibilitychange', syncVisibleVideo);
+    };
+  }, [syncVisibleVideo]);
 
   return (
     <div className="fp-scroll">
-      <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
+      <button className="back-btn" onClick={() => navigate('/', { state: { scrollTo: 'app-section' } })}>Back</button>
 
       {slides.map((slide, i) => (
         <section

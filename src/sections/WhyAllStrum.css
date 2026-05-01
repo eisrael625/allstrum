@@ -111,21 +111,31 @@
   .why-fade {
     background: linear-gradient(
       to bottom,
-      transparent 30%,
-      rgba(7, 10, 18, 0.96) 68%,
+      transparent 25%,
+      rgba(7, 10, 18, 0.92) 62%,
       rgba(7, 10, 18, 1.00) 100%
     );
   }
 
+  /* 180° flips guitar body to visual top of frame */
   .why-img {
-    width: 100vh;
-    height: 100vw;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .why-section:hover .why-img {
+    transform: rotate(180deg) scale(1.04);
   }
 
   .why-content {
     margin: 0;
     max-width: 100%;
-    padding: 0 1.4rem 2rem;
+    padding: 0 1.4rem 2.5rem;
     gap: 1.1rem;
   }
 }

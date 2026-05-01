@@ -181,9 +181,6 @@ export default function TestimonialSection() {
           transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="ts-heading">Hear What People Are Saying</h2>
-          <p className="ts-subheading">
-            Real feedback from families, educators, and the people AllStrum was built for.
-          </p>
         </motion.div>
 
         {/* Featured card */}

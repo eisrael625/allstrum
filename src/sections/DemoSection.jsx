@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import guitarImg  from '../assets/AS1.jpeg';
-import ukuleleImg from 'src/ukulelePic.jpg';
+import guitarImg  from '../assets/as1.webp';
+import ukuleleImg from 'src/ukulele-pic.webp';
 import './DemoSection.css';
 
 const fadeUp = {

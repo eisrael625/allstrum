@@ -1,5 +1,5 @@
 // App.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
@@ -13,22 +13,23 @@ import DemoSection from './sections/DemoSection';
 import Awards from './sections/Awards';
 import AppAnimation from './pages/AppAnimation';
 import FeaturesPage from './pages/FeaturesPage';
-import gallery3710 from './assets/IMG_3710.JPG';
-import gallery4269 from './assets/Copy of IMG_4269.png';
-import gallery4276 from './assets/Copy of IMG_4276.png';
-import gallery4263 from './assets/Copy of IMG_4263 (1).png';
-import gallery4237 from './assets/Copy of IMG_4237 (1).png';
-import gallery4134 from './assets/Copy of IMG_4134.png';
-import gallery3238 from './assets/Copy of IMG_3238.png';
-import gallery3230 from './assets/IMG_3230.png';
-import gallery4038 from './assets/IMG_4038.JPG';
-import gallery4042 from './assets/IMG_4042.JPG';
-import gallery3971 from './assets/IMG_3971.jpeg';
-import gallery3701 from './assets/IMG_3701.JPG';
-import gallery4050 from './assets/IMG_4050.JPG';
-import gallery4051 from './assets/IMG_4051.JPG';
-import gallery4052 from './assets/IMG_4052.JPG';
-import gallery4055 from './assets/IMG_4055.JPG';
+import StrumMorph from './components/StrumMorph';
+import gallery3710 from './assets/gallery-3710.webp';
+import gallery4269 from './assets/gallery-4269.webp';
+import gallery4276 from './assets/gallery-4276.webp';
+import gallery4263 from './assets/gallery-4263.webp';
+import gallery4237 from './assets/gallery-4237.webp';
+import gallery4134 from './assets/gallery-4134.webp';
+import gallery3238 from './assets/gallery-3238.webp';
+import gallery3230 from './assets/gallery-3230.webp';
+import gallery4038 from './assets/gallery-4038.webp';
+import gallery4042 from './assets/gallery-4042.webp';
+import gallery3971 from './assets/gallery-3971.webp';
+import gallery3701 from './assets/gallery-3701.webp';
+import gallery4050 from './assets/gallery-4050.webp';
+import gallery4051 from './assets/gallery-4051.webp';
+import gallery4052 from './assets/gallery-4052.webp';
+import gallery4055 from './assets/gallery-4055.webp';
 import as1 from './assets/AS1-gallery.webp';
 import as2 from './assets/AS2-gallery.webp';
 import as3 from './assets/AS3-gallery.webp';
@@ -57,20 +58,17 @@ const galleryImages = [
   { src: gallery4055, alt: 'AllStrum device and guitar resting on an outdoor chair', orientation: 'wide' },
   { src: as4, alt: 'AllStrum device detail product photo', orientation: 'portrait' },
   { src: gallery4276, alt: 'AllStrum device with guitar', orientation: 'portrait' },
-  { src: gallery4051, alt: 'AllStrum guitar demonstration near a swing', orientation: 'wide' },
+  { src: gallery4051, alt: 'AllStrum guitar demonstration near a swing', orientation: 'wide', position: '34% center' },
   { src: gallery4263, alt: 'AllStrum guitar demonstration', orientation: 'portrait' },
   { src: gallery4237, alt: 'AllStrum demonstration moment', orientation: 'portrait' },
   { src: gallery4134, alt: 'AllStrum player experience photo', orientation: 'portrait' },
 ];
 
-const contactAudiences = [
-  'Individuals',
-  'Schools',
-  'Therapy Centers',
-  'Senior Homes',
-  'Camps',
-  'Community Programs',
-];
+const galleryImageSizes = '(max-width: 560px) 92vw, (max-width: 900px) 46vw, 31vw';
+const galleryThumbSizes = '(max-width: 560px) 92vw, (max-width: 900px) 46vw, 23vw';
+const visibleGalleryCount = 5;
+const galleryRotationDelay = 3000;
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -157,6 +155,15 @@ function Hero() {
 }
 
 function HomePage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo !== 'app-section') return;
+    window.setTimeout(() => {
+      document.querySelector('.phone-section')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }, 0);
+  }, [location.state]);
+
   return (
     <div className="home-page">
       <Hero />
@@ -180,7 +187,45 @@ function OriginPage() {
 }
 
 function GalleryPage() {
-  const [featuredImage, secondImage, thirdImage, ...supportingImages] = galleryImages;
+  const [galleryStart, setGalleryStart] = useState(0);
+  const [rotationReset, setRotationReset] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(() => (
+    window.innerWidth <= 560 ? galleryImages.length : visibleGalleryCount
+  ));
+  const shiftGallery = (direction) => {
+    setGalleryStart((index) => (
+      (index + (direction * visibleCount) + galleryImages.length) % galleryImages.length
+    ));
+    setRotationReset((reset) => reset + 1);
+  };
+  const visibleImages = Array.from({ length: visibleCount }, (_, offset) => {
+    const index = (galleryStart + offset) % galleryImages.length;
+    return { ...galleryImages[index], index };
+  });
+
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      const nextCount = window.innerWidth <= 560 ? galleryImages.length : visibleGalleryCount;
+      setVisibleCount(nextCount);
+      if (nextCount === galleryImages.length) {
+        setGalleryStart(0);
+      }
+    };
+
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
+
+  useEffect(() => {
+    if (visibleCount === galleryImages.length) return undefined;
+    const timer = window.setInterval(() => {
+      setGalleryStart((index) => (
+        (index + visibleCount + galleryImages.length) % galleryImages.length
+      ));
+    }, galleryRotationDelay);
+    return () => window.clearInterval(timer);
+  }, [visibleCount, rotationReset]);
 
   return (
     <div className="route-page">
@@ -189,44 +234,43 @@ function GalleryPage() {
           <h1 className="page-eyebrow">See it for yourself</h1>
         </div>
 
-        <div className="gallery-feature">
-          <motion.figure
-            className="gallery-feature__main"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <img src={featuredImage.src} alt={featuredImage.alt} decoding="async" />
-          </motion.figure>
-
-          <div className="gallery-feature__side">
-            {[secondImage, thirdImage].map((image, i) => (
-              <motion.figure
-                key={image.src}
-                className={`gallery-tile gallery-tile--compact gallery-tile--${image.orientation}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.12 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <img src={image.src} alt={image.alt} decoding="async" />
-              </motion.figure>
-            ))}
-          </div>
-        </div>
-
         <div className="gallery-page__grid">
-          {supportingImages.map((image, i) => (
-            <motion.figure
-              key={image.src}
-              className={`gallery-tile gallery-tile--${image.orientation}`}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          {visibleCount < galleryImages.length && (
+            <button
+              className="gallery-arrow gallery-arrow--prev"
+              type="button"
+              aria-label="Previous photos"
+              onClick={() => shiftGallery(-1)}
             >
-              <img src={image.src} alt={image.alt} decoding="async" />
-            </motion.figure>
+              &lsaquo;
+            </button>
+          )}
+          {visibleImages.map((image, i) => (
+            <figure
+              key={`${image.src}-${galleryStart}`}
+              className={`gallery-tile gallery-tile--${image.orientation}${i === 0 ? ' gallery-tile--feature' : ''}`}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                decoding="async"
+                loading={i < 4 ? 'eager' : 'lazy'}
+                fetchPriority={i < 4 ? 'high' : 'low'}
+                sizes={i === 0 ? galleryImageSizes : galleryThumbSizes}
+                style={image.position ? { objectPosition: image.position } : undefined}
+              />
+            </figure>
           ))}
+          {visibleCount < galleryImages.length && (
+            <button
+              className="gallery-arrow gallery-arrow--next"
+              type="button"
+              aria-label="Next photos"
+              onClick={() => shiftGallery(1)}
+            >
+              &rsaquo;
+            </button>
+          )}
         </div>
       </section>
     </div>
@@ -248,7 +292,7 @@ function ContactPage() {
   };
 
   return (
-    <div className="route-page">
+    <div className="route-page route-page--locked">
       <section className="contact-page">
         <motion.div
           className="contact-page__copy"
@@ -256,40 +300,26 @@ function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="page-eyebrow">Contact</span>
           <h1>Bring AllStrum to Your Community</h1>
-          <p>
-            We want to hear from individuals, families, schools, therapy centers, senior living
-            communities, camps, and music programs building more accessible ways to play.
-          </p>
           <div className="contact-page__actions">
             <a className="contact-link" href="mailto:info@allstrum.com">info@allstrum.com</a>
             <button className="btn primary" onClick={handlePreOrderClick}>Pre-order Now</button>
           </div>
         </motion.div>
 
-        <div className="contact-orbit" aria-hidden="true">
-          {contactAudiences.map((item, i) => (
-            <motion.div
-              key={item}
-              className="contact-orbit__item"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-            >
-              {item}
-            </motion.div>
-          ))}
-        </div>
+        <StrumMorph />
       </section>
     </div>
   );
 }
 
 function AppRoutes() {
+  const { pathname } = useLocation();
+  const showHeader = pathname !== '/features';
+
   return (
     <div className="App">
-      <Header />
+      {showHeader && <Header />}
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
