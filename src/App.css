@@ -646,6 +646,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 3.5vh 5vw 4vh;
   }
 
+  .fp-section:first-of-type {
+    padding-top: calc(3.5vh + 3.5rem);
+  }
+
   /* Shrink the phone video so it doesn't eat the whole screen */
   .phone-video-slot canvas,
   .fp-video canvas {
@@ -680,9 +684,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2.5vh 5vw 3vh;
   }
 
+  .fp-section:first-of-type {
+    padding-top: calc(2.5vh + 3.5rem);
+  }
+
   .back-btn {
     top: 1rem;
-    left: 1rem;
+    left: auto;
+    right: 1rem;
     padding: 0.45rem 0.85rem;
     font-size: 0.82rem;
   }
