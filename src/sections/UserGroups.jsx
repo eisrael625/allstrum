@@ -22,6 +22,7 @@ const GROUPS = [
   {
     img: kidsMusic,
     imgPos: 'center top',
+    imgPosMobile: 'center 45%',
     title: 'Young Learners',
     desc: 'Give kids the thrill of playing real songs before theory gets in the way. Let confidence and a love of music come first. The hard work can wait.',
   },
@@ -61,6 +62,7 @@ export default function UserGroups() {
                 style={{
                   backgroundImage:    `url(${g.img})`,
                   backgroundPosition: g.imgPos,
+                  '--img-pos-mobile': g.imgPosMobile || g.imgPos,
                 }}
               />
             </div>

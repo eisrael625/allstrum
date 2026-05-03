@@ -24,6 +24,10 @@
   }
 
   .ug-grid { grid-template-columns: 1fr; }
+
+  .ug-card__photo {
+    background-position: var(--img-pos-mobile) !important;
+  }
 }
 
 /* ── Card shell ── */
