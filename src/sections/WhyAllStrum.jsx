@@ -34,7 +34,7 @@ const itemVariants = {
 /* ── Component ── */
 export default function WhyAllStrum() {
   return (
-    <section className="why-section">
+    <section id="why-allstrum" className="why-section">
 
       {/* Full-bleed image */}
       <div className="why-img-positioner" aria-hidden="true">

@@ -150,6 +150,13 @@ function Hero() {
           </div>
         </motion.div>
       </div>
+
+      <div className="scroll-hint" aria-hidden="true">
+        <span className="scroll-hint__label">Scroll to Learn More</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </div>
     </section>
   );
 }

@@ -74,7 +74,7 @@ export default function AppAnimation() {
   }, [syncVideo]);
 
   return (
-    <section className="phone-section" ref={sectionRef}>
+    <section id="app-section" className="phone-section" ref={sectionRef}>
       <div className="phone-layout phone-layout--reversed">
         <div className="phone-copy">
           <span className="phone-eyebrow">The Companion App</span>
