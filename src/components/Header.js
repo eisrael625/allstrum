@@ -67,6 +67,14 @@ function Header() {
     window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
   };
 
+  const handleHomeClick = (e) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setMenuOpen(false);
+    }
+  };
+
   const isLightPage = location.pathname === '/features';
   const transparentOnApp = overAppSection && !isCompact;
   const visuallyScrolled = scrolled && !transparentOnApp && !isLightPage;
@@ -99,7 +107,7 @@ function Header() {
         <div className="hd-inner">
 
           {/* Logo */}
-          <Link to="/" className="hd-logo" onClick={() => setMenuOpen(false)}>
+          <Link to="/" className="hd-logo" onClick={handleHomeClick}>
             <img src={logo} alt="AllStrum" className="hd-logo-img" />
           </Link>
 
@@ -110,6 +118,7 @@ function Header() {
                 key={item.name}
                 to={item.link}
                 className={({ isActive }) => `hd-link${isActive ? ' hd-link--active' : ''}`}
+                onClick={item.link === '/' ? handleHomeClick : undefined}
               >
                 {item.name}
               </NavLink>
@@ -150,7 +159,7 @@ function Header() {
                 key={item.name}
                 to={item.link}
                 className={({ isActive }) => `hd-mobile-link${isActive ? ' hd-mobile-link--active' : ''}`}
-                onClick={() => setMenuOpen(false)}
+                onClick={item.link === '/' ? handleHomeClick : () => setMenuOpen(false)}
               >
                 {item.name}
               </NavLink>
