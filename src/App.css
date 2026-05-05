@@ -689,6 +689,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: calc(2.5vh + 3.5rem);
   }
 
+  .fp-section .scroll-hint {
+    display: none;
+  }
+
   .back-btn {
     top: 1rem;
     left: auto;
