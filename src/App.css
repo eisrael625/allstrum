@@ -1752,8 +1752,32 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.8rem;
   }
 
+  .site-footer {
+    padding: 0 1rem;
+  }
+
   .site-footer__inner {
     align-items: center;
+  }
+
+  .site-footer__brand-block {
+    gap: 0.65rem;
+  }
+
+  .site-footer__logo {
+    width: 92px;
+  }
+
+  .site-footer__legal {
+    gap: 0;
+  }
+
+  .site-footer p {
+    display: none;
+  }
+
+  .site-footer__email {
+    font-size: 0.76rem;
   }
 }
 
