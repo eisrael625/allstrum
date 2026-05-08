@@ -6,9 +6,8 @@ import './Header.css';
 
 const NAV_ITEMS = [
   { name: 'Home',         link: '/'             },
-  { name: 'Origin',       link: '/origin'       },
-  { name: 'Gallery',      link: '/gallery'      },
-  { name: 'Testimonials', link: '/testimonials' },
+  { name: 'Features',     link: '/features'     },
+  { name: 'About',        link: '/about'        },
   { name: 'Contact',      link: '/contact'      },
 ];
 
@@ -75,7 +74,7 @@ function Header() {
     }
   };
 
-  const isLightPage = location.pathname === '/features';
+  const isLightPage = false;
   const transparentOnApp = overAppSection && !isCompact;
   const visuallyScrolled = scrolled && !transparentOnApp && !isLightPage;
   const floatingHeader = scrolled || transparentOnApp || isLightPage;
@@ -127,7 +126,7 @@ function Header() {
 
           {/* CTA */}
           <button className="hd-cta" onClick={handlePreOrder}>
-            Pre-order Now
+            Pre-order now
           </button>
 
           {/* Hamburger */}
@@ -168,7 +167,7 @@ function Header() {
               className="hd-cta hd-cta--mobile"
               onClick={() => { setMenuOpen(false); handlePreOrder(); }}
             >
-              Pre-order Now
+              Pre-order now
             </button>
           </motion.div>
         )}

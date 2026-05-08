@@ -35,17 +35,10 @@ const itemVariants = {
 export default function WhyAllStrum() {
   return (
     <section id="why-allstrum" className="why-section">
-
-      {/* Full-bleed image */}
-      <div className="why-img-positioner" aria-hidden="true">
-        <img src={productImg} alt="" className="why-img" />
+      <div className="why-img-positioner">
+        <img src={productImg} alt="AllStrum device mounted on an instrument" className="why-img" />
       </div>
 
-      {/* Gradient fade — darkens right side for text */}
-      <div className="why-fade" />
-
-
-      {/* Overlaid text */}
       <motion.div
         className="why-content"
         variants={listVariants}
@@ -57,12 +50,14 @@ export default function WhyAllStrum() {
           Why AllStrum?
         </motion.span>
 
-        {FEATURES.map((f) => (
-          <motion.div key={f.id} className="why-feature" variants={itemVariants}>
-            <h3 className="why-feature__title">{f.title}</h3>
-            <p className="why-feature__body">{f.body}</p>
-          </motion.div>
-        ))}
+        <div className="why-feature-grid">
+          {FEATURES.map((f) => (
+            <motion.div key={f.id} className="why-feature" variants={itemVariants}>
+              <h3 className="why-feature__title">{f.title}</h3>
+              <p className="why-feature__body">{f.body}</p>
+            </motion.div>
+          ))}
+        </div>
 
         <motion.div className="why-rule" variants={itemVariants} />
       </motion.div>

@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import VideoCanvas from '../components/VideoCanvas';
 import videoChords from '../assets/project-33842367-bc19-4967-b1f4-72be01e43a70.webm';
 import videoSongs from '../assets/project-9bc73e8c-82b5-4e34-a9dc-56453af258ef (1).webm';
@@ -28,7 +27,6 @@ const slides = [
 ];
 
 export default function FeaturesPage() {
-  const navigate = useNavigate();
   const videoRefs = useRef([]);
   const sectionRefs = useRef([]);
   const activeIndexRef = useRef(-1);
@@ -119,8 +117,6 @@ export default function FeaturesPage() {
 
   return (
     <div className="fp-scroll">
-      <button className="back-btn" onClick={() => navigate('/', { state: { scrollTo: 'app-section' } })}>Back</button>
-
       {slides.map((slide, i) => (
         <section
           key={slide.lines.join('-')}
@@ -144,20 +140,14 @@ export default function FeaturesPage() {
                   src={playlist[i]}
                   preload="metadata"
                 />
-                <button className="replay-btn replay-btn--feature" onClick={() => replayVideo(i)} type="button">
-                  Replay
-                </button>
+                {i >= 2 && (
+                  <button className="replay-btn replay-btn--feature replay-btn--icon" onClick={() => replayVideo(i)} type="button" aria-label="Replay video">
+                    ↻
+                  </button>
+                )}
               </div>
             </div>
           </div>
-          {i === 0 && (
-            <div className="scroll-hint" aria-hidden="true">
-              <span className="scroll-hint__label">Explore More</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </div>
-          )}
         </section>
       ))}
     </div>
