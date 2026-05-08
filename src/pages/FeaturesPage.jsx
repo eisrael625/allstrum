@@ -120,7 +120,7 @@ export default function FeaturesPage() {
       {slides.map((slide, i) => (
         <section
           key={slide.lines.join('-')}
-          className="fp-section"
+          className={`fp-section fp-section--${i + 1}`}
           ref={(el) => { sectionRefs.current[i] = el; }}
         >
           <div className={`fp-grid${i % 2 === 1 ? ' fp-grid--rev' : ''}`}>

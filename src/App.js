@@ -1,6 +1,6 @@
 // App.js
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import YouTubeVideo from './components/Youtube';
@@ -308,9 +308,6 @@ function ContactPage() {
 
 function Footer() {
   const year = new Date().getFullYear();
-  const handlePreOrderClick = () => {
-    window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
-  };
 
   return (
     <footer className="site-footer">
@@ -322,23 +319,17 @@ function Footer() {
             <a className="site-footer__email" href="mailto:info@allstrum.com">info@allstrum.com</a>
           </div>
         </div>
-        <nav className="site-footer__nav" aria-label="Footer navigation">
-          <Link to="/">Home</Link>
-          <Link to="/features">Features</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-        </nav>
-        <button className="site-footer__button" type="button" onClick={handlePreOrderClick}>
-          Pre-order now
-        </button>
       </div>
     </footer>
   );
 }
 
 function AppRoutes() {
+  const { pathname } = useLocation();
+  const isContactPage = pathname === '/contact';
+
   return (
-    <div className="App">
+    <div className={`App${isContactPage ? ' App--contact' : ''}`}>
       <Header />
       <main>
         <Routes>

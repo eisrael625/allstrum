@@ -7,7 +7,7 @@ const FEATURES = [
   {
     id: 'inclusive',
     title: 'Inclusive Design',
-    body: "AllStrum meets you where you're at, regardless of ability or disability.",
+    body: 'Play regardless of ability or disability.',
   },
   {
     id: 'smart',
