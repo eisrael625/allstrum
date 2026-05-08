@@ -4,16 +4,19 @@
 
 .origin-section {
   width: 100%;
-  min-height: 0;
-  padding: calc(2rem + 64px) 4vw clamp(4rem, 8vh, 6.5rem);
+  min-height: 92svh;
+  padding: calc(1rem + 64px) 4vw clamp(2rem, 4vh, 3.5rem);
   background: linear-gradient(180deg, #0a2540 0%, #0f3460 50%, #0a2540 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .origin-page-title {
   width: min(1180px, 92vw);
-  margin: 0 auto clamp(2rem, 5vh, 4rem);
+  margin: 0 auto clamp(1.2rem, 3vh, 2.2rem);
   text-align: center;
-  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-size: clamp(1.7rem, 3.4vw, 2.9rem);
   line-height: 1.05;
   color: #ffffff;
 }
@@ -96,29 +99,29 @@
 }
 
 .origin-heading {
-  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  margin-bottom: 3.5vh;
+  margin-bottom: 2.2vh;
 }
 
 .origin-quote {
-  font-size: clamp(0.98rem, 1.55vw, 1.15rem);
+  font-size: clamp(0.94rem, 1.4vw, 1.08rem);
   font-style: italic;
   color: rgba(255, 255, 255, 0.78);
-  line-height: 1.65;
+  line-height: 1.55;
   border-left: 3px solid var(--lightblue, #5ec4ec);
   padding-left: 1.4rem;
-  margin: 0 0 3.5vh;
+  margin: 0 0 2.2vh;
 }
 
 .origin-body p {
-  font-size: clamp(0.88rem, 1.35vw, 1.02rem);
+  font-size: clamp(0.85rem, 1.25vw, 0.98rem);
   color: rgba(255, 255, 255, 0.6);
-  line-height: 1.78;
-  margin-bottom: 1.8vh;
+  line-height: 1.65;
+  margin-bottom: 1.2vh;
 }
 
 .origin-body p:last-child {
