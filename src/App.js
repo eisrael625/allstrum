@@ -1,7 +1,7 @@
 // App.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from './components/Header';
 import YouTubeVideo from './components/Youtube';
 import TestimonialSection from './sections/TestimonialSection';
@@ -34,6 +34,7 @@ import as1 from './assets/AS1-gallery.webp';
 import as2 from './assets/AS2-gallery.webp';
 import as3 from './assets/AS3-gallery.webp';
 import as4 from './assets/AS4-gallery.webp';
+import logo from './white-logo.webp';
 import './App.css';
 
 const fadeUp = {
@@ -67,7 +68,7 @@ const galleryImages = [
 const galleryImageSizes = '(max-width: 560px) 92vw, (max-width: 900px) 46vw, 31vw';
 const galleryThumbSizes = '(max-width: 560px) 92vw, (max-width: 900px) 46vw, 23vw';
 const visibleGalleryCount = 5;
-const galleryRotationDelay = 3000;
+const galleryRotationDelay = 6000;
 
 
 function ScrollToTop() {
@@ -133,7 +134,7 @@ function Hero() {
           </p>
           <div className="hero-ctas">
             <button className="btn primary" onClick={handlePreOrderClick}>
-              Pre-order Now
+              Pre-order now
             </button>
           </div>
         </motion.div>
@@ -149,13 +150,6 @@ function Hero() {
             <YouTubeVideo videoId="sSYVzyxQE1w" />
           </div>
         </motion.div>
-      </div>
-
-      <div className="scroll-hint" aria-hidden="true">
-        <span className="scroll-hint__label">Scroll to Learn More</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
       </div>
     </section>
   );
@@ -185,21 +179,23 @@ function HomePage() {
   );
 }
 
-function OriginPage() {
-  return (
-    <div className="route-page origin-page">
-      <OriginStory />
-    </div>
-  );
-}
+const slideVariants = {
+  enter: (direction) => ({ opacity: 0, x: direction > 0 ? 60 : -60, scale: 0.98 }),
+  center: { opacity: 1, x: 0, scale: 1 },
+  exit: (direction) => ({ opacity: 0, x: direction > 0 ? -60 : 60, scale: 0.98 }),
+};
 
-function GalleryPage() {
+function GallerySection() {
   const [galleryStart, setGalleryStart] = useState(0);
   const [rotationReset, setRotationReset] = useState(0);
   const [visibleCount, setVisibleCount] = useState(() => (
-    window.innerWidth <= 560 ? galleryImages.length : visibleGalleryCount
+    window.innerWidth <= 560 ? 1 : visibleGalleryCount
   ));
+  const [slideDirection, setSlideDirection] = useState(1);
+  const touchStartX = useRef(null);
+
   const shiftGallery = (direction) => {
+    setSlideDirection(direction);
     setGalleryStart((index) => (
       (index + (direction * visibleCount) + galleryImages.length) % galleryImages.length
     ));
@@ -210,13 +206,20 @@ function GalleryPage() {
     return { ...galleryImages[index], index };
   });
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(dx) > 45) shiftGallery(dx < 0 ? 1 : -1);
+  };
+
   useEffect(() => {
     const updateVisibleCount = () => {
-      const nextCount = window.innerWidth <= 560 ? galleryImages.length : visibleGalleryCount;
+      const nextCount = window.innerWidth <= 560 ? 1 : visibleGalleryCount;
       setVisibleCount(nextCount);
-      if (nextCount === galleryImages.length) {
-        setGalleryStart(0);
-      }
     };
 
     updateVisibleCount();
@@ -227,6 +230,7 @@ function GalleryPage() {
   useEffect(() => {
     if (visibleCount === galleryImages.length) return undefined;
     const timer = window.setInterval(() => {
+      setSlideDirection(1);
       setGalleryStart((index) => (
         (index + visibleCount + galleryImages.length) % galleryImages.length
       ));
@@ -234,25 +238,55 @@ function GalleryPage() {
     return () => window.clearInterval(timer);
   }, [visibleCount, rotationReset]);
 
-  return (
-    <div className="route-page">
-      <section className="gallery-page">
-        <div className="gallery-page__intro">
-          <h1 className="page-eyebrow">See it for yourself</h1>
-        </div>
+  const isCarousel = visibleCount === 1;
+  const currentImage = visibleImages[0];
 
-        <div className="gallery-page__grid">
-          {visibleCount < galleryImages.length && (
-            <button
-              className="gallery-arrow gallery-arrow--prev"
-              type="button"
-              aria-label="Previous photos"
-              onClick={() => shiftGallery(-1)}
+  return (
+    <section className="gallery-page" data-header-theme="light">
+      <div className="gallery-page__intro">
+        <h1>See AllStrum in Action</h1>
+      </div>
+
+      <div
+        className={`gallery-page__grid${isCarousel ? ' gallery-page__grid--carousel' : ''}`}
+        onTouchStart={isCarousel ? handleTouchStart : undefined}
+        onTouchEnd={isCarousel ? handleTouchEnd : undefined}
+      >
+        {visibleCount < galleryImages.length && (
+          <button
+            className="gallery-arrow gallery-arrow--prev"
+            type="button"
+            aria-label="Previous photos"
+            onClick={() => shiftGallery(-1)}
+          >
+            &lsaquo;
+          </button>
+        )}
+        {isCarousel ? (
+          <AnimatePresence mode="wait" custom={slideDirection} initial={false}>
+            <motion.figure
+              key={`${currentImage.src}-${galleryStart}`}
+              className="gallery-tile gallery-tile--carousel"
+              custom={slideDirection}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
             >
-              &lsaquo;
-            </button>
-          )}
-          {visibleImages.map((image, i) => (
+              <img
+                src={currentImage.src}
+                alt={currentImage.alt}
+                decoding="async"
+                loading="eager"
+                fetchPriority="high"
+                sizes={galleryImageSizes}
+                style={currentImage.position ? { objectPosition: currentImage.position } : undefined}
+              />
+            </motion.figure>
+          </AnimatePresence>
+        ) : (
+          visibleImages.map((image, i) => (
             <figure
               key={`${image.src}-${galleryStart}`}
               className={`gallery-tile gallery-tile--${image.orientation}${i === 0 ? ' gallery-tile--feature' : ''}`}
@@ -267,26 +301,36 @@ function GalleryPage() {
                 style={image.position ? { objectPosition: image.position } : undefined}
               />
             </figure>
-          ))}
-          {visibleCount < galleryImages.length && (
-            <button
-              className="gallery-arrow gallery-arrow--next"
-              type="button"
-              aria-label="Next photos"
-              onClick={() => shiftGallery(1)}
-            >
-              &rsaquo;
-            </button>
-          )}
+          ))
+        )}
+        {visibleCount < galleryImages.length && (
+          <button
+            className="gallery-arrow gallery-arrow--next"
+            type="button"
+            aria-label="Next photos"
+            onClick={() => shiftGallery(1)}
+          >
+            &rsaquo;
+          </button>
+        )}
+      </div>
+
+      {isCarousel && (
+        <div className="gallery-counter" aria-live="polite">
+          <span className="gallery-counter__current">{galleryStart + 1}</span>
+          <span className="gallery-counter__divider">/</span>
+          <span className="gallery-counter__total">{galleryImages.length}</span>
         </div>
-      </section>
-    </div>
+      )}
+    </section>
   );
 }
 
-function TestimonialsPage() {
+function AboutPage() {
   return (
-    <div className="route-page">
+    <div className="route-page about-page">
+      <OriginStory />
+      <GallerySection />
       <TestimonialSection />
       <Awards />
     </div>
@@ -310,7 +354,7 @@ function ContactPage() {
           <h1>Bring AllStrum to Your Community</h1>
           <div className="contact-page__actions">
             <a className="contact-link" href="mailto:info@allstrum.com">info@allstrum.com</a>
-            <button className="btn primary" onClick={handlePreOrderClick}>Pre-order Now</button>
+            <button className="btn primary" onClick={handlePreOrderClick}>Pre-order now</button>
           </div>
         </motion.div>
 
@@ -320,24 +364,44 @@ function ContactPage() {
   );
 }
 
-function AppRoutes() {
-  const { pathname } = useLocation();
-  const showHeader = pathname !== '/features';
+function Footer() {
+  const year = new Date().getFullYear();
 
   return (
-    <div className="App">
-      {showHeader && <Header />}
+    <footer className="site-footer">
+      <div className="site-footer__inner">
+        <div className="site-footer__brand-block">
+          <img src={logo} alt="AllStrum" className="site-footer__logo" />
+          <div className="site-footer__legal">
+            <p>Copyright © {year} AllStrum. All rights reserved.</p>
+            <a className="site-footer__email" href="mailto:info@allstrum.com">info@allstrum.com</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function AppRoutes() {
+  const { pathname } = useLocation();
+  const isContactPage = pathname === '/contact';
+
+  return (
+    <div className={`App${isContactPage ? ' App--contact' : ''}`}>
+      <Header />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/origin" element={<OriginPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/origin" element={<AboutPage />} />
+          <Route path="/gallery" element={<AboutPage />} />
+          <Route path="/testimonials" element={<AboutPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

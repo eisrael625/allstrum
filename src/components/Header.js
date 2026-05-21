@@ -6,15 +6,15 @@ import './Header.css';
 
 const NAV_ITEMS = [
   { name: 'Home',         link: '/'             },
-  { name: 'Origin',       link: '/origin'       },
-  { name: 'Gallery',      link: '/gallery'      },
-  { name: 'Testimonials', link: '/testimonials' },
+  { name: 'Features',     link: '/features'     },
+  { name: 'About',        link: '/about'        },
   { name: 'Contact',      link: '/contact'      },
 ];
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [overAppSection, setOverAppSection] = useState(false);
+  const [overLightSection, setOverLightSection] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(() => window.innerWidth <= 1180);
   const { scrollY } = useScroll();
@@ -63,6 +63,28 @@ function Header() {
     };
   }, [location.pathname]);
 
+  useEffect(() => {
+    const updateLightSectionState = () => {
+      const sections = document.querySelectorAll('[data-header-theme="light"]');
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 80 && rect.bottom > 80) {
+          setOverLightSection(true);
+          return;
+        }
+      }
+      setOverLightSection(false);
+    };
+
+    updateLightSectionState();
+    window.addEventListener('scroll', updateLightSectionState, { passive: true });
+    window.addEventListener('resize', updateLightSectionState);
+    return () => {
+      window.removeEventListener('scroll', updateLightSectionState);
+      window.removeEventListener('resize', updateLightSectionState);
+    };
+  }, [location.pathname]);
+
   const handlePreOrder = () => {
     window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
   };
@@ -75,23 +97,27 @@ function Header() {
     }
   };
 
-  const isLightPage = location.pathname === '/features';
-  const transparentOnApp = overAppSection && !isCompact;
-  const visuallyScrolled = scrolled && !transparentOnApp && !isLightPage;
-  const floatingHeader = scrolled || transparentOnApp || isLightPage;
+  const darkTinted = overLightSection;
+  const transparentOnApp = overAppSection && !isCompact && !darkTinted;
+  const visuallyScrolled = (scrolled && !transparentOnApp) || darkTinted;
+  const floatingHeader = scrolled || transparentOnApp || darkTinted;
 
-  const bgColor = visuallyScrolled
-    ? 'rgba(190, 205, 225, 0.18)'
-    : (transparentOnApp || isLightPage ? 'rgba(190, 205, 225, 0.10)' : 'rgba(8, 16, 32, 0.0)');
+  const bgColor = darkTinted
+    ? 'rgba(10, 26, 48, 0.62)'
+    : visuallyScrolled
+      ? 'rgba(190, 205, 225, 0.18)'
+      : (transparentOnApp ? 'rgba(190, 205, 225, 0.10)' : 'rgba(8, 16, 32, 0.0)');
 
-  const shadow = visuallyScrolled
-    ? '0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.1)'
-    : (transparentOnApp || isLightPage ? '0 8px 32px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.14)' : 'none');
+  const shadow = darkTinted
+    ? '0 10px 36px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
+    : visuallyScrolled
+      ? '0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.1)'
+      : (transparentOnApp ? '0 8px 32px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.14)' : 'none');
 
   return (
     <div className="hd-root">
       <motion.header
-        className={`hd-bar${floatingHeader ? ' hd-bar--scrolled' : ''}${transparentOnApp ? ' hd-bar--light-transparent' : ''}${isLightPage ? ' hd-bar--light-page' : ''}`}
+        className={`hd-bar${floatingHeader ? ' hd-bar--scrolled' : ''}${transparentOnApp ? ' hd-bar--light-transparent' : ''}`}
         animate={{
           width: isCompact
             ? 'calc(100vw - 1rem)'
@@ -100,7 +126,7 @@ function Header() {
           borderRadius: isCompact ? '22px' : (floatingHeader ? '100px' : '0px'),
           backgroundColor: bgColor,
           boxShadow: shadow,
-          backdropFilter: visuallyScrolled || isCompact || transparentOnApp || isLightPage ? 'blur(16px)' : 'none',
+          backdropFilter: visuallyScrolled || isCompact || transparentOnApp ? 'blur(16px)' : 'none',
         }}
         transition={{ type: 'spring', stiffness: 180, damping: 30 }}
       >
@@ -127,7 +153,7 @@ function Header() {
 
           {/* CTA */}
           <button className="hd-cta" onClick={handlePreOrder}>
-            Pre-order Now
+            Pre-order now
           </button>
 
           {/* Hamburger */}
@@ -168,7 +194,7 @@ function Header() {
               className="hd-cta hd-cta--mobile"
               onClick={() => { setMenuOpen(false); handlePreOrder(); }}
             >
-              Pre-order Now
+              Pre-order now
             </button>
           </motion.div>
         )}

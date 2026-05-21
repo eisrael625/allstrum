@@ -4,12 +4,11 @@
 
 .ds-section {
   width: 100%;
-  height: 100vh;
-  height: 100svh;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: calc(5vh + 56px) 4vw 5vh;
-  background: linear-gradient(135deg, #0a2540 0%, #0f3460 60%, #0a2540 100%);
+  padding: clamp(3rem, 6vh, 5rem) 4vw;
+  background:
+    radial-gradient(circle at 15% 24%, rgba(245, 200, 122, 0.18), transparent 26%),
+    radial-gradient(circle at 88% 78%, rgba(94, 196, 236, 0.16), transparent 28%),
+    linear-gradient(135deg, #123044 0%, #0f518a 55%, #071525 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,9 +45,7 @@
 }
 
 .ds-products {
-  width: min(1320px, 100%);
-  height: 100%;
-  min-height: 0;
+  width: min(980px, 100%);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 2rem);
@@ -57,15 +54,14 @@
 /* ── Product cards ── */
 .ds-product {
   position: relative;
-  min-height: 0;
+  min-height: clamp(340px, 42vw, 500px);
   overflow: hidden;
   background: #070a12;
-  border-radius: 18px;
+  border-radius: 8px;
   display: flex;
   align-items: flex-end;
-  box-shadow:
-    0 28px 72px rgba(0, 0, 0, 0.36),
-    0 4px 16px rgba(0, 0, 0, 0.22);
+  border: none;
+  box-shadow: none;
 }
 
 .ds-product__img {
@@ -75,11 +71,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.9s ease;
-}
-
-.ds-product:hover .ds-product__img {
-  transform: scale(1.03);
 }
 
 .ds-product__fade {
@@ -88,10 +79,10 @@
   pointer-events: none;
   background: linear-gradient(
     to top,
-    rgba(7, 10, 18, 0.95) 0%,
-    rgba(7, 10, 18, 0.72) 34%,
-    rgba(7, 10, 18, 0.14) 72%,
-    rgba(7, 10, 18, 0.04) 100%
+    rgba(10, 37, 64, 0.95) 0%,
+    rgba(10, 37, 64, 0.7) 34%,
+    rgba(255, 137, 67, 0.12) 72%,
+    rgba(245, 200, 122, 0.08) 100%
   );
 }
 
@@ -108,17 +99,18 @@
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--lightblue, #5ec4ec);
+  color: var(--logo-yellow, #f5c87a);
   margin-bottom: 1.4vh;
 }
 
 .ds-product__title {
-  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.035em;
   line-height: 1.1;
   margin-bottom: 2.2vh;
+  white-space: nowrap;
 }
 
 .ds-product__desc {
@@ -132,7 +124,7 @@
 .ds-product__rule {
   width: 40px;
   height: 2px;
-  background: var(--lightblue, #5ec4ec);
+  background: var(--orange, #ff8943);
   border-radius: 2px;
   opacity: 0.7;
 }
@@ -140,11 +132,8 @@
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .ds-section {
-    height: 100vh;
-    height: 100svh;
     align-items: flex-start;
-    overflow-y: auto;
-    padding: calc(4rem + 32px) 4vw 2rem;
+    padding: 3rem 4vw;
   }
 
   .ds-video-wrap {
@@ -155,11 +144,10 @@
     grid-template-columns: 1fr;
     gap: 1rem;
     height: auto;
-    min-height: 100%;
   }
 
   .ds-product {
-    min-height: 38vh;
+    min-height: 320px;
     border-radius: 14px;
   }
 
@@ -170,6 +158,7 @@
   .ds-product__title {
     font-size: clamp(1.8rem, 8vw, 2.4rem);
     margin-bottom: 0.75rem;
+    white-space: normal;
   }
 
   .ds-product__desc {

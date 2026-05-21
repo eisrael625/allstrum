@@ -11,6 +11,15 @@ const fadeUp = {
 export default function OriginStory() {
   return (
     <section className="origin-section">
+      <motion.h1
+        className="origin-page-title"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+      >
+        Origin Story
+      </motion.h1>
       <div className="origin-inner">
 
         {/* Image column */}

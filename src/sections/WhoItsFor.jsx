@@ -23,6 +23,7 @@ export default function WhoItsFor() {
           cursorCharacter="_"
           cursorBlinkDuration={0.5}
           startOnVisible
+          visibleThreshold={0.8}
         />
         <p className="wif-lead">Four different starting points. One instrument.</p>
       </motion.div>

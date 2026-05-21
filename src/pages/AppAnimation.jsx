@@ -9,16 +9,6 @@ export default function AppAnimation() {
   const activeRef = useRef(false);
   const navigate = useNavigate();
 
-  const replayVideo = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.pause();
-    video.currentTime = 0;
-    video.load?.();
-    video.drawFrame?.();
-    video.play()?.catch(() => {});
-  };
-
   const syncVideo = useCallback(() => {
     const section = sectionRef.current;
     const video = videoRef.current;
@@ -93,9 +83,6 @@ export default function AppAnimation() {
         <div className="phone-video-wrap">
           <div className="phone-video-slot">
             <VideoCanvas ref={videoRef} src={appIntroVideo} preload="metadata" loop={false} />
-            <button className="replay-btn" onClick={replayVideo} type="button">
-              Replay
-            </button>
           </div>
         </div>
       </div>

@@ -20,6 +20,7 @@ const TextType = ({
   variableSpeed,
   onSentenceComplete,
   startOnVisible = false,
+  visibleThreshold = 0.1,
   reverseMode = false,
   ...props
 }) => {
@@ -55,12 +56,12 @@ const TextType = ({
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: visibleThreshold }
     );
 
     observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [startOnVisible]);
+  }, [startOnVisible, visibleThreshold]);
 
   useEffect(() => {
     if (showCursor && cursorRef.current) {
