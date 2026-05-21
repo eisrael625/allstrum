@@ -101,6 +101,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-page {
   background: #0a2540;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .about-page .gallery-page {
+    order: 1;
+  }
 }
 
 .route-page--locked {
@@ -546,11 +554,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .fp-section {
   width: 100%;
-  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(4rem + 56px) 4vw 4rem;
+  padding: calc(1.5rem + 56px) 4vw 1.5rem;
   position: relative;
 }
 

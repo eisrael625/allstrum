@@ -30,7 +30,7 @@ export default function FeaturesPage() {
   const videoRefs = useRef([]);
   const sectionRefs = useRef([]);
   const activeIndexRef = useRef(-1);
-  const [active, setActive] = useState(new Set());
+  const [active, setActive] = useState(new Set([0]));
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });

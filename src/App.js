@@ -223,7 +223,7 @@ function GallerySection() {
   return (
     <section className="gallery-page">
       <div className="gallery-page__intro">
-        <h1>See AllStrum in Motion</h1>
+        <h1>See AllStrum in Action</h1>
       </div>
 
       <div className="gallery-page__grid">
