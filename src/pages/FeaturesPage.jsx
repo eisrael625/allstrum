@@ -122,6 +122,7 @@ export default function FeaturesPage() {
           key={slide.lines.join('-')}
           className={`fp-section fp-section--${i + 1}`}
           ref={(el) => { sectionRefs.current[i] = el; }}
+          data-header-theme={i === 2 ? 'light' : undefined}
         >
           <div className={`fp-grid${i % 2 === 1 ? ' fp-grid--rev' : ''}`}>
             <div className="fp-text">

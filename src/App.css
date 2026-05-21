@@ -347,42 +347,89 @@ h1, h2, h3, h4, h5, h6 {
   .gallery-page {
     height: auto;
     padding: calc(1.25rem + 64px) 4vw 2rem;
+    gap: 1rem;
   }
 
   .gallery-page__intro {
     width: 92vw;
   }
 
-  .gallery-page__grid {
+  .gallery-page__grid--carousel {
+    position: relative;
+    display: block;
     width: 92vw;
     height: auto;
+    aspect-ratio: 4 / 5;
     min-height: 0;
     max-height: none;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-auto-rows: auto;
-    flex: initial;
-    gap: 0.9rem;
+    overflow: hidden;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(10, 37, 64, 0.12);
+    box-shadow:
+      0 28px 60px rgba(10, 37, 64, 0.22),
+      0 4px 14px rgba(10, 37, 64, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
-  .gallery-tile--feature {
-    grid-column: span 1;
-    grid-row: span 1;
+  .gallery-tile--carousel {
+    position: absolute;
+    inset: 0;
+    grid-column: auto;
+    grid-row: auto;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: hidden;
   }
 
-  .gallery-tile {
-    background: rgba(255, 255, 255, 0.45);
-  }
-
-  .gallery-tile img {
+  .gallery-tile--carousel img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    border-radius: 0;
+    object-fit: cover;
     aspect-ratio: auto;
-    margin: 0;
-    border-radius: 6px;
-    object-fit: contain;
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
 
+  .gallery-page__grid--carousel .gallery-arrow {
+    width: 46px;
+    height: 46px;
+    font-size: 1.7rem;
+    background: rgba(10, 37, 64, 0.62);
+    border-color: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(10, 37, 64, 0.3);
+    z-index: 4;
+  }
+
+  .gallery-page__grid--carousel .gallery-arrow--prev { left: 0.6rem; }
+  .gallery-page__grid--carousel .gallery-arrow--next { right: 0.6rem; }
+
+  .gallery-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0 auto;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(10, 37, 64, 0.1);
+    border: 1px solid rgba(10, 37, 64, 0.12);
+    color: var(--navy);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gallery-counter__current { color: var(--navy); }
+  .gallery-counter__divider { opacity: 0.4; }
+  .gallery-counter__total { opacity: 0.55; }
 }
 
 .phone-section {

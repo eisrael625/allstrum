@@ -1,7 +1,7 @@
 // App.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from './components/Header';
 import YouTubeVideo from './components/Youtube';
 import TestimonialSection from './sections/TestimonialSection';
@@ -179,13 +179,23 @@ function HomePage() {
   );
 }
 
+const slideVariants = {
+  enter: (direction) => ({ opacity: 0, x: direction > 0 ? 60 : -60, scale: 0.98 }),
+  center: { opacity: 1, x: 0, scale: 1 },
+  exit: (direction) => ({ opacity: 0, x: direction > 0 ? -60 : 60, scale: 0.98 }),
+};
+
 function GallerySection() {
   const [galleryStart, setGalleryStart] = useState(0);
   const [rotationReset, setRotationReset] = useState(0);
   const [visibleCount, setVisibleCount] = useState(() => (
-    window.innerWidth <= 560 ? galleryImages.length : visibleGalleryCount
+    window.innerWidth <= 560 ? 1 : visibleGalleryCount
   ));
+  const [slideDirection, setSlideDirection] = useState(1);
+  const touchStartX = useRef(null);
+
   const shiftGallery = (direction) => {
+    setSlideDirection(direction);
     setGalleryStart((index) => (
       (index + (direction * visibleCount) + galleryImages.length) % galleryImages.length
     ));
@@ -196,13 +206,20 @@ function GallerySection() {
     return { ...galleryImages[index], index };
   });
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(dx) > 45) shiftGallery(dx < 0 ? 1 : -1);
+  };
+
   useEffect(() => {
     const updateVisibleCount = () => {
-      const nextCount = window.innerWidth <= 560 ? galleryImages.length : visibleGalleryCount;
+      const nextCount = window.innerWidth <= 560 ? 1 : visibleGalleryCount;
       setVisibleCount(nextCount);
-      if (nextCount === galleryImages.length) {
-        setGalleryStart(0);
-      }
     };
 
     updateVisibleCount();
@@ -213,6 +230,7 @@ function GallerySection() {
   useEffect(() => {
     if (visibleCount === galleryImages.length) return undefined;
     const timer = window.setInterval(() => {
+      setSlideDirection(1);
       setGalleryStart((index) => (
         (index + visibleCount + galleryImages.length) % galleryImages.length
       ));
@@ -220,13 +238,20 @@ function GallerySection() {
     return () => window.clearInterval(timer);
   }, [visibleCount, rotationReset]);
 
+  const isCarousel = visibleCount === 1;
+  const currentImage = visibleImages[0];
+
   return (
-    <section className="gallery-page">
+    <section className="gallery-page" data-header-theme="light">
       <div className="gallery-page__intro">
         <h1>See AllStrum in Action</h1>
       </div>
 
-      <div className="gallery-page__grid">
+      <div
+        className={`gallery-page__grid${isCarousel ? ' gallery-page__grid--carousel' : ''}`}
+        onTouchStart={isCarousel ? handleTouchStart : undefined}
+        onTouchEnd={isCarousel ? handleTouchEnd : undefined}
+      >
         {visibleCount < galleryImages.length && (
           <button
             className="gallery-arrow gallery-arrow--prev"
@@ -237,22 +262,47 @@ function GallerySection() {
             &lsaquo;
           </button>
         )}
-        {visibleImages.map((image, i) => (
-          <figure
-            key={`${image.src}-${galleryStart}`}
-            className={`gallery-tile gallery-tile--${image.orientation}${i === 0 ? ' gallery-tile--feature' : ''}`}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              decoding="async"
-              loading={i < 4 ? 'eager' : 'lazy'}
-              fetchPriority={i < 4 ? 'high' : 'low'}
-              sizes={i === 0 ? galleryImageSizes : galleryThumbSizes}
-              style={image.position ? { objectPosition: image.position } : undefined}
-            />
-          </figure>
-        ))}
+        {isCarousel ? (
+          <AnimatePresence mode="wait" custom={slideDirection} initial={false}>
+            <motion.figure
+              key={`${currentImage.src}-${galleryStart}`}
+              className="gallery-tile gallery-tile--carousel"
+              custom={slideDirection}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img
+                src={currentImage.src}
+                alt={currentImage.alt}
+                decoding="async"
+                loading="eager"
+                fetchPriority="high"
+                sizes={galleryImageSizes}
+                style={currentImage.position ? { objectPosition: currentImage.position } : undefined}
+              />
+            </motion.figure>
+          </AnimatePresence>
+        ) : (
+          visibleImages.map((image, i) => (
+            <figure
+              key={`${image.src}-${galleryStart}`}
+              className={`gallery-tile gallery-tile--${image.orientation}${i === 0 ? ' gallery-tile--feature' : ''}`}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                decoding="async"
+                loading={i < 4 ? 'eager' : 'lazy'}
+                fetchPriority={i < 4 ? 'high' : 'low'}
+                sizes={i === 0 ? galleryImageSizes : galleryThumbSizes}
+                style={image.position ? { objectPosition: image.position } : undefined}
+              />
+            </figure>
+          ))
+        )}
         {visibleCount < galleryImages.length && (
           <button
             className="gallery-arrow gallery-arrow--next"
@@ -264,6 +314,14 @@ function GallerySection() {
           </button>
         )}
       </div>
+
+      {isCarousel && (
+        <div className="gallery-counter" aria-live="polite">
+          <span className="gallery-counter__current">{galleryStart + 1}</span>
+          <span className="gallery-counter__divider">/</span>
+          <span className="gallery-counter__total">{galleryImages.length}</span>
+        </div>
+      )}
     </section>
   );
 }

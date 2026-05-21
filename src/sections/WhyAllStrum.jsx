@@ -34,7 +34,7 @@ const itemVariants = {
 /* ── Component ── */
 export default function WhyAllStrum() {
   return (
-    <section id="why-allstrum" className="why-section">
+    <section id="why-allstrum" className="why-section" data-header-theme="light">
       <div className="why-img-positioner">
         <img src={productImg} alt="AllStrum device mounted on an instrument" className="why-img" />
       </div>
