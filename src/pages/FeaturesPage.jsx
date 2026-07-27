@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import VideoCanvas from '../components/VideoCanvas';
 import videoChords from '../assets/project-33842367-bc19-4967-b1f4-72be01e43a70.webm';
 import videoSongs from '../assets/project-9bc73e8c-82b5-4e34-a9dc-56453af258ef (1).webm';
@@ -126,11 +126,13 @@ export default function FeaturesPage() {
         >
           <div className={`fp-grid${i % 2 === 1 ? ' fp-grid--rev' : ''}`}>
             <div className="fp-text">
-              <h1 className="phone-headline">
-                {slide.lines.map((line, j) => (
+              {React.createElement(
+                i === 0 ? 'h1' : 'h2',
+                { className: 'phone-headline' },
+                slide.lines.map((line, j) => (
                   <span key={line} className={`phone-line phone-line-${j + 1}`}>{line}</span>
-                ))}
-              </h1>
+                ))
+              )}
               <p className="phone-subtext">{slide.sub}</p>
             </div>
 

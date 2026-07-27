@@ -86,7 +86,7 @@ export default function Awards() {
                 }}
               >
                 <div className="aw-card__logo-wrap">
-                  <img src={award.img} alt={award.alt} className="aw-card__logo" />
+                  <img src={award.img} alt={award.alt} loading="lazy" decoding="async" className="aw-card__logo" />
                 </div>
                 <div className="aw-card__body">
                   <span className="aw-card__title">{award.title}</span>

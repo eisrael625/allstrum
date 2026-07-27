@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import guitarImg  from '../assets/as1.webp';
-import ukuleleImg from 'src/ukulele-pic.webp';
+import responsiveImages from '../assets/resized';
 import './DemoSection.css';
+
+const guitarImg  = responsiveImages['as1'];
+const ukuleleImg = responsiveImages['ukulele-pic'];
+const showcaseSizes = '(max-width: 768px) 92vw, 46vw';
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 30 },
@@ -19,8 +22,12 @@ function ProductShowcase({ img, eyebrow, title }) {
       viewport={{ once: true, amount: 0.35 }}
     >
       <img
-        src={img}
+        src={img.src}
+        srcSet={img.srcSet}
+        sizes={showcaseSizes}
         alt={title}
+        loading="lazy"
+        decoding="async"
         className="ds-product__img"
       />
 

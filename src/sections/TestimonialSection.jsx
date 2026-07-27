@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import usePrefersReducedMotion from '../lib/usePrefersReducedMotion';
 import './TestimonialSection.css';
 
 /* ── Testimonial data ── */
@@ -130,7 +131,12 @@ function ScrollRow({ direction, speed }) {
 /* ── Main export ── */
 export default function TestimonialSection() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const timerRef = useRef(null);
+
+  const autoAdvance = !userPaused && !hoverPaused && !prefersReducedMotion;
 
   const advance = useCallback(() => {
     setActiveIdx(i => (i + 1) % TESTIMONIALS.length);
@@ -138,8 +144,10 @@ export default function TestimonialSection() {
 
   const resetTimer = useCallback(() => {
     clearInterval(timerRef.current);
-    timerRef.current = setInterval(advance, 5500);
-  }, [advance]);
+    if (autoAdvance) {
+      timerRef.current = setInterval(advance, 5500);
+    }
+  }, [advance, autoAdvance]);
 
   useEffect(() => {
     resetTimer();
@@ -184,7 +192,13 @@ export default function TestimonialSection() {
         </motion.div>
 
         {/* Featured card */}
-        <div className="ts-featured-wrap">
+        <div
+          className="ts-featured-wrap"
+          onMouseEnter={() => setHoverPaused(true)}
+          onMouseLeave={() => setHoverPaused(false)}
+          onFocus={() => setHoverPaused(true)}
+          onBlur={() => setHoverPaused(false)}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIdx}
@@ -234,6 +248,19 @@ export default function TestimonialSection() {
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
+          </button>
+
+          <button
+            className="ts-arrow ts-pause"
+            onClick={() => setUserPaused(p => !p)}
+            aria-pressed={userPaused}
+            aria-label={userPaused ? 'Resume testimonials' : 'Pause testimonials'}
+          >
+            {userPaused ? (
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8a.8.8 0 0 1 1.2-.7l8 5.2a.8.8 0 0 1 0 1.4l-8 5.2a.8.8 0 0 1-1.2-.7V2.8z" /></svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3.4" height="11" rx="1" /><rect x="9.1" y="2.5" width="3.4" height="11" rx="1" /></svg>
+            )}
           </button>
         </div>
 

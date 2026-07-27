@@ -1,34 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import camp             from '../assets/gallery-4276.webp';
-import guitarcasual     from '../assets/guitar-casual.webp';
-import kidsMusic        from '../assets/kids-music.webp';
-import returningplayers from '../assets/returninplayers.jpg';
+import responsiveImages from '../assets/resized';
 import './UserGroups.css';
+
+const cardImageSizes = '(max-width: 560px) 92vw, (max-width: 1080px) 46vw, 23vw';
 
 const GROUPS = [
   {
-    img: camp,
+    img: responsiveImages['gallery-4276'],
     imgPos: 'center 40%',
+    alt: 'An adaptive player strumming a guitar fitted with the AllStrum device',
     title: 'Adaptive Players',
     desc: 'Built from day one for people with physical or cognitive differences. Playing music shouldn\'t be out of anyone\'s reach.',
   },
   {
-    img: guitarcasual,
+    img: responsiveImages['guitar-casual'],
     imgPos: 'center 20%',
+    alt: 'Friends casually playing guitar together outdoors',
     title: 'Casual Strummers',
     desc: 'Not everyone wants to practice scales. Sometimes you just want to play by a campfire. AllStrum makes that possible from your very first session.',
   },
   {
-    img: kidsMusic,
+    img: responsiveImages['kids-music'],
     imgPos: 'center top',
     imgPosMobile: 'center 45%',
+    alt: 'A young child playing a ukulele',
     title: 'Young Learners',
     desc: 'Give kids the thrill of playing real songs before theory gets in the way. Let confidence and a love of music come first. The hard work can wait.',
   },
   {
-    img: returningplayers,
+    img: responsiveImages['returninplayers'],
     imgPos: 'center top',
+    alt: 'An older adult smiling while playing guitar',
     title: 'Older Adults',
     desc: 'For anyone who stepped away from music because of an injury, a tremor, or simply the passage of time, AllStrum helps you pick up where you left off.',
   },
@@ -57,11 +60,16 @@ export default function UserGroups() {
         {GROUPS.map((g) => (
           <motion.article key={g.title} className="ug-card" variants={cardVariants}>
             <div className="ug-card__photo-wrap">
-              <div
+              <img
                 className="ug-card__photo"
+                src={g.img.src}
+                srcSet={g.img.srcSet}
+                sizes={cardImageSizes}
+                alt={g.alt}
+                loading="lazy"
+                decoding="async"
                 style={{
-                  backgroundImage:    `url(${g.img})`,
-                  backgroundPosition: g.imgPos,
+                  objectPosition: g.imgPos,
                   '--img-pos-mobile': g.imgPosMobile || g.imgPos,
                 }}
               />

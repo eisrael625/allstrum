@@ -161,6 +161,7 @@ function Header() {
             className="hd-hamburger"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             <span className={`hd-burger-line${menuOpen ? ' hd-burger-line--open-1' : ''}`} />
             <span className={`hd-burger-line${menuOpen ? ' hd-burger-line--open-2' : ''}`} />

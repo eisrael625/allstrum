@@ -1,13 +1,21 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 
-function removeEdgeBlackPixels(ctx, width, height) {
-  if (!width || !height) return;
+// How often the transparency mask is recomputed while a video plays.
+// The flood fill below reads the full frame back from the canvas, which is
+// far too expensive to run on every animation frame — a throttled mask
+// composited with 'destination-in' gives the same visual result at a
+// fraction of the main-thread cost.
+const MASK_REFRESH_MS = 500;
+
+function buildEdgeBlackMask(ctx, width, height, maskCtx) {
+  if (!width || !height) return 0;
 
   const frame = ctx.getImageData(0, 0, width, height);
   const { data } = frame;
   const visited = new Uint8Array(width * height);
   const stack = [];
   const threshold = 12;
+  let removed = 0;
 
   const isBlack = (index) => (
     data[index] <= threshold &&
@@ -34,11 +42,16 @@ function removeEdgeBlackPixels(ctx, width, height) {
     pushIfBlack(y * width + width - 1);
   }
 
+  const mask = maskCtx.createImageData(width, height);
+  const maskData = mask.data;
+  for (let i = 3; i < maskData.length; i += 4) maskData[i] = 255;
+
   while (stack.length) {
     const pixel = stack.pop();
     const x = pixel % width;
     const y = Math.floor(pixel / width);
-    data[pixel * 4 + 3] = 0;
+    maskData[pixel * 4 + 3] = 0;
+    removed += 1;
 
     if (x > 0) pushIfBlack(pixel - 1);
     if (x < width - 1) pushIfBlack(pixel + 1);
@@ -46,7 +59,8 @@ function removeEdgeBlackPixels(ctx, width, height) {
     if (y < height - 1) pushIfBlack(pixel + width);
   }
 
-  ctx.putImageData(frame, 0, 0);
+  maskCtx.putImageData(mask, 0, 0);
+  return removed / (width * height);
 }
 
 const VideoCanvas = forwardRef(function VideoCanvas(
@@ -58,6 +72,34 @@ const VideoCanvas = forwardRef(function VideoCanvas(
   const ctxRef = useRef(null);
   const rafRef = useRef(null);
   const sizeRef = useRef({ w: 0, h: 0 });
+  const maskCanvasRef = useRef(null);
+  const maskValidRef = useRef(false);
+  const maskStampRef = useRef(0);
+
+  const refreshMask = useCallback(() => {
+    const canvas = canvasRef.current;
+    const ctx = ctxRef.current;
+    if (!canvas || !ctx) return;
+
+    if (!maskCanvasRef.current) {
+      maskCanvasRef.current = document.createElement('canvas');
+    }
+    const maskCanvas = maskCanvasRef.current;
+    if (maskCanvas.width !== canvas.width || maskCanvas.height !== canvas.height) {
+      maskCanvas.width = canvas.width;
+      maskCanvas.height = canvas.height;
+      maskValidRef.current = false;
+    }
+
+    const maskCtx = maskCanvas.getContext('2d');
+    const removedFraction = buildEdgeBlackMask(ctx, canvas.width, canvas.height, maskCtx);
+    // A frame that is almost entirely edge-black (e.g. a fade-in) would wipe
+    // the whole picture — keep the previous mask and retry on the next tick.
+    if (removedFraction < 0.9) {
+      maskValidRef.current = true;
+      maskStampRef.current = performance.now();
+    }
+  }, []);
 
   const drawFrame = useCallback(() => {
     const video = videoRef.current;
@@ -68,12 +110,22 @@ const VideoCanvas = forwardRef(function VideoCanvas(
     if (video.videoWidth !== sizeRef.current.w || video.videoHeight !== sizeRef.current.h) {
       sizeRef.current.w = canvas.width = video.videoWidth;
       sizeRef.current.h = canvas.height = video.videoHeight;
+      maskValidRef.current = false;
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(video, 0, 0);
-    removeEdgeBlackPixels(ctx, canvas.width, canvas.height);
-  }, []);
+
+    if (!maskValidRef.current || performance.now() - maskStampRef.current > MASK_REFRESH_MS) {
+      refreshMask();
+    }
+
+    if (maskValidRef.current) {
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.drawImage(maskCanvasRef.current, 0, 0);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+  }, [refreshMask]);
 
   useImperativeHandle(ref, () => ({
     get readyState() {
@@ -103,6 +155,7 @@ const VideoCanvas = forwardRef(function VideoCanvas(
     if (!video || !canvas) return undefined;
 
     ctxRef.current = canvas.getContext('2d');
+    maskValidRef.current = false;
 
     const loopFrames = () => {
       drawFrame();

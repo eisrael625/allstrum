@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import usePrefersReducedMotion from '../lib/usePrefersReducedMotion';
 import './StrumMorph.css';
 
 const AUDIENCES = [
@@ -73,11 +74,13 @@ function ScrambleText({ text }) {
 export default function StrumMorph() {
   const [idx, setIdx] = useState(0);
   const audience = AUDIENCES[idx];
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return undefined;
     const t = setInterval(() => setIdx(i => (i + 1) % AUDIENCES.length), 1800);
     return () => clearInterval(t);
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <div className="strum-morph">
@@ -116,7 +119,7 @@ export default function StrumMorph() {
       />
 
       {/* "[Word] Strum" */}
-      <div className="sm-brand" aria-live="polite" aria-atomic="true">
+      <div className="sm-brand">
         <motion.span
           className="sm-word"
           animate={{ color: audience.color }}

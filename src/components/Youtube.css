@@ -6,8 +6,9 @@
     padding-top: 56.25%;
     overflow: hidden;
     border-radius: 2vw;
+    background: #0a1a30;
   }
-  
+
   /* Make iframe fill the wrapper */
   .youtube-responsive iframe {
     position: absolute;
@@ -17,10 +18,54 @@
     height: 100%;
     border: 0;
   }
-  
+
   /* Inside hero card – keep it full width */
   .hero-video-card .youtube-responsive {
     width: 100%;
     padding-top: 56.25%;
   }
-  
+
+  /* Click-to-load facade (thumbnail + play button) */
+  .youtube-facade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: block;
+  }
+
+  .youtube-facade__thumb {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .youtube-facade__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 68px;
+    height: 48px;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.4));
+    opacity: 0.92;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .youtube-facade:hover .youtube-facade__button,
+  .youtube-facade:focus-visible .youtube-facade__button {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+
+  .youtube-facade:focus-visible {
+    outline: 3px solid #F5C87A;
+    outline-offset: -3px;
+  }
