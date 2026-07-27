@@ -1,21 +1,19 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 
-// How often the transparency mask is recomputed while a video plays.
-// The flood fill below reads the full frame back from the canvas, which is
-// far too expensive to run on every animation frame — a throttled mask
-// composited with 'destination-in' gives the same visual result at a
-// fraction of the main-thread cost.
-const MASK_REFRESH_MS = 500;
+// The transparency mask is recomputed every frame, but on a copy of the
+// frame downscaled to this width. The flood fill's readback and pixel walk
+// touch ~16x fewer pixels than at full resolution, and the small mask is
+// scaled back up on the GPU when composited with 'destination-in'.
+const MASK_MAX_WIDTH = 480;
 
-function buildEdgeBlackMask(ctx, width, height, maskCtx) {
-  if (!width || !height) return 0;
+function buildEdgeBlackMask(sampleCtx, width, height, maskCtx) {
+  if (!width || !height) return;
 
-  const frame = ctx.getImageData(0, 0, width, height);
+  const frame = sampleCtx.getImageData(0, 0, width, height);
   const { data } = frame;
   const visited = new Uint8Array(width * height);
   const stack = [];
   const threshold = 12;
-  let removed = 0;
 
   const isBlack = (index) => (
     data[index] <= threshold &&
@@ -51,7 +49,6 @@ function buildEdgeBlackMask(ctx, width, height, maskCtx) {
     const x = pixel % width;
     const y = Math.floor(pixel / width);
     maskData[pixel * 4 + 3] = 0;
-    removed += 1;
 
     if (x > 0) pushIfBlack(pixel - 1);
     if (x < width - 1) pushIfBlack(pixel + 1);
@@ -60,7 +57,6 @@ function buildEdgeBlackMask(ctx, width, height, maskCtx) {
   }
 
   maskCtx.putImageData(mask, 0, 0);
-  return removed / (width * height);
 }
 
 const VideoCanvas = forwardRef(function VideoCanvas(
@@ -72,34 +68,8 @@ const VideoCanvas = forwardRef(function VideoCanvas(
   const ctxRef = useRef(null);
   const rafRef = useRef(null);
   const sizeRef = useRef({ w: 0, h: 0 });
+  const sampleCanvasRef = useRef(null);
   const maskCanvasRef = useRef(null);
-  const maskValidRef = useRef(false);
-  const maskStampRef = useRef(0);
-
-  const refreshMask = useCallback(() => {
-    const canvas = canvasRef.current;
-    const ctx = ctxRef.current;
-    if (!canvas || !ctx) return;
-
-    if (!maskCanvasRef.current) {
-      maskCanvasRef.current = document.createElement('canvas');
-    }
-    const maskCanvas = maskCanvasRef.current;
-    if (maskCanvas.width !== canvas.width || maskCanvas.height !== canvas.height) {
-      maskCanvas.width = canvas.width;
-      maskCanvas.height = canvas.height;
-      maskValidRef.current = false;
-    }
-
-    const maskCtx = maskCanvas.getContext('2d');
-    const removedFraction = buildEdgeBlackMask(ctx, canvas.width, canvas.height, maskCtx);
-    // A frame that is almost entirely edge-black (e.g. a fade-in) would wipe
-    // the whole picture — keep the previous mask and retry on the next tick.
-    if (removedFraction < 0.9) {
-      maskValidRef.current = true;
-      maskStampRef.current = performance.now();
-    }
-  }, []);
 
   const drawFrame = useCallback(() => {
     const video = videoRef.current;
@@ -110,22 +80,33 @@ const VideoCanvas = forwardRef(function VideoCanvas(
     if (video.videoWidth !== sizeRef.current.w || video.videoHeight !== sizeRef.current.h) {
       sizeRef.current.w = canvas.width = video.videoWidth;
       sizeRef.current.h = canvas.height = video.videoHeight;
-      maskValidRef.current = false;
     }
+
+    if (!sampleCanvasRef.current) {
+      sampleCanvasRef.current = document.createElement('canvas');
+      maskCanvasRef.current = document.createElement('canvas');
+    }
+    const sampleCanvas = sampleCanvasRef.current;
+    const maskCanvas = maskCanvasRef.current;
+    const scale = Math.min(1, MASK_MAX_WIDTH / canvas.width);
+    const sw = Math.max(1, Math.round(canvas.width * scale));
+    const sh = Math.max(1, Math.round(canvas.height * scale));
+    if (sampleCanvas.width !== sw || sampleCanvas.height !== sh) {
+      sampleCanvas.width = maskCanvas.width = sw;
+      sampleCanvas.height = maskCanvas.height = sh;
+    }
+
+    const sampleCtx = sampleCanvas.getContext('2d', { willReadFrequently: true });
+    const maskCtx = maskCanvas.getContext('2d');
+    sampleCtx.drawImage(video, 0, 0, sw, sh);
+    buildEdgeBlackMask(sampleCtx, sw, sh, maskCtx);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(video, 0, 0);
-
-    if (!maskValidRef.current || performance.now() - maskStampRef.current > MASK_REFRESH_MS) {
-      refreshMask();
-    }
-
-    if (maskValidRef.current) {
-      ctx.globalCompositeOperation = 'destination-in';
-      ctx.drawImage(maskCanvasRef.current, 0, 0);
-      ctx.globalCompositeOperation = 'source-over';
-    }
-  }, [refreshMask]);
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.drawImage(maskCanvas, 0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = 'source-over';
+  }, []);
 
   useImperativeHandle(ref, () => ({
     get readyState() {
@@ -155,7 +136,6 @@ const VideoCanvas = forwardRef(function VideoCanvas(
     if (!video || !canvas) return undefined;
 
     ctxRef.current = canvas.getContext('2d');
-    maskValidRef.current = false;
 
     const loopFrames = () => {
       drawFrame();
