@@ -86,7 +86,7 @@ function Hero() {
               Reserve yours
             </button>
             <button className="btn ghost" onClick={openInterestForm}>
-              Sign up to hear more
+              Get notified when available
             </button>
           </div>
         </motion.div>

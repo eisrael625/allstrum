@@ -19,7 +19,7 @@ export default function ContactPage() {
           <div className="contact-page__actions">
             <a className="contact-link" href="mailto:info@allstrum.com">info@allstrum.com</a>
             <button className="btn primary" onClick={openReserve}>Reserve yours</button>
-            <button className="btn ghost" onClick={openInterestForm}>Sign up to hear more</button>
+            <button className="btn ghost" onClick={openInterestForm}>Get notified when available</button>
           </div>
           <SocialLinks className="contact-page__socials" />
         </motion.div>

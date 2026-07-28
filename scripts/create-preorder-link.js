@@ -3,7 +3,7 @@
  * Creates one Stripe Payment Link from the four existing reservation
  * products in the dashboard (Ukulele/Guitar Reservation at $50,
  * Ukulele/Guitar Combo Reservation at $100), each with adjustable
- * quantity, then prints the Payment Link URL.
+ * quantity defaulting to 0, then prints the Payment Link URL.
  *
  * Usage (run locally — your secret key never touches the repo):
  *   STRIPE_SECRET_KEY=sk_test_... node scripts/create-preorder-link.js
@@ -43,19 +43,19 @@ async function stripe(path, { method = 'GET', params } = {}) {
   return json;
 }
 
+const CONFIRMATION_PARAMS = {
+  'after_completion[type]': 'hosted_confirmation',
+  'after_completion[hosted_confirmation][custom_message]':
+    "Thank you for reserving your AllStrum! Your deposit is fully refundable at any time. We'll email you as soon as we're ready to ship.",
+};
+
 (async () => {
   const { data: products } = await stripe('products', {
     params: { active: 'true', limit: '100' },
   });
 
-  const linkParams = {
-    'after_completion[type]': 'hosted_confirmation',
-    'after_completion[hosted_confirmation][custom_message]':
-      "Thank you for reserving your AllStrum! Your deposit is fully refundable at any time. We'll email you as soon as we're ready to ship.",
-  };
-
-  for (let i = 0; i < PRODUCT_NAMES.length; i += 1) {
-    const name = PRODUCT_NAMES[i];
+  const items = [];
+  for (const name of PRODUCT_NAMES) {
     const product = products.find((p) => p.name === name);
     if (!product) throw new Error(`Product not found in Stripe: "${name}"`);
 
@@ -68,15 +68,44 @@ async function stripe(path, { method = 'GET', params } = {}) {
       priceId = prices[0].id;
     }
     console.log(`${name}: ${product.id} / ${priceId}`);
-
-    linkParams[`line_items[${i}][price]`] = priceId;
-    linkParams[`line_items[${i}][quantity]`] = '1';
-    linkParams[`line_items[${i}][adjustable_quantity][enabled]`] = 'true';
-    linkParams[`line_items[${i}][adjustable_quantity][minimum]`] = '0';
-    linkParams[`line_items[${i}][adjustable_quantity][maximum]`] = '999';
+    items.push({ name, priceId });
   }
 
-  const link = await stripe('payment_links', { method: 'POST', params: linkParams });
+  let link;
+  try {
+    // Preferred: every product starts at quantity 0.
+    const params = { ...CONFIRMATION_PARAMS };
+    items.forEach((item, i) => {
+      params[`line_items[${i}][price]`] = item.priceId;
+      params[`line_items[${i}][quantity]`] = '0';
+      params[`line_items[${i}][adjustable_quantity][enabled]`] = 'true';
+      params[`line_items[${i}][adjustable_quantity][minimum]`] = '0';
+      params[`line_items[${i}][adjustable_quantity][maximum]`] = '999';
+    });
+    link = await stripe('payment_links', { method: 'POST', params });
+  } catch (err) {
+    if (!/quantity/i.test(err.message)) throw err;
+    // Stripe requires at least one regular line item with quantity >= 1.
+    // Closest allowed shape: the first product starts at 1 (removable,
+    // minimum 0) and the rest are optional add-ons that start at 0.
+    console.log('');
+    console.log(`Note: Stripe rejected all-zero quantities (${err.message})`);
+    console.log(`Falling back: "${items[0].name}" starts at 1 (removable); the rest start at 0.`);
+    const params = { ...CONFIRMATION_PARAMS };
+    params['line_items[0][price]'] = items[0].priceId;
+    params['line_items[0][quantity]'] = '1';
+    params['line_items[0][adjustable_quantity][enabled]'] = 'true';
+    params['line_items[0][adjustable_quantity][minimum]'] = '0';
+    params['line_items[0][adjustable_quantity][maximum]'] = '999';
+    items.slice(1).forEach((item, i) => {
+      params[`optional_items[${i}][price]`] = item.priceId;
+      params[`optional_items[${i}][quantity]`] = '1';
+      params[`optional_items[${i}][adjustable_quantity][enabled]`] = 'true';
+      params[`optional_items[${i}][adjustable_quantity][minimum]`] = '0';
+      params[`optional_items[${i}][adjustable_quantity][maximum]`] = '999';
+    });
+    link = await stripe('payment_links', { method: 'POST', params });
+  }
 
   console.log('');
   console.log(`Payment Link: ${link.url}`);
