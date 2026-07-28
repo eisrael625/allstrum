@@ -19,13 +19,15 @@ if (!key || !key.startsWith('sk_')) {
   process.exit(1);
 }
 
-// Must match the product names in the Stripe dashboard; order here is the
-// order shown at checkout.
+// Must match the product names in the Stripe dashboard. Stripe requires at
+// least one regular line item at quantity >= 1, so the FIRST product is the
+// anchor (starts at 1, removable down to 0) and the rest are optional
+// add-ons that start at 0.
 const PRODUCT_NAMES = [
-  'AllStrum Ukulele Reservation',
+  'AllStrum Guitar Combo Reservation',
   'AllStrum Guitar Reservation',
   'AllStrum Ukulele Combo Reservation',
-  'AllStrum Guitar Combo Reservation',
+  'AllStrum Ukulele Reservation',
 ];
 
 async function stripe(path, { method = 'GET', params } = {}) {
@@ -71,41 +73,22 @@ const CONFIRMATION_PARAMS = {
     items.push({ name, priceId });
   }
 
-  let link;
-  try {
-    // Preferred: every product starts at quantity 0.
-    const params = { ...CONFIRMATION_PARAMS };
-    items.forEach((item, i) => {
-      params[`line_items[${i}][price]`] = item.priceId;
-      params[`line_items[${i}][quantity]`] = '0';
-      params[`line_items[${i}][adjustable_quantity][enabled]`] = 'true';
-      params[`line_items[${i}][adjustable_quantity][minimum]`] = '0';
-      params[`line_items[${i}][adjustable_quantity][maximum]`] = '999';
-    });
-    link = await stripe('payment_links', { method: 'POST', params });
-  } catch (err) {
-    if (!/quantity|greater than or equal to 1/i.test(err.message)) throw err;
-    // Stripe requires at least one regular line item with quantity >= 1.
-    // Closest allowed shape: the first product starts at 1 (removable,
-    // minimum 0) and the rest are optional add-ons that start at 0.
-    console.log('');
-    console.log(`Note: Stripe rejected all-zero quantities (${err.message})`);
-    console.log(`Falling back: "${items[0].name}" starts at 1 (removable); the rest start at 0.`);
-    const params = { ...CONFIRMATION_PARAMS };
-    params['line_items[0][price]'] = items[0].priceId;
-    params['line_items[0][quantity]'] = '1';
-    params['line_items[0][adjustable_quantity][enabled]'] = 'true';
-    params['line_items[0][adjustable_quantity][minimum]'] = '0';
-    params['line_items[0][adjustable_quantity][maximum]'] = '999';
-    items.slice(1).forEach((item, i) => {
-      params[`optional_items[${i}][price]`] = item.priceId;
-      params[`optional_items[${i}][quantity]`] = '1';
-      params[`optional_items[${i}][adjustable_quantity][enabled]`] = 'true';
-      params[`optional_items[${i}][adjustable_quantity][minimum]`] = '0';
-      params[`optional_items[${i}][adjustable_quantity][maximum]`] = '999';
-    });
-    link = await stripe('payment_links', { method: 'POST', params });
-  }
+  console.log('');
+  console.log(`"${items[0].name}" starts at 1 (removable); the rest start at 0.`);
+  const params = { ...CONFIRMATION_PARAMS };
+  params['line_items[0][price]'] = items[0].priceId;
+  params['line_items[0][quantity]'] = '1';
+  params['line_items[0][adjustable_quantity][enabled]'] = 'true';
+  params['line_items[0][adjustable_quantity][minimum]'] = '0';
+  params['line_items[0][adjustable_quantity][maximum]'] = '999';
+  items.slice(1).forEach((item, i) => {
+    params[`optional_items[${i}][price]`] = item.priceId;
+    params[`optional_items[${i}][quantity]`] = '1';
+    params[`optional_items[${i}][adjustable_quantity][enabled]`] = 'true';
+    params[`optional_items[${i}][adjustable_quantity][minimum]`] = '0';
+    params[`optional_items[${i}][adjustable_quantity][maximum]`] = '999';
+  });
+  const link = await stripe('payment_links', { method: 'POST', params });
 
   console.log('');
   console.log(`Payment Link: ${link.url}`);
