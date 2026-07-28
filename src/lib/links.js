@@ -7,7 +7,7 @@
 // buttons fall back to the interest form so nothing on the site breaks.
 export const INTEREST_FORM_URL = 'https://form.typeform.com/to/tIFZxh7l';
 // TEST-MODE link — regenerate with a live key before real launch.
-export const RESERVE_URL = 'https://buy.stripe.com/test_eVq6ozgKiaJ8gMW20I1ZS01';
+export const RESERVE_URL = 'https://buy.stripe.com/test_aFadR179I3gG7cm20I1ZS02';
 
 const open = (url) => window.open(url, '_blank', 'noopener,noreferrer');
 
