@@ -5,7 +5,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import Header from './components/Header';
 import YouTubeVideo from './components/Youtube';
 import SocialLinks from './components/SocialLinks';
-import { openPreOrder } from './lib/links';
+import { openReserve, openInterestForm } from './lib/links';
 import WhyAllStrum from './sections/WhyAllStrum';
 import WhoItsFor from './sections/WhoItsFor';
 import UserGroups from './sections/UserGroups';
@@ -34,7 +34,6 @@ function ScrollToTop() {
 }
 
 function Hero() {
-  const handlePreOrderClick = openPreOrder;
 
   return (
     <section id="intro" className="section hero">
@@ -83,8 +82,11 @@ function Hero() {
             The AllStrum attaches to a guitar or ukulele and automatically holds down chords in real time, so anyone can play just by strumming.
           </p>
           <div className="hero-ctas">
-            <button className="btn primary" onClick={handlePreOrderClick}>
-              Pre-order now
+            <button className="btn primary" onClick={openReserve}>
+              Reserve yours
+            </button>
+            <button className="btn ghost" onClick={openInterestForm}>
+              Sign up to hear more
             </button>
           </div>
         </motion.div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { openPreOrder } from '../lib/links';
+import { openReserve } from '../lib/links';
 import logo from '../white-logo.webp';
 import './Header.css';
 
@@ -86,7 +86,7 @@ function Header() {
     };
   }, [location.pathname]);
 
-  const handlePreOrder = openPreOrder;
+  const handlePreOrder = openReserve;
 
   const handleHomeClick = (e) => {
     if (location.pathname === '/') {
@@ -152,7 +152,7 @@ function Header() {
 
           {/* CTA */}
           <button className="hd-cta" onClick={handlePreOrder}>
-            Pre-order now
+            Reserve yours
           </button>
 
           {/* Hamburger */}
@@ -194,7 +194,7 @@ function Header() {
               className="hd-cta hd-cta--mobile"
               onClick={() => { setMenuOpen(false); handlePreOrder(); }}
             >
-              Pre-order now
+              Reserve yours
             </button>
           </motion.div>
         )}

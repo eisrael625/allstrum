@@ -5,7 +5,7 @@ import './Faq.css';
 export const FAQ_ITEMS = [
   {
     q: 'How much does AllStrum cost?',
-    a: 'AllStrum is still in development, so an exact price isn’t available yet. Pricing will range from $150–$250 for the device itself, or $450–$550 for a device-and-guitar package. Reserve yours now and we’ll follow up with concrete details as soon as we’re ready to ship.',
+    a: 'AllStrum is still in development, so an exact price isn’t available yet. Pricing will range from $150–$250 for the device itself, or $450–$550 for a device-and-guitar package. You can reserve your place in line today with a fully refundable deposit — $50 for a device, or $100 for a device-and-guitar package — and we’ll follow up with concrete details as soon as we’re ready to ship.',
   },
   {
     q: 'Is AllStrum only for people with disabilities?',
