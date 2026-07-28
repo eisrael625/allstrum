@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import productImg from '../assets/AS4-gallery.webp';
+import responsiveImages from '../assets/resized';
 import './WhyAllStrum.css';
+
+const productImg = responsiveImages['as4-gallery'];
 
 const FEATURES = [
   {
@@ -36,7 +38,14 @@ export default function WhyAllStrum() {
   return (
     <section id="why-allstrum" className="why-section" data-header-theme="light">
       <div className="why-img-positioner">
-        <img src={productImg} alt="AllStrum device mounted on an instrument" className="why-img" />
+        <img
+          src={productImg.src}
+          srcSet={productImg.srcSet}
+          sizes="(max-width: 768px) 70vw, 32vw"
+          alt="AllStrum device mounted on an instrument"
+          decoding="async"
+          className="why-img"
+        />
       </div>
 
       <motion.div

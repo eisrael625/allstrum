@@ -1,75 +1,26 @@
 // App.js
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { MotionConfig, motion } from 'framer-motion';
 import Header from './components/Header';
 import YouTubeVideo from './components/Youtube';
-import TestimonialSection from './sections/TestimonialSection';
+import SocialLinks from './components/SocialLinks';
 import WhyAllStrum from './sections/WhyAllStrum';
 import WhoItsFor from './sections/WhoItsFor';
 import UserGroups from './sections/UserGroups';
-import OriginStory from './sections/OriginStory';
 import DemoSection from './sections/DemoSection';
-import Awards from './sections/Awards';
 import AppAnimation from './pages/AppAnimation';
-import FeaturesPage from './pages/FeaturesPage';
-import StrumMorph from './components/StrumMorph';
-import gallery3710 from './assets/gallery-3710.webp';
-import gallery4269 from './assets/gallery-4269.webp';
-import gallery4276 from './assets/gallery-4276.webp';
-import gallery4263 from './assets/gallery-4263.webp';
-import gallery4237 from './assets/gallery-4237.webp';
-import gallery4134 from './assets/gallery-4134.webp';
-import gallery3238 from './assets/gallery-3238.webp';
-import gallery3230 from './assets/gallery-3230.webp';
-import gallery4038 from './assets/gallery-4038.webp';
-import gallery4042 from './assets/gallery-4042.webp';
-import gallery3971 from './assets/gallery-3971.webp';
-import gallery3701 from './assets/gallery-3701.webp';
-import gallery4050 from './assets/gallery-4050.webp';
-import gallery4051 from './assets/gallery-4051.webp';
-import gallery4052 from './assets/gallery-4052.webp';
-import gallery4055 from './assets/gallery-4055.webp';
-import as1 from './assets/AS1-gallery.webp';
-import as2 from './assets/AS2-gallery.webp';
-import as3 from './assets/AS3-gallery.webp';
-import as4 from './assets/AS4-gallery.webp';
 import logo from './white-logo.webp';
 import './App.css';
+
+const FeaturesPage = lazy(() => import('./pages/FeaturesPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
-
-const galleryImages = [
-  { src: gallery4038, alt: 'AllStrum being played on outdoor campus steps', orientation: 'wide' },
-  { src: as1, alt: 'AllStrum guitar setup product photo', orientation: 'landscape' },
-  { src: gallery3710, alt: 'AllStrum founders holding a guitar and device outside a campus building', orientation: 'portrait' },
-  { src: gallery4050, alt: 'AllStrum being played by a seated player outdoors', orientation: 'wide' },
-  { src: as3, alt: 'AllStrum close-up product photo', orientation: 'portrait' },
-  { src: gallery3238, alt: 'AllStrum indoor demonstration with a player smiling', orientation: 'landscape' },
-  { src: gallery4042, alt: 'AllStrum demonstration with a player seated outdoors', orientation: 'wide' },
-  { src: as2, alt: 'AllStrum mounted device product photo', orientation: 'square' },
-  { src: gallery3971, alt: 'AllStrum prototype displayed vertically', orientation: 'portrait' },
-  { src: gallery4052, alt: 'AllStrum guitar demonstration outdoors', orientation: 'wide' },
-  { src: gallery3701, alt: 'AllStrum guitar and device product photo', orientation: 'landscape' },
-  { src: gallery4269, alt: 'AllStrum prototype photo', orientation: 'portrait' },
-  { src: gallery3230, alt: 'AllStrum indoor demonstration by a window', orientation: 'portrait' },
-  { src: gallery4055, alt: 'AllStrum device and guitar resting on an outdoor chair', orientation: 'wide' },
-  { src: as4, alt: 'AllStrum device detail product photo', orientation: 'portrait' },
-  { src: gallery4276, alt: 'AllStrum device with guitar', orientation: 'portrait' },
-  { src: gallery4051, alt: 'AllStrum guitar demonstration near a swing', orientation: 'wide', position: '34% center' },
-  { src: gallery4263, alt: 'AllStrum guitar demonstration', orientation: 'portrait' },
-  { src: gallery4237, alt: 'AllStrum demonstration moment', orientation: 'portrait' },
-  { src: gallery4134, alt: 'AllStrum player experience photo', orientation: 'portrait' },
-];
-
-const galleryImageSizes = '(max-width: 560px) 92vw, (max-width: 900px) 46vw, 31vw';
-const galleryThumbSizes = '(max-width: 560px) 92vw, (max-width: 900px) 46vw, 23vw';
-const visibleGalleryCount = 5;
-const galleryRotationDelay = 6000;
-
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -179,191 +130,6 @@ function HomePage() {
   );
 }
 
-const slideVariants = {
-  enter: (direction) => ({ opacity: 0, x: direction > 0 ? 60 : -60, scale: 0.98 }),
-  center: { opacity: 1, x: 0, scale: 1 },
-  exit: (direction) => ({ opacity: 0, x: direction > 0 ? -60 : 60, scale: 0.98 }),
-};
-
-function GallerySection() {
-  const [galleryStart, setGalleryStart] = useState(0);
-  const [rotationReset, setRotationReset] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(() => (
-    window.innerWidth <= 560 ? 1 : visibleGalleryCount
-  ));
-  const [slideDirection, setSlideDirection] = useState(1);
-  const touchStartX = useRef(null);
-
-  const shiftGallery = (direction) => {
-    setSlideDirection(direction);
-    setGalleryStart((index) => (
-      (index + (direction * visibleCount) + galleryImages.length) % galleryImages.length
-    ));
-    setRotationReset((reset) => reset + 1);
-  };
-  const visibleImages = Array.from({ length: visibleCount }, (_, offset) => {
-    const index = (galleryStart + offset) % galleryImages.length;
-    return { ...galleryImages[index], index };
-  });
-
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-  const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    touchStartX.current = null;
-    if (Math.abs(dx) > 45) shiftGallery(dx < 0 ? 1 : -1);
-  };
-
-  useEffect(() => {
-    const updateVisibleCount = () => {
-      const nextCount = window.innerWidth <= 560 ? 1 : visibleGalleryCount;
-      setVisibleCount(nextCount);
-    };
-
-    updateVisibleCount();
-    window.addEventListener('resize', updateVisibleCount);
-    return () => window.removeEventListener('resize', updateVisibleCount);
-  }, []);
-
-  useEffect(() => {
-    if (visibleCount === galleryImages.length) return undefined;
-    const timer = window.setInterval(() => {
-      setSlideDirection(1);
-      setGalleryStart((index) => (
-        (index + visibleCount + galleryImages.length) % galleryImages.length
-      ));
-    }, galleryRotationDelay);
-    return () => window.clearInterval(timer);
-  }, [visibleCount, rotationReset]);
-
-  const isCarousel = visibleCount === 1;
-  const currentImage = visibleImages[0];
-
-  return (
-    <section className="gallery-page" data-header-theme="light">
-      <div className="gallery-page__intro">
-        <h1>See AllStrum in Action</h1>
-      </div>
-
-      <div
-        className={`gallery-page__grid${isCarousel ? ' gallery-page__grid--carousel' : ''}`}
-        onTouchStart={isCarousel ? handleTouchStart : undefined}
-        onTouchEnd={isCarousel ? handleTouchEnd : undefined}
-      >
-        {visibleCount < galleryImages.length && (
-          <button
-            className="gallery-arrow gallery-arrow--prev"
-            type="button"
-            aria-label="Previous photos"
-            onClick={() => shiftGallery(-1)}
-          >
-            &lsaquo;
-          </button>
-        )}
-        {isCarousel ? (
-          <AnimatePresence mode="wait" custom={slideDirection} initial={false}>
-            <motion.figure
-              key={`${currentImage.src}-${galleryStart}`}
-              className="gallery-tile gallery-tile--carousel"
-              custom={slideDirection}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img
-                src={currentImage.src}
-                alt={currentImage.alt}
-                decoding="async"
-                loading="eager"
-                fetchPriority="high"
-                sizes={galleryImageSizes}
-                style={currentImage.position ? { objectPosition: currentImage.position } : undefined}
-              />
-            </motion.figure>
-          </AnimatePresence>
-        ) : (
-          visibleImages.map((image, i) => (
-            <figure
-              key={`${image.src}-${galleryStart}`}
-              className={`gallery-tile gallery-tile--${image.orientation}${i === 0 ? ' gallery-tile--feature' : ''}`}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                decoding="async"
-                loading={i < 4 ? 'eager' : 'lazy'}
-                fetchPriority={i < 4 ? 'high' : 'low'}
-                sizes={i === 0 ? galleryImageSizes : galleryThumbSizes}
-                style={image.position ? { objectPosition: image.position } : undefined}
-              />
-            </figure>
-          ))
-        )}
-        {visibleCount < galleryImages.length && (
-          <button
-            className="gallery-arrow gallery-arrow--next"
-            type="button"
-            aria-label="Next photos"
-            onClick={() => shiftGallery(1)}
-          >
-            &rsaquo;
-          </button>
-        )}
-      </div>
-
-      {isCarousel && (
-        <div className="gallery-counter" aria-live="polite">
-          <span className="gallery-counter__current">{galleryStart + 1}</span>
-          <span className="gallery-counter__divider">/</span>
-          <span className="gallery-counter__total">{galleryImages.length}</span>
-        </div>
-      )}
-    </section>
-  );
-}
-
-function AboutPage() {
-  return (
-    <div className="route-page about-page">
-      <OriginStory />
-      <GallerySection />
-      <TestimonialSection />
-      <Awards />
-    </div>
-  );
-}
-
-function ContactPage() {
-  const handlePreOrderClick = () => {
-    window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
-  };
-
-  return (
-    <div className="route-page route-page--locked">
-      <section className="contact-page">
-        <motion.div
-          className="contact-page__copy"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h1>Bring AllStrum to Your Community</h1>
-          <div className="contact-page__actions">
-            <a className="contact-link" href="mailto:info@allstrum.com">info@allstrum.com</a>
-            <button className="btn primary" onClick={handlePreOrderClick}>Pre-order now</button>
-          </div>
-        </motion.div>
-
-        <StrumMorph />
-      </section>
-    </div>
-  );
-}
-
 function Footer() {
   const year = new Date().getFullYear();
 
@@ -376,6 +142,7 @@ function Footer() {
             <p>Copyright © {year} AllStrum. All rights reserved.</p>
             <a className="site-footer__email" href="mailto:info@allstrum.com">info@allstrum.com</a>
           </div>
+          <SocialLinks className="site-footer__socials" />
         </div>
       </div>
     </footer>
@@ -390,16 +157,18 @@ function AppRoutes() {
     <div className={`App${isContactPage ? ' App--contact' : ''}`}>
       <Header />
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/origin" element={<AboutPage />} />
-          <Route path="/gallery" element={<AboutPage />} />
-          <Route path="/testimonials" element={<AboutPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/features" element={<FeaturesPage />} />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
+        <Suspense fallback={<div className="route-page" aria-hidden="true" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/origin" element={<AboutPage />} />
+            <Route path="/gallery" element={<AboutPage />} />
+            <Route path="/testimonials" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>
@@ -408,10 +177,10 @@ function AppRoutes() {
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <ScrollToTop />
       <AppRoutes />
-    </>
+    </MotionConfig>
   );
 }
 

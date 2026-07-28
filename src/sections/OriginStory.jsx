@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import campImg from '../camp.webp';
+import responsiveImages from '../assets/resized';
 import './OriginStory.css';
+
+const campImg = responsiveImages['camp'];
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 28 },
@@ -32,7 +34,14 @@ export default function OriginStory() {
         >
           <figure className="origin-figure">
             <div className="origin-image-frame">
-              <img src={campImg} alt="Campers at summer camp" className="origin-image" />
+              <img
+                src={campImg.src}
+                srcSet={campImg.srcSet}
+                sizes="(max-width: 768px) 92vw, 44vw"
+                alt="Campers at summer camp"
+                decoding="async"
+                className="origin-image"
+              />
             </div>
             <figcaption className="origin-caption">
               In loving memory of Yona Brief (center): an avid guitar player and a deeply kind soul.

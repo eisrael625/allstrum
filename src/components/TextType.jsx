@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, createElement, useMemo, useCallback } from 'react';
-import { gsap } from 'gsap';
+import usePrefersReducedMotion from '../lib/usePrefersReducedMotion';
 import './TextType.css';
 
 const TextType = ({
@@ -63,21 +63,10 @@ const TextType = ({
     return () => observer.disconnect();
   }, [startOnVisible, visibleThreshold]);
 
-  useEffect(() => {
-    if (showCursor && cursorRef.current) {
-      gsap.set(cursorRef.current, { opacity: 1 });
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        duration: cursorBlinkDuration,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power2.inOut'
-      });
-    }
-  }, [showCursor, cursorBlinkDuration]);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || prefersReducedMotion) return;
 
     let timeout;
     const currentText = textArray[currentTextIndex];
@@ -154,15 +143,18 @@ const TextType = ({
     {
       ref: containerRef,
       className: `text-type ${className}`,
+      'aria-label': textArray.join(' '),
       ...props
     },
-    <span className="text-type__content" style={{ color: getCurrentTextColor() || 'inherit' }}>
-      {displayedText}
+    <span aria-hidden="true" className="text-type__content" style={{ color: getCurrentTextColor() || 'inherit' }}>
+      {prefersReducedMotion ? textArray[currentTextIndex] : displayedText}
     </span>,
     showCursor && (
       <span
         ref={cursorRef}
+        aria-hidden="true"
         className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? 'text-type__cursor--hidden' : ''}`}
+        style={{ animationDuration: `${cursorBlinkDuration * 2}s` }}
       >
         {cursorCharacter}
       </span>

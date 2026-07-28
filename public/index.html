@@ -5,6 +5,13 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0a2540" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://i.ytimg.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:ital,wght@1,800&display=swap"
+    />
     <meta name="robots" content="index, follow" />
     <meta
       name="description"
@@ -37,7 +44,8 @@
             "logo": "https://allstrum.com/apple-touch-icon.png?v=2",
             "description": "AllStrum builds adaptive music devices that help anyone strum real songs, making guitar and ukulele more accessible for beginners and people with disabilities.",
             "sameAs": [
-              "https://www.linkedin.com/company/all-strum/"
+              "https://www.linkedin.com/company/allstrum/",
+              "https://www.instagram.com/allstrumguitar/"
             ]
           },
           {
@@ -57,12 +65,66 @@
             "url": "https://allstrum.com/features",
             "image": "https://allstrum.com/social-preview.png",
             "offers": {
-              "@type": "Offer",
+              "@type": "AggregateOffer",
               "availability": "https://schema.org/PreOrder",
               "url": "https://form.typeform.com/to/tIFZxh7l",
-              "price": "350",
+              "lowPrice": "150",
+              "highPrice": "550",
               "priceCurrency": "USD"
             }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much does AllStrum cost?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AllStrum is still in development, so an exact price isn't available yet. Pricing will range from $150-$250 for the device itself, or $450-$550 for a device-and-guitar package. Reserve yours now and we'll follow up with concrete details as soon as we're ready to ship."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is AllStrum only for people with disabilities?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. AllStrum was born in the adaptive community, but it's for anyone who wants to play. It's a learning tool for beginners, a motivating aid in physical and occupational therapy, and a way to keep casual players strumming — Fender's research found that 90% of new guitar owners quit within their first year. AllStrum removes the steepest part of the learning curve so you're playing real songs from day one."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is AllStrum different from ChordBuddy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ChordBuddy only supports a limited set of chords, so you can't play complex songs or choose your key — and it still requires the dexterity and cognitive ability to know each chord and transition between them yourself. AllStrum holds chords down for you automatically in real time from the app: pick a song, choose your key, and just strum."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What instruments does AllStrum work with?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "AllStrum attaches to a real guitar or ukulele — you're playing an actual instrument, not a toy or a simulator."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need any musical experience?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "None at all. The companion app handles the chords while you strum, so you can play a real song in your very first session. The fun part is that you will keep getting better as you play: your strumming pattern, sense of rhythm, and timing all improve, taking you from beginner to intermediate in no time."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can AllStrum be used as a learning tool?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. AllStrum is a great way to learn to play guitar or ukulele. You can build a sense of rhythm, start strumming, and get a feel for the instrument and its chords — and that's half the battle. When you're ready, just snap AllStrum off and you're back to a standard guitar."
+                }
+              }
+            ]
           }
         ]
       }

@@ -1,5 +1,5 @@
 /* StrumMorph — logo-to-brand morphing animation panel */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,800&display=swap');
+/* Nunito is loaded via <link> in public/index.html */
 
 .strum-morph {
   position: relative;
