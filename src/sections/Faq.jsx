@@ -5,7 +5,7 @@ import './Faq.css';
 export const FAQ_ITEMS = [
   {
     q: 'How much does AllStrum cost?',
-    a: 'AllStrum is still in development and therefore an exact price is not yet available. Pricing will range from $150 - $250 for the device itself, or $450 - $550 for device and guitar package. Reserve yours now and we’ll follow up with more concrete details as soon as we are ready to ship.',
+    a: 'AllStrum is still in development, so an exact price isn’t available yet. Pricing will range from $150–$250 for the device itself, or $450–$550 for a device-and-guitar package. Reserve yours now and we’ll follow up with concrete details as soon as we’re ready to ship.',
   },
   {
     q: 'Is AllStrum only for people with disabilities?',
@@ -21,12 +21,12 @@ export const FAQ_ITEMS = [
   },
   {
     q: 'Do I need any musical experience?',
-    a: 'None at all. The companion app handles the chords while you strum, so you can play a real song in your very first session. The fun part, however, is that you WILL get better as you continue to play. Your strumming pattern, sense of rhythm, and timing will make you go from a beginner to an intermediate player in no time.',
+    a: 'None at all. The companion app handles the chords while you strum, so you can play a real song in your very first session. The fun part is that you will keep getting better as you play: your strumming pattern, sense of rhythm, and timing all improve, taking you from beginner to intermediate in no time.',
   },
   {
     q: 'Can AllStrum be used as a learning tool?',
-    a: 'Absolutely. AllStrum is a great way to learn how to play guitar or ukulele. You can gain a sense or rhythm, start strumming, and get a feel for the insturments and chords. This is half the battle. When you are ready, just snap AllStrum off and you are back to your standard guitar'
-  }
+    a: 'Absolutely. AllStrum is a great way to learn to play guitar or ukulele. You can build a sense of rhythm, start strumming, and get a feel for the instrument and its chords — and that’s half the battle. When you’re ready, just snap AllStrum off and you’re back to a standard guitar.',
+  },
 ];
 
 const fadeUp = {

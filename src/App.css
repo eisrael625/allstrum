@@ -1085,14 +1085,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 3vh;
 }
 
-.hero-price-note {
-  margin-top: 0.9rem;
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--logo-yellow);
-}
-
 /* HERO VIDEO */
 
 .hero-media {

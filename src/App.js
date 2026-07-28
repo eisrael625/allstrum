@@ -9,7 +9,6 @@ import WhyAllStrum from './sections/WhyAllStrum';
 import WhoItsFor from './sections/WhoItsFor';
 import UserGroups from './sections/UserGroups';
 import DemoSection from './sections/DemoSection';
-import Faq from './sections/Faq';
 import AppAnimation from './pages/AppAnimation';
 import logo from './white-logo.webp';
 import './App.css';
@@ -127,7 +126,6 @@ function HomePage() {
       </section>
       <DemoSection />
       <AppAnimation />
-      <Faq />
     </div>
   );
 }

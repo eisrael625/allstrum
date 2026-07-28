@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import OriginStory from '../sections/OriginStory';
 import TestimonialSection from '../sections/TestimonialSection';
 import Awards from '../sections/Awards';
+import Faq from '../sections/Faq';
 import usePrefersReducedMotion from '../lib/usePrefersReducedMotion';
 import responsiveImages from '../assets/resized';
 
@@ -214,6 +215,7 @@ export default function AboutPage() {
       <GallerySection />
       <TestimonialSection />
       <Awards />
+      <Faq />
     </div>
   );
 }
