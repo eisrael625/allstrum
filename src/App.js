@@ -89,7 +89,6 @@ function Hero() {
               Pre-order now
             </button>
           </div>
-          <p className="hero-price-note">Pre-order today for $350.</p>
         </motion.div>
 
         <motion.div
