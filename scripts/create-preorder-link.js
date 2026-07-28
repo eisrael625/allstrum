@@ -84,7 +84,7 @@ const CONFIRMATION_PARAMS = {
     });
     link = await stripe('payment_links', { method: 'POST', params });
   } catch (err) {
-    if (!/quantity/i.test(err.message)) throw err;
+    if (!/quantity|greater than or equal to 1/i.test(err.message)) throw err;
     // Stripe requires at least one regular line item with quantity >= 1.
     // Closest allowed shape: the first product starts at 1 (removable,
     // minimum 0) and the rest are optional add-ons that start at 0.
