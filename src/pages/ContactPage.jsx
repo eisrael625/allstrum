@@ -16,8 +16,8 @@ export default function ContactPage() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1>Bring AllStrum to Your Community</h1>
+          <a className="contact-link" href="mailto:info@allstrum.com">info@allstrum.com</a>
           <div className="contact-page__actions">
-            <a className="contact-link" href="mailto:info@allstrum.com">info@allstrum.com</a>
             <button className="btn primary" onClick={openReserve}>Reserve yours</button>
             <button className="btn ghost" onClick={openInterestForm}>Get notified when available</button>
           </div>
