@@ -5,6 +5,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import Header from './components/Header';
 import YouTubeVideo from './components/Youtube';
 import SocialLinks from './components/SocialLinks';
+import { openPreOrder } from './lib/links';
 import WhyAllStrum from './sections/WhyAllStrum';
 import WhoItsFor from './sections/WhoItsFor';
 import UserGroups from './sections/UserGroups';
@@ -33,9 +34,7 @@ function ScrollToTop() {
 }
 
 function Hero() {
-  const handlePreOrderClick = () => {
-    window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
-  };
+  const handlePreOrderClick = openPreOrder;
 
   return (
     <section id="intro" className="section hero">

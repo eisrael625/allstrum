@@ -2,11 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import StrumMorph from '../components/StrumMorph';
 import SocialLinks from '../components/SocialLinks';
+import { openPreOrder } from '../lib/links';
 
 export default function ContactPage() {
-  const handlePreOrderClick = () => {
-    window.open('https://form.typeform.com/to/tIFZxh7l', '_blank', 'noopener,noreferrer');
-  };
+  const handlePreOrderClick = openPreOrder;
 
   return (
     <div className="route-page route-page--locked">
