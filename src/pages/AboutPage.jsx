@@ -50,10 +50,9 @@ function GallerySection() {
   const [slideDirection, setSlideDirection] = useState(1);
   const [hoverPaused, setHoverPaused] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
-  const [userPaused, setUserPaused] = useState(false);
   const touchStartX = useRef(null);
 
-  const autoRotate = !userPaused && !hoverPaused && !prefersReducedMotion;
+  const autoRotate = !hoverPaused && !prefersReducedMotion;
 
   const shiftGallery = (direction) => {
     setSlideDirection(direction);
@@ -182,28 +181,15 @@ function GallerySection() {
         )}
       </div>
 
-      <div className="gallery-controls">
-        <button
-          className="gallery-pause"
-          type="button"
-          aria-pressed={userPaused}
-          aria-label={userPaused ? 'Resume slideshow' : 'Pause slideshow'}
-          onClick={() => setUserPaused((paused) => !paused)}
-        >
-          {userPaused ? (
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.5 2.8a.8.8 0 0 1 1.2-.7l8 5.2a.8.8 0 0 1 0 1.4l-8 5.2a.8.8 0 0 1-1.2-.7V2.8z" /></svg>
-          ) : (
-            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3.5" y="2.5" width="3.4" height="11" rx="1" /><rect x="9.1" y="2.5" width="3.4" height="11" rx="1" /></svg>
-          )}
-        </button>
-        {isCarousel && (
+      {isCarousel && (
+        <div className="gallery-controls">
           <div className="gallery-counter" aria-live="polite">
             <span className="gallery-counter__current">{galleryStart + 1}</span>
             <span className="gallery-counter__divider">/</span>
             <span className="gallery-counter__total">{galleryImages.length}</span>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
